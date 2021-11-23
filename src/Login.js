@@ -4,7 +4,7 @@ import { loginVal, } from './validation';
 import ValidationModal from './ValidationModal';
 import { Col, Container, Form, Button } from "react-bootstrap";
 import loginIcon from './images/login.png';
-import { useHistory, withRouter, Link } from 'react-router-dom'
+import { useHistory, withRouter, NavLink } from 'react-router-dom'
 import Axios from 'axios';
 import { AuthContext } from './Auth/AuthContext';
 function Login() {
@@ -112,7 +112,7 @@ function Login() {
                             </Button>
                             <div>
                                 <p>¿No tienes una cuenta?</p>
-                                <Link to="/login"><small className='reset'>Crea una</small></Link>
+                                <NavLink to="/login"><small className='reset'>Crea una</small></NavLink>
                             </div>
 
                         </div>

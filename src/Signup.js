@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { signupVal, safetyPass } from './validation'
 import { Alert } from 'reactstrap'
 import ValidationModal from './ValidationModal';
@@ -105,7 +105,9 @@ function Signup() {
                             </Button>
                             <div>
                                 <p>¿Ya tienes una cuenta?</p>
-                                <Link to="/signup"><small className='reset'>Inicia Sesión</small></Link>
+                                <NavLink to="/signup">
+                                    <small className='reset'>Inicia Sesión</small>
+                                </NavLink>
                             </div>
 
                         </div>

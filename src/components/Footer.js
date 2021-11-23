@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
     return (
@@ -8,13 +8,13 @@ function Footer() {
                     <div className="colum1">
                         <h1 className='h1footer'>Deberías leer</h1>
                         <div className="row2">
-                            <Link to="/politicas" aria-label="Deberías leer la política de privacidad.">
+                            <NavLink to="/politicas" aria-label="Deberías leer la política de privacidad.">
                                 <p>Política de privacidad</p>
-                            </Link>
+                            </NavLink>
                             <br />
-                            <Link href="/terminos" aria-label="Deberías leer los términos y condiciones.">
+                            <NavLink to="/terminos" aria-label="Deberías leer los términos y condiciones.">
                                 <p>Términos y condiciones</p>
-                            </Link>
+                            </NavLink>
                         </div>
 
                     </div>
@@ -22,10 +22,11 @@ function Footer() {
                     <div className="colum2">
                         <h1>Deberías ver</h1>
                         <div className="row2_ft">
-                            <Link href="https://github.com/Marmolejo1489/Whalefare"
+                            <a href={"https://github.com/Marmolejo1489/Whalefare"} target="_blank"
                                 aria-label="Deberías ver el repositorio para entender el proyecto.">
                                 <img src="assets/img/GitHub-Mark-Light-120px-plus.png" alt="Logo de GitHub." />
-                            </Link>
+                            </a>
+
                         </div>
                     </div>
 
