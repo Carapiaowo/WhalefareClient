@@ -57,7 +57,11 @@ function Login() {
                 }
             });
         } else {
-            console.log(modalType.modalValType)
+            setIsLogged({
+                isAuth: false,
+                id: null
+            });
+            setType({ modalValType: 'wrong' });
             onShowAlert();
         }
 

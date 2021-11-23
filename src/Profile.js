@@ -9,7 +9,7 @@ function Profile() {
     const { isLogged } = useContext(AuthContext);
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
-    const [id, setId] = useState(isLogged);
+    const [id, setId] = useState(isLogged.id);
     const [clicked, setClicked] = useState(true);
     console.log(id, id.id)
     //const { isLogged } = useContext(AuthContext)

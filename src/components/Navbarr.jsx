@@ -60,7 +60,7 @@ function Navbarr() {
                         <ul className="menu">
                             <NavItem><NavLink to="/home"><img className='logoo' alt="Imagen de algo" src={iconLista}></img></NavLink></NavItem>
                             <NavItem><NavLink to="/profile"><img className='logoo' alt="Otra imagen de algo" src={iconUsuario}></img></NavLink></NavItem>
-                            <NavItem><NavLink><img className='logoo' alt="Tercera imagen de algo" src={iconLogout} onClick={() => { setModalLogout() }}></img></NavLink></NavItem>
+                            <NavItem><NavLink to="/home"><img className='logoo' alt="Tercera imagen de algo" src={iconLogout} onClick={() => { setModalLogout() }}></img></NavLink></NavItem>
                         </ul>
                     }
                 </Container>
