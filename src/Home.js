@@ -420,7 +420,7 @@ class Home extends Component {
                                     <label htmlFor="nombre">Usuario</label>
                                     <input className="form-control" type="text" name="User" id="User" onChange={this.handleForm} value={form ? form.User : ''} disabled={false} />
                                     <br />
-                                    <label htmlFor="nombre">Contraseña</label>
+                                    <label htmlFor="nombre">Contraseña</label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
                                     <div>
                                         <Popover
                                             flip
