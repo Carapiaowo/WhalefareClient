@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter, NavLink } from 'react-router-dom'
 import { signupVal, safetyPass } from './validation'
-import { Alert } from 'reactstrap'
+import { Alert, Popover, PopoverBody, PopoverHeader } from 'reactstrap'
 import ValidationModal from './ValidationModal';
 import { Col, Container, Form, Button } from "react-bootstrap";
 import loginIcon from './images/login.png';
@@ -14,6 +14,7 @@ function Signup() {
     const [Email, setEmail] = useState("");
     const [modalType, setType] = useState("")
     const [modalOpen, setOpen] = useState(false);
+    const [popOver, setPopOver] = useState(false)
 
     const addUser = () => {
         const newUser = {
@@ -91,7 +92,22 @@ function Signup() {
                             }} />
                         </Form.Group>
                         <Form.Group className="mb-3" >
-                            <Form.Label>Contraseña</Form.Label>
+                            <Form.Label>Contraseña   </Form.Label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
+                            <div>
+                                <Popover
+                                    flip
+                                    isOpen={popOver}
+                                    target="Popover1"
+                                    toggle={() => { setPopOver(!popOver) }}
+                                >
+                                    <PopoverHeader>
+                                        Sugerencias
+                                    </PopoverHeader>
+                                    <PopoverBody>
+                                        Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
+                                    </PopoverBody>
+                                </Popover>
+                            </div>
                             <Form.Control className='campo' id="Password" type="password" placeholder="Escribe aquí." onChange={(event) => {
                                 setPassword(event.target.value);
                                 safetyPass(event.target.value);
@@ -105,8 +121,8 @@ function Signup() {
                             </Button>
                             <div>
                                 <p>¿Ya tienes una cuenta?</p>
-                                <NavLink to="/signup">
-                                    <small className='reset'>Inicia Sesión</small>
+                                <NavLink to="/login">
+                                    Inicia sesión
                                 </NavLink>
                             </div>
 

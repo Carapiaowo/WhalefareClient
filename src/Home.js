@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
@@ -17,6 +17,7 @@ class Home extends Component {
         modalInsertar: false,
         modalEliminar: false,
         modalAuth: false,
+        popOver: false,
         modalVal: {
             modalValOpen: false,
             modalValType: '',
@@ -420,10 +421,21 @@ class Home extends Component {
                                     <input className="form-control" type="text" name="User" id="User" onChange={this.handleForm} value={form ? form.User : ''} disabled={false} />
                                     <br />
                                     <label htmlFor="nombre">Contraseña</label>
-                                    <h6><details>
-                                        <summary>Sugerencias</summary>
-                                        Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
-                                    </details></h6>
+                                    <div>
+                                        <Popover
+                                            flip
+                                            isOpen={this.state.popOver}
+                                            target="Popover1"
+                                            toggle={() => { this.setstate({ popOver: !this.state.popOver }) }}
+                                        >
+                                            <PopoverHeader>
+                                                Sugerencias
+                                            </PopoverHeader>
+                                            <PopoverBody>
+                                                Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
+                                            </PopoverBody>
+                                        </Popover>
+                                    </div>
                                     <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
                                     <span
                                         className="input-group-text"

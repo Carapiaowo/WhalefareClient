@@ -163,18 +163,18 @@ const safetyPass = (e) => {
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let passwordSafety
     if (strongPassword.test(e)) {
-        document.getElementById("Password").className = "is-valid";
-        document.getElementById("p1").innerHTML = "Tu contraseña es fuerte.";
+        document.getElementById("Password").className = "form-control is-valid";
+        document.getElementById("p1").innerHTML = "Tu contraseña es fuerte";
         passwordSafety = true
         return passwordSafety;
     } else if (mediumPassword.test(e)) {
-        document.getElementById("Password").className = "is-valid";
-        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar <br/>Te recomendamos leer 'Sugerencias'.";
+        document.getElementById("Password").className = "form-control is-valid";
+        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar";
         passwordSafety = false
         return passwordSafety;
     } else {
-        document.getElementById("Password").className = "is-invalid";
-        document.getElementById("p1").innerHTML = "Tu contraseña es débil <br/>Te recomendamos leer 'Sugerencias'.";
+        document.getElementById("Password").className = "form-control is-invalid";
+        document.getElementById("p1").innerHTML = "Tu contraseña es débil";
         passwordSafety = false
         return passwordSafety;
     }

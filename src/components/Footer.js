@@ -22,7 +22,7 @@ function Footer() {
                     <div className="colum2">
                         <h1>Deberías ver</h1>
                         <div className="row2_ft">
-                            <a href={"https://github.com/Marmolejo1489/Whalefare"} target="_blank"
+                            <a href={"https://github.com/Marmolejo1489/Whalefare_"} target="_blank" rel="noreferrer"
                                 aria-label="Deberías ver el repositorio para entender el proyecto.">
                                 <img src="assets/img/GitHub-Mark-Light-120px-plus.png" alt="Logo de GitHub." />
                             </a>

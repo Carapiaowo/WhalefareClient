@@ -1,21 +1,20 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Terminos() {
 
 
     return (
-        <div>
-            <h1 className='md-3 p-5'>TÉRMINOS DEL SERVICIO</h1>
+        <div className="container"><br/>
+            <h1 className='md-3 pt-5'>TÉRMINOS DEL SERVICIO</h1>
             <br />
-
-            jTecnología Krishna, S. A. de C. V., gestiona este sitio web. En todo el sitio, los términos nosotros, nos y nuestro
+            Tecnología Krishna, S. A. de C. V., gestiona este sitio web. En todo el sitio, los términos nosotros, nos y nuestro
             se
             refieren en lo sucesivo a Tecnología Krishna, S. A. de C. V. Tecnología Krishna, S. A. de C. V., ofrece esta
             aplicación
             móvil, incluida toda la información, las herramientas y los servicios que se ponen en este sitio a disposición suya,
             el
             usuario, siempre y cuando acepte la totalidad de los términos, condiciones, políticas y avisos contemplados aquí.
-            <br />
             <br />
             Al utilizar nuestra aplicación móvil y/o comprarnos algo, usted interactúa con nuestro «Servicio» y reconoce como
             vinculantes los siguientes términos y condiciones (denominados en lo sucesivo «Términos del servicio», «Términos»),
@@ -56,7 +55,9 @@ function Terminos() {
             El incumplimiento o violación de cualquiera de los Términos dará como resultado la rescisión inmediata de sus
             Servicios.
             <br />
-            <a href='/'>Volver </a>
+            <NavLink to="/">
+                <p>Volver</p>
+            </NavLink>
         </div>
 
     );

@@ -10,13 +10,9 @@ function Feature() {
             <h2>Whalefare prioriza tu seguridad</h2>
             <p>Nos comprometemos a cuidar tus contraseñas</p>
             <div className='a-container'>
-
                 <FeatureBox image={featureimage} title='Gráficos' name='A través de un sistema comprensible, sabrás cuán seguras son tus contraseñas.' />
                 <FeatureBox image={featureimage1} title='Cifrado' name='Gracias al uso de cifrado, tus datos se encuentran seguros en la aplicación.' />
                 <FeatureBox image={featureimage2} title='Facilidad' name='Con una interfaz fácil de usar, podrás gestionar tus datos sensibles.' />
-            </div>
-            <div>
-
             </div>
         </div>
 

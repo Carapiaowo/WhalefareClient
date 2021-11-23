@@ -112,7 +112,9 @@ function Login() {
                             </Button>
                             <div>
                                 <p>¿No tienes una cuenta?</p>
-                                <NavLink to="/login"><small className='reset'>Crea una</small></NavLink>
+                                <NavLink to="/signup">
+                                    Crea una
+                                </NavLink>
                             </div>
 
                         </div>
