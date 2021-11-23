@@ -26,7 +26,8 @@ function Navbarr() {
     }
 
     const logOut = () => {
-        Axios.post("https://whalefare.herokuapp.com/logout");
+        const url = "https://whalefare.herokuapp.com/logout/" + isLogged.id
+        Axios.post(url);
         setIsLogged({
             isAuth: false,
             id: null
@@ -71,7 +72,7 @@ function Navbarr() {
                     ¿Seguro que quieres cerrar tu sesión?
                 </ModalBody>
                 <ModalFooter>
-                    <button className="btn btn-danger" onClick={() => { logOut() }}>Sí</button>
+                    <button className="btn btn-danger" onClick={() => { logOut(); setModalLogout() }}>Sí</button>
                     <button className="btn btn-secundary" onClick={() => { setModalLogout() }}>No</button>
                 </ModalFooter>
             </Modal>

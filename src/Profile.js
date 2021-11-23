@@ -3,15 +3,15 @@ import { hashString } from 'react-hash-string'
 import { withRouter } from 'react-router-dom';
 import { Col, Container, Form, Button, Card } from "react-bootstrap";
 import { AuthContext } from './Auth/AuthContext';
+import Axios from 'axios';
 
 function Profile() {
 
     const { isLogged } = useContext(AuthContext);
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
-    const [id, setId] = useState(isLogged.id);
+    const [id, setId] = useState();
     const [clicked, setClicked] = useState(true);
-    console.log(id, id.id)
     //const { isLogged } = useContext(AuthContext)
 
     const toEditUser = () => {
@@ -45,7 +45,11 @@ function Profile() {
     }
 
     useEffect(() => {
-        setId(hashString(id));
+        setId(hashString(isLogged.id));
+        Axios.get("https://whalefare.herokuapp.com/profile/" + isLogged.id).then((response) => {
+            setEmail(response.data.user.email)
+            setUser(response.data.user.user)
+        })
     }, [])
 
     return (
@@ -57,7 +61,7 @@ function Profile() {
 
                     <Card.Header>Tu perfil</Card.Header>
 
-                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + id + "?d=identicon&s=1024&r=PG"} alt="icon" />
+                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + isLogged.id + "?d=identicon&s=1024&r=PG"} alt="icon" />
                     <Form>
                         <Form.Group>
                             <Form.Label>Nombre de usuario</Form.Label>
