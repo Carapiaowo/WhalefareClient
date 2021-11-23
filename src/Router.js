@@ -14,10 +14,10 @@ import LoggedRoute from './LoggedRoute';
 import NotLoggedRoute from './NotLoggedRoute';
 //import { AuthProvider } from "./Auth/AuthContext";
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Switch,
     Route,
-    Link,
+    NavLink,
 
 } from 'react-router-dom'
 import { AuthContext } from './Auth/AuthContext';
@@ -36,7 +36,7 @@ function RoutesManagement() {
                                 <h1><span>Almacena</span>, genera y aplica contraseñas</h1>
                                 <br />
                                 <p className='details'>Whalefare te ofrece un entorno seguro para almacenar, generar y aplicar contraseñas.</p>
-                                <Link to="/login" className='cv-btn'>Comienza ya</Link>
+                                <NavLink to="/signup" className='cv-btn'>Comienza ya</NavLink>
                             </div>
                         </div>
                     </Route>
