@@ -62,6 +62,7 @@ function Login() {
                 id: null
             });
             setType({ modalValType: 'wrong' });
+            console.log(modalType.modalValType)
             onShowAlert();
         }
 

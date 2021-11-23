@@ -46,7 +46,7 @@ function Profile() {
 
     useEffect(() => {
         setId(hashString(id));
-    }, [id])
+    }, [])
 
     return (
 
