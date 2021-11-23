@@ -17,6 +17,7 @@ import {
     HashRouter as Router,
     Switch,
     Route,
+    Link,
 
 } from 'react-router-dom'
 import { AuthContext } from './Auth/AuthContext';
@@ -35,7 +36,7 @@ function RoutesManagement() {
                                 <h1><span>Almacena</span>, genera y aplica contraseñas</h1>
                                 <br />
                                 <p className='details'>Whalefare te ofrece un entorno seguro para almacenar, generar y aplicar contraseñas.</p>
-                                <a href="./login" className='cv-btn'>Comienza ya</a>
+                                <Link to="/login" className='cv-btn'>Comienza ya</Link>
                             </div>
                         </div>
                     </Route>
