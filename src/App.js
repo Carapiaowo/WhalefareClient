@@ -16,12 +16,9 @@ function App() {
                 isAuth: response.data.isAuth,
                 id: response.data.id
             });
-            
         }).catch((err) => {
             console.log(err)
         })
-
-
     }, []);
 
     Axios.defaults.withCredentials = true;

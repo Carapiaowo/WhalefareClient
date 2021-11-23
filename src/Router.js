@@ -14,7 +14,7 @@ import LoggedRoute from './LoggedRoute';
 import NotLoggedRoute from './NotLoggedRoute';
 //import { AuthProvider } from "./Auth/AuthContext";
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
 
@@ -41,12 +41,12 @@ function RoutesManagement() {
                     </Route>
                     <Route path="/login">
                         <div className='main2'>
-                        <NotLoggedRoute isAuth={isLogged.isAuth} Component={Login} />
+                            <NotLoggedRoute isAuth={isLogged.isAuth} Component={Login} />
                         </div>
                     </Route>
                     <Route path="/signup">
                         <div className='main3'>
-                        <NotLoggedRoute isAuth={isLogged.isAuth} Component={Signup} />
+                            <NotLoggedRoute isAuth={isLogged.isAuth} Component={Signup} />
                         </div>
                     </Route>
                     <Route path="/home">
@@ -58,7 +58,7 @@ function RoutesManagement() {
                     </Route>
                     <Route path="/profile">
                         <div className='main5'>
-                        <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
+                            <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
                         </div>
                     </Route>
                     <Route path="/generar">

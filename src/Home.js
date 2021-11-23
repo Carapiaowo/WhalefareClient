@@ -1,5 +1,6 @@
 //Librerías
 import React, { Component } from 'react';
+import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress } from 'reactstrap';
@@ -34,7 +35,6 @@ class Home extends Component {
         }
     }
     modalInsertar = () => {
-        console.log("modalInsertar ID ->", this.state.idUser)
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.peticionRead();
     }
@@ -66,13 +66,9 @@ class Home extends Component {
             this.setState({ data: [] })
             Axios.post("https://whalefare.herokuapp.com/read", { id_u: this.state.idUser }).then(response => {
                 this.setState({ data: response.data.result, authorized: response.data.authorized[0].authorized_u });
-                console.log(response.data.result)
             }).catch(error => {
                 console.log(error.message);
             })
-
-        } else {
-            console.log("No hay ID")
         }
     }
 
@@ -80,7 +76,6 @@ class Home extends Component {
         const { form } = this.state;
         let validation = formVal(form)
         if (validation === true) {
-            console.log("Peticion post ID ->", this.state.idUser)
             if (this.state.idUser !== null) {
                 delete form.id_c;
                 await Axios.post("https://whalefare.herokuapp.com/add", {
@@ -193,12 +188,10 @@ class Home extends Component {
         e.persist();
         let sm = false
         if (e.target.name === 'Password') {
-            console.log(safetyPass(e.target.value))
-            sm = safetyPass(e.target.value)
             this.setState({
                 form: {
                     ...this.state.form,
-                    safetyMeter: sm
+                    safetyMeter: safetyPass(e.target.value)
                 }
             });
         }
@@ -232,7 +225,6 @@ class Home extends Component {
     safeCounter = () => {
         let count = 0;
         for (let index = 0; index < this.state.data.length; index++) {
-            console.log(this.state.data[index].safe_c)
             if (this.state.data[index].safe_c === 1) {
                 count = + 1;
             }
@@ -242,13 +234,22 @@ class Home extends Component {
     }
 
     sendMail = () => {
-        console.log("Email")
         const id = this.state.idUser
         const url = ("https://whalefare.herokuapp.com/jwtauth/" + id)
         Axios.post(url).then((response) => {
             this.setState({ authorized: response.data.authorized })
-            console.log(this.state.authorized)
         })
+    }
+
+    generatePassword = () => {
+        const pwd = generator.generate({
+            length: 8,
+            lowercase: true,
+            uppercase: true,
+            numbers: true,
+            symbols: true
+        });
+        document.getElementById("Password").value = pwd;
     }
 
     componentDidMount() {
@@ -297,7 +298,7 @@ class Home extends Component {
                                                                 {this.state.authorized !== 1 ?
                                                                     <div className="card-body">
                                                                         <div className="mb-3">
-                                                                            Por favor verifica tu identidad con el enlace que te enviamos al correo
+                                                                            Da clic en la llave para verificar tu identidad y revisa tu correo.
                                                                         </div>
                                                                         <div>
                                                                             <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
@@ -420,9 +421,18 @@ class Home extends Component {
                                     <br />
                                     <label htmlFor="nombre">Contraseña</label>
                                     <h6><details>
-                                        Recomendamos contraseñas con uso de mayúsculas(A-Z), signos de putuación(!"#$%=") y números(0-9).
+                                        <summary>Sugerencias</summary>
+                                        Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
                                     </details></h6>
                                     <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
+                                    <span
+                                        className="input-group-text"
+                                        onClick={() => { this.generatePassword() }}
+                                    >
+                                        <i className="fa fa-arrows-rotate"
+                                            aria-hidden="true">
+                                        </i>
+                                    </span>
                                     <div id="p1"></div>
                                     <br />
                                     <label htmlFor="nombre">Sitio web</label>
@@ -452,7 +462,7 @@ class Home extends Component {
 
                 <Modal isOpen={this.state.modalEliminar}>
                     <ModalBody>
-                        ¿Estás seguro que deseas eliminar la contraseña {form && form.Title}?
+                        ¿Estás seguro que deseas eliminar la contraseña de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>

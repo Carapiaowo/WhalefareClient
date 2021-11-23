@@ -4,7 +4,7 @@ import { loginVal, } from './validation';
 import ValidationModal from './ValidationModal';
 import { Col, Container, Form, Button } from "react-bootstrap";
 import loginIcon from './images/login.png';
-import { useHistory, withRouter } from 'react-router-dom'
+import { useHistory, withRouter, Link } from 'react-router-dom'
 import Axios from 'axios';
 import { AuthContext } from './Auth/AuthContext';
 function Login() {
@@ -90,7 +90,7 @@ function Login() {
                     <img className="icon-img" src={loginIcon} alt="icon" />
                     <Form>
                         <Form.Group className="mb-3">
-                            <Form.Label>Correo Electrónico</Form.Label>
+                            <Form.Label>Correo electrónico</Form.Label>
                             <Form.Control className='campo' name="email" type="email" placeholder="Escribe aquí." onChange={(event) => {
                                 setEmail(event.target.value);
                             }} />
@@ -108,11 +108,11 @@ function Login() {
                         </Form.Group>
                         <div className="d-grid gap-2">
                             <Button className='btnn' variant="primary" size="lg" onClick={logUser}>
-                                Inicia Sesión
+                                Iniciar sesión
                             </Button>
                             <div>
                                 <p>¿No tienes una cuenta?</p>
-                                <a href="/signup"><small className='reset'>Crea una</small></a>
+                                <Link to="/login"><small className='reset'>Crea una</small></Link>
                             </div>
 
                         </div>

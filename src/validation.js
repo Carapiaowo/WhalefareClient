@@ -111,7 +111,7 @@ const loginVal = (e) => {
     const email = e.Email
     let expression = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let urlRegex = new RegExp(expression);
-    
+
     if (!password || !email) {
         return ('emptyform')
     } else if (!password) {
@@ -133,7 +133,7 @@ const signupVal = (e) => {
     let expression = /^[-\w.%+]{3,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let emailRegex = new RegExp(expression);
-    
+
     if (!password || !email || !user) {
         return ('emptyform')
     } else if (!password) {
@@ -152,29 +152,29 @@ const signupVal = (e) => {
         return ('email')
     } else if (!mediumPassword.test(password)) {
         return ('safepassword')
-    }else {
+    } else {
         return (true)
     }
 
 }
 
 const safetyPass = (e) => {
-    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&.,:;]){8}');
+    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&.,:;]).{8}');
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let passwordSafety
     if (strongPassword.test(e)) {
-        document.getElementById("Password").className = "form-control is-valid";
+        document.getElementById("Password").className = "is-valid";
         document.getElementById("p1").innerHTML = "Tu contraseña es fuerte.";
         passwordSafety = true
         return passwordSafety;
     } else if (mediumPassword.test(e)) {
-        document.getElementById("Password").className = "form-control is-valid";
-        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar.";
+        document.getElementById("Password").className = "is-valid";
+        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar <br/>Te recomendamos leer 'Sugerencias'.";
         passwordSafety = false
         return passwordSafety;
     } else {
-        document.getElementById("Password").className = "form-control is-invalid";
-        document.getElementById("p1").innerHTML = "Tu contraseña es débil.";
+        document.getElementById("Password").className = "is-invalid";
+        document.getElementById("p1").innerHTML = "Tu contraseña es débil <br/>Te recomendamos leer 'Sugerencias'.";
         passwordSafety = false
         return passwordSafety;
     }

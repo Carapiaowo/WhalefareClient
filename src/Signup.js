@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { signupVal, safetyPass } from './validation'
 import { Alert } from 'reactstrap'
 import ValidationModal from './ValidationModal';
@@ -92,7 +92,7 @@ function Signup() {
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control className='campo' id="Password" type="password" placeholder="Escribe aaaaquí." onChange={(event) => {
+                            <Form.Control className='campo' id="Password" type="password" placeholder="Escribe aquí." onChange={(event) => {
                                 setPassword(event.target.value);
                                 safetyPass(event.target.value);
                             }} />
@@ -105,7 +105,7 @@ function Signup() {
                             </Button>
                             <div>
                                 <p>¿Ya tienes una cuenta?</p>
-                                <a href="/login"><small className='reset'>Inicia Sesión</small></a>
+                                <Link to="/signup"><small className='reset'>Inicia Sesión</small></Link>
                             </div>
 
                         </div>
