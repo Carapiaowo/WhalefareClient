@@ -46,7 +46,7 @@ function Navbarr() {
             <Navbar>
 
                 <Container>
-                    <h1 className='title'> <Navbar.Brand href="/" style={{ textDecoration: 'none', color: '	#4682B4' }}>WHALEFARE</Navbar.Brand></h1>
+                    <h1 className='title'> <Navbar.Brand to="/" style={{ textDecoration: 'none', color: '	#4682B4' }}>WHALEFARE</Navbar.Brand></h1>
                     <input type='checkbox' className='menu-btn' id='menu-btn' />
                     <label className='menu-icon' htmlFor='menu-btn'>
                         <span className='nav-icon'></span>

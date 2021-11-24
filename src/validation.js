@@ -130,6 +130,7 @@ const signupVal = (e) => {
     const password = e.Password
     const email = e.Email
     const user = e.User
+    const terms = e.Terms
     let expression = /^[-\w.%+]{3,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let emailRegex = new RegExp(expression);
@@ -142,6 +143,8 @@ const signupVal = (e) => {
         return ('email');
     } else if (!user) {
         return ('user')
+    } else if (!terms) {
+        return ('terms')
     } else if (password.length < 5) {
         return ('password')
     } else if (email.length < 5) {
@@ -159,7 +162,7 @@ const signupVal = (e) => {
 }
 
 const safetyPass = (e) => {
-    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&.,:;]).{8}');
+    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&"<>.,:;]).{8}');
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let passwordSafety
     if (strongPassword.test(e)) {

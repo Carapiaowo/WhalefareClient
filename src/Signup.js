@@ -15,7 +15,6 @@ function Signup() {
     const [modalType, setType] = useState("")
     const [modalOpen, setOpen] = useState(false);
     const [popOver, setPopOver] = useState(false)
-
     const addUser = () => {
         const newUser = {
             Password: Password,
@@ -39,11 +38,7 @@ function Signup() {
         } else {
             onShowAlert()
         }
-        console.log("passSafety -> ", safetyPass(Password))
-        /*
-                
-                */
-    };
+    }
 
     const onShowAlert = () => {
         setOpen(true)
@@ -114,7 +109,11 @@ function Signup() {
                             }} />
                             <div id="p1"></div>
                         </Form.Group>
-
+                        <p>
+                            Al hacer clic en <i>Crear cuenta</i>, <br />aceptas nuestras
+                            <NavLink to="/terminos" style={{ color: 'blue' }}> condiciones </NavLink>
+                            y la <NavLink to="/politica" style={{ color: 'blue' }}>política de privacidad</NavLink>.
+                        </p>
                         <div className="d-grid gap-2">
                             <Button className='btnn' variant="primary" size="lg" onClick={addUser}>
                                 Crear cuenta

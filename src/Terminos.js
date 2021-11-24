@@ -55,6 +55,40 @@ function Terminos() {
             El incumplimiento o violación de cualquiera de los Términos dará como resultado la rescisión inmediata de sus
             Servicios.
             <br />
+            <br />
+            SECCIÓN 1: TÉRMINOS DE LA APLICACIÓN
+            <br />
+            Al aceptar los presentes Términos del servicio, usted declara que tiene la mayoría de edad en su estado o provincia
+            de
+            residencia, o que es mayor de edad en su estado o provincia de residencia y que nos ha dado su consentimiento para
+            permitir que cualquiera de las personas menores que dependen de usted utilice este sitio.
+            <br />
+            No puede utilizar nuestros productos para ningún fin ilegal o no autorizado ni puede, al hacer uso del Servicio,
+            infringir las leyes de su jurisdicción (incluyendo de manera enunciativa más no limitativa, las leyes de derechos de
+            autor).
+            <br />
+            No transmitirá ningún gusano o virus informáticos ni ningún código de naturaleza destructiva.
+            <br />
+            El incumplimiento o violación de cualquiera de los Términos dará como resultado la rescisión inmediata de sus
+            Servicios.
+            <br />
+            <br />
+            SECCIÓN 1: TÉRMINOS DE LA APLICACIÓN
+            <br />
+            Al aceptar los presentes Términos del servicio, usted declara que tiene la mayoría de edad en su estado o provincia
+            de
+            residencia, o que es mayor de edad en su estado o provincia de residencia y que nos ha dado su consentimiento para
+            permitir que cualquiera de las personas menores que dependen de usted utilice este sitio.
+            <br />
+            No puede utilizar nuestros productos para ningún fin ilegal o no autorizado ni puede, al hacer uso del Servicio,
+            infringir las leyes de su jurisdicción (incluyendo de manera enunciativa más no limitativa, las leyes de derechos de
+            autor).
+            <br />
+            No transmitirá ningún gusano o virus informáticos ni ningún código de naturaleza destructiva.
+            <br />
+            El incumplimiento o violación de cualquiera de los Términos dará como resultado la rescisión inmediata de sus
+            Servicios.
+            <br />
             <NavLink to="/">
                 <p>Volver</p>
             </NavLink>

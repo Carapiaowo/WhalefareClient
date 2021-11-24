@@ -244,7 +244,7 @@ class Home extends Component {
 
     generatePassword = () => {
         const pwd = generator.generate({
-            length: 8,
+            length: 12,
             lowercase: true,
             uppercase: true,
             numbers: true,
@@ -436,15 +436,17 @@ class Home extends Component {
                                             </PopoverBody>
                                         </Popover>
                                     </div>
-                                    <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
-                                    <span
-                                        className="input-group-text"
-                                        onClick={() => { this.generatePassword() }}
-                                    >
-                                        <i className="fa fa-arrows-rotate"
-                                            aria-hidden="true">
-                                        </i>
-                                    </span>
+                                    <div className="input-group">
+                                        <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
+                                        <span
+                                            className="input-group-text"
+                                            onClick={() => { this.generatePassword() }}
+                                        >
+                                            <i className="fa fa-arrows-rotate"
+                                                aria-hidden="true">
+                                            </i>
+                                        </span>
+                                    </div>
                                     <div id="p1"></div>
                                     <br />
                                     <label htmlFor="nombre">Sitio web</label>
