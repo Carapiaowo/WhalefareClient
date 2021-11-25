@@ -22,7 +22,6 @@ class Home extends Component {
             modalValOpen: false,
             modalValType: '',
         },
-        hiddenPass: 'password',
         tipoModal: '',
         idUser: this.context.isLogged.id,
         form: {
@@ -100,16 +99,8 @@ class Home extends Component {
                     modalValType: validation,
                     modalValOpen: true
                 }
-            }, () => {
-                console.log('new state', this.state.modalVal.modalValType);
             })
-
         }
-        //Validación
-        /*
-                
-        */
-
     }
 
     peticionPut = async () => {
@@ -136,12 +127,8 @@ class Home extends Component {
                     modalValType: validation,
                     modalValOpen: true
                 }
-            }, () => {
-                console.log('new state', this.state.modalVal.modalValType);
             })
-
         }
-
     }
 
     peticionDelete = () => {
@@ -195,6 +182,7 @@ class Home extends Component {
                     safetyMeter: safetyPass(e.target.value)
                 }
             });
+            console.log(this.state.form.safetyMeter)
         }
         this.setState({
             form: {
@@ -254,15 +242,14 @@ class Home extends Component {
     }
 
     showingPassword = (encryption) => {
-        console.log(encryption)
         Axios.post('https://whalefare.herokuapp.com/decryptpass',
             {
                 password: encryption.pass_c,
                 iv: encryption.key_c
             })
             .then((response) => {
-                console.log(response.data)
                 document.getElementById("pass" + encryption.id_c).value = response.data;
+                document.getElementById("pass" + encryption.id_c).type = "text";
             });
     };
 
@@ -344,7 +331,7 @@ class Home extends Component {
                                                                         <div className="mb-3 input-group">
                                                                             <input
                                                                                 name="Password"
-                                                                                type={this.state.hiddenPass}
+                                                                                type={'password'}
                                                                                 id={"pass" + pass.id_c}
                                                                                 className="form-control"
                                                                                 disabled={true}

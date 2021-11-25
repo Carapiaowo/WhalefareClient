@@ -28,16 +28,12 @@ function Login() {
         }
         setType(type)
         if (type.modalValType === true) {
-            console.log("Login al menos con click")
             Axios.post("https://whalefare.herokuapp.com/login", {
                 password: Password,
                 email: Email
             }).then((response) => {
-                console.log("Post hecho?")
                 const data = response.data
-                console.log(data)
                 if (data.isLogged === true) {
-                    console.log("If login", data)
                     modalVal();
                     setType({ modalValType: data.isLogged });
                     setIsLogged({

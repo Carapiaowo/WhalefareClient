@@ -22,7 +22,6 @@ function Signup() {
             Email: Email
         }
         modalVal();
-        console.log("Form validation -> ", signupVal(newUser))
         let type = {
             modalValType: signupVal(newUser)
         }

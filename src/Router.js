@@ -23,8 +23,6 @@ import {
 import { AuthContext } from './Auth/AuthContext';
 function RoutesManagement() {
     const { isLogged } = useContext(AuthContext);
-    console.log(isLogged)
-
     return (
         <Router>
             <Navbar />
