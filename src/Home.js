@@ -254,12 +254,14 @@ class Home extends Component {
     }
 
     showingPassword = (encryption) => {
+        console.log(encryption)
         Axios.post('https://whalefare.herokuapp.com/decryptpass',
             {
                 password: encryption.pass_c,
                 iv: encryption.key_c
             })
             .then((response) => {
+                console.log(response.data)
                 document.getElementById("pass" + encryption.id_c).value = response.data;
             });
     };
@@ -439,7 +441,7 @@ class Home extends Component {
                                             flip
                                             isOpen={this.state.popOver}
                                             target="Popover1"
-                                            toggle={() => { this.setstate({ popOver: !this.state.popOver }) }}
+                                            toggle={() => { this.setState({ popOver: !this.state.popOver }) }}
                                         >
                                             <PopoverHeader>
                                                 Sugerencias
@@ -455,7 +457,7 @@ class Home extends Component {
                                             className="input-group-text"
                                             onClick={() => { this.generatePassword() }}
                                         >
-                                            <i className="fa fa-arrows-rotate"
+                                            <i className="fa fa-dice"
                                                 aria-hidden="true">
                                             </i>
                                         </span>

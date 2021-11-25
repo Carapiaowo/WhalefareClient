@@ -61,8 +61,7 @@ function Login() {
                 isAuth: false,
                 id: null
             });
-            setType({ modalValType: 'wrong' });
-            console.log(modalType.modalValType)
+            setType({ modalValType: 'unverified' });
             onShowAlert();
         }
 
