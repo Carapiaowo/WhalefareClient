@@ -53,13 +53,7 @@ function ValidationModal(props) {
     } else if (type === true) {
         return (
             <div>
-                Correcto
-            </div>
-        )
-    } else if (type === 'terms') {
-        return (
-            <div>
-                Para registrarte necesitas aceptar los términos y condiciones.
+                
             </div>
         )
     } else if (type === 'wrong') {

@@ -75,6 +75,8 @@ class Home extends Component {
     peticionPost = async () => {
         const { form } = this.state;
         let validation = formVal(form)
+        let safetyMeter = safetyPass(form.Password)
+        console.log(safetyMeter)
         if (validation === true) {
             if (this.state.idUser !== null) {
                 delete form.id_c;
@@ -83,7 +85,7 @@ class Home extends Component {
                     user_c: form.User,
                     pass_c: form.Password,
                     website_c: form.Website,
-                    safe_c: form.safetyMeter,
+                    safe_c: safetyMeter,
                     id_u: this.state.idUser
                 }).then(response => {
                     this.modalInsertar();
@@ -107,6 +109,8 @@ class Home extends Component {
         let url = ("https://whalefare.herokuapp.com/edit/" + this.state.form.id_c)
         const { form } = this.state;
         let validation = formVal(form)
+        let safetyMeter = safetyPass(form.Password)
+        console.log(safetyMeter)
         if (validation === true) {
             this.modalInsertar();
             await Axios.put(url, {
@@ -114,7 +118,7 @@ class Home extends Component {
                 user_c: form.User,
                 pass_c: form.Password,
                 website_c: form.Website,
-                safety_c: form.safetyMeter,
+                safety_c: safetyMeter,
             }).then(response => {
                 this.modalInsertar();
             }).catch(error => {
@@ -174,17 +178,6 @@ class Home extends Component {
 
     handleForm = e => {
         e.persist();
-        let sm = false
-        if (e.target.name === 'Password') {
-            console.log(safetyPass(e.target.value))
-            this.setState({
-                form: {
-                    ...this.state.form,
-                    safetyMeter: safetyPass(e.target.value)
-                }
-            });
-            console.log(this.state.form.safetyMeter)
-        }
         this.setState({
             form: {
                 ...this.state.form,
