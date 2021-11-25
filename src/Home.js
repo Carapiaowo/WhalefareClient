@@ -186,6 +186,7 @@ class Home extends Component {
                     safetyMeter: safetyPass(e.target.value)
                 }
             });
+            console.log(safetyPass(e.target.value))
         }
         this.setState({
             form: {
