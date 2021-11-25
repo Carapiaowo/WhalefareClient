@@ -176,6 +176,7 @@ class Home extends Component {
         e.persist();
         let sm = false
         if (e.target.name === 'Password') {
+            console.log(safetyPass(e.target.value))
             this.setState({
                 form: {
                     ...this.state.form,
@@ -188,7 +189,6 @@ class Home extends Component {
             form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value,
-                safetyMeter: sm
             }
         });
     }
@@ -250,6 +250,7 @@ class Home extends Component {
             .then((response) => {
                 document.getElementById("pass" + encryption.id_c).value = response.data;
                 document.getElementById("pass" + encryption.id_c).type = "text";
+                document.getElementById("pass" + encryption.id_c).class = "fa fa-eye-slash";
             });
     };
 
