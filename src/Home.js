@@ -253,6 +253,17 @@ class Home extends Component {
         document.getElementById("Password").value = pwd;
     }
 
+    showingPassword = (encryption) => {
+        Axios.post('https://whalefare.herokuapp.com/decryptpass',
+            {
+                password: encryption.pass_c,
+                iv: encryption.key_c
+            })
+            .then((response) => {
+                document.getElementById("pass" + encryption.id_c).value = response.data;
+            });
+    };
+
     componentDidMount() {
         this.peticionRead();
     }
@@ -335,14 +346,16 @@ class Home extends Component {
                                                                                 id={"pass" + pass.id_c}
                                                                                 className="form-control"
                                                                                 disabled={true}
-                                                                                value={pass.pass_c}
+                                                                                defaultValue={pass.pass_c}
                                                                             />
                                                                             <span
                                                                                 className="input-group-text"
                                                                             >
                                                                                 <i id={"eye" + pass.id_c}
                                                                                     className="fa fa-eye"
-                                                                                    aria-hidden="true">
+                                                                                    aria-hidden="true"
+                                                                                    onClick={() => { this.showingPassword(pass); }}
+                                                                                >
                                                                                 </i>
                                                                             </span>
                                                                         </div>
