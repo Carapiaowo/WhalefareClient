@@ -58,6 +58,7 @@ input{
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url('./images/4.png');
+    overflow-y: auto;
 }
 .main5{
     width:100%;
@@ -344,7 +345,7 @@ background-color:#edf3f3;
     display:flex;
     justify-content: center;
     align-items: center;
-    text-align:justify;
+    text-align: center;
     flex-direction: column;
     box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
