@@ -74,8 +74,8 @@ class Home extends Component {
 
     peticionPost = async () => {
         const { form } = this.state;
-        let validation = formVal(form)
         let safetyMeter = safetyPass(form.Password)
+        let validation = formVal(form)
         console.log(safetyMeter)
         if (validation === true) {
             if (this.state.idUser !== null) {
@@ -108,8 +108,8 @@ class Home extends Component {
     peticionPut = async () => {
         let url = ("https://whalefare.herokuapp.com/edit/" + this.state.form.id_c)
         const { form } = this.state;
-        let validation = formVal(form)
         let safetyMeter = safetyPass(form.Password)
+        let validation = formVal(form)
         console.log(safetyMeter)
         if (validation === true) {
             this.modalInsertar();
@@ -178,6 +178,15 @@ class Home extends Component {
 
     handleForm = e => {
         e.persist();
+
+        if (e.target.name === 'Password') {
+            this.setState({
+                form: {
+                    ...this.state.form,
+                    safetyMeter: safetyPass(e.target.value)
+                }
+            });
+        }
         this.setState({
             form: {
                 ...this.state.form,
