@@ -94,7 +94,6 @@ class Home extends Component {
                     modalValOpen: true
                 }
             }, () => {
-                console.log('new state', this.state.modalVal.modalValType);
             })
 
         }
@@ -125,7 +124,6 @@ class Home extends Component {
                     modalValOpen: true
                 }
             }, () => {
-                console.log('new state', this.state.modalVal.modalValType);
             })
         }
     }
@@ -179,6 +177,8 @@ class Home extends Component {
                     ...this.state.form,
                     safetyMeter: safetyPass(e.target.value)
                 }
+            }, () => {
+                console.log(this.state.form.safetyMeter)
             });
         }
         this.setState({

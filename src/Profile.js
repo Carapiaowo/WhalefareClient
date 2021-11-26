@@ -13,6 +13,7 @@ function Profile() {
     const { isLogged } = useContext(AuthContext);
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
+    const [profilePic, setPic] = useState("");
     const [id, setId] = useState();
     const [clicked, setClicked] = useState(true);
     const [password, setPassword] = useState("");
@@ -62,9 +63,7 @@ function Profile() {
             email,
             password
         }
-        console.log(form)
         const validation = updateVal(form);
-        console.log(validation)
         if (validation === true) {
             Axios.put("https://whalefare.herokuapp.com/profileedit/" + id, {
                 user,
@@ -78,7 +77,6 @@ function Profile() {
                 setType(type)
                 onShowAlert();
             });
-            console.log("Cambios al usuario hechos")
             modalUpdate();
         } else {
             let type = {
@@ -86,9 +84,7 @@ function Profile() {
             }
             setType(type)
             onShowAlert();
-            console.log("Cambios al usuario no hechos")
         }
-
     }
 
     useEffect(() => {
@@ -96,6 +92,7 @@ function Profile() {
         Axios.get("https://whalefare.herokuapp.com/profile/" + isLogged.id).then((response) => {
             setEmail(response.data.user.email)
             setUser(response.data.user.user)
+            setPic(hashString(response.data.user.email))
         })
     }, [])
 
@@ -106,7 +103,7 @@ function Profile() {
 
                     <Card.Header>Tu perfil</Card.Header>
 
-                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + hashString(isLogged.id) + "?d=identicon&s=1024&r=PG"} alt="icon" />
+                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + profilePic + "?d=identicon&s=1024&r=PG"} alt="icon" />
                     <Form>
                         <Form.Group>
                             <div className='containerr2'>
