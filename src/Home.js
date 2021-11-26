@@ -1,4 +1,3 @@
-//Librerías
 import React, { Component } from 'react';
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
@@ -16,7 +15,6 @@ class Home extends Component {
         authorized: false,
         modalInsertar: false,
         modalEliminar: false,
-        modalAuth: false,
         popOver: false,
         modalVal: {
             modalValOpen: false,
@@ -37,10 +35,6 @@ class Home extends Component {
     modalInsertar = () => {
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.peticionRead();
-    }
-
-    modalAuth = () => {
-        this.setState({ modalAuth: !this.state.modalAuth });
     }
 
     modalVal = () => {
@@ -74,9 +68,7 @@ class Home extends Component {
 
     peticionPost = async () => {
         const { form } = this.state;
-        let safetyMeter = safetyPass(form.Password)
         let validation = formVal(form)
-        console.log(safetyMeter)
         if (validation === true) {
             if (this.state.idUser !== null) {
                 delete form.id_c;
@@ -85,7 +77,7 @@ class Home extends Component {
                     user_c: form.User,
                     pass_c: form.Password,
                     website_c: form.Website,
-                    safe_c: safetyMeter,
+                    safe_c: safetyPass(form.Password),
                     id_u: this.state.idUser
                 }).then(response => {
                     this.modalInsertar();
@@ -101,16 +93,17 @@ class Home extends Component {
                     modalValType: validation,
                     modalValOpen: true
                 }
+            }, () => {
+                console.log('new state', this.state.modalVal.modalValType);
             })
+
         }
     }
 
     peticionPut = async () => {
         let url = ("https://whalefare.herokuapp.com/edit/" + this.state.form.id_c)
         const { form } = this.state;
-        let safetyMeter = safetyPass(form.Password)
         let validation = formVal(form)
-        console.log(safetyMeter)
         if (validation === true) {
             this.modalInsertar();
             await Axios.put(url, {
@@ -118,7 +111,7 @@ class Home extends Component {
                 user_c: form.User,
                 pass_c: form.Password,
                 website_c: form.Website,
-                safety_c: safetyMeter,
+                safety_c: safetyPass(form.Password),
             }).then(response => {
                 this.modalInsertar();
             }).catch(error => {
@@ -131,6 +124,8 @@ class Home extends Component {
                     modalValType: validation,
                     modalValOpen: true
                 }
+            }, () => {
+                console.log('new state', this.state.modalVal.modalValType);
             })
         }
     }
@@ -185,7 +180,6 @@ class Home extends Component {
                     safetyMeter: safetyPass(e.target.value)
                 }
             });
-            console.log(safetyPass(e.target.value))
         }
         this.setState({
             form: {
@@ -386,22 +380,6 @@ class Home extends Component {
 
                 </div>
                 <button className="btn btn-success" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}>Agregar contraseña</button>
-
-                <Modal isOpen={this.state.modalAuth}>
-                    <ModalHeader style={{ display: 'block' }}>
-                        <span style={{ float: 'right' }} onClick={() => this.modalAuth()}>x</span>
-                    </ModalHeader>
-                    <ModalBody>
-                        <div>
-                            Por favor ingresa tu token de acceso
-                            <input type='text' onChange={this.handleToken} />
-
-                        </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        <button className="btn btn-success" onClick={() => this.modalAuth()}>Aceptar</button>
-                    </ModalFooter>
-                </Modal>
 
                 <Modal isOpen={this.state.modalInsertar}>
 

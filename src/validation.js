@@ -159,7 +159,7 @@ const signupVal = (e) => {
 }
 
 const safetyPass = (e) => {
-    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&"<>.,:;]).{8}');
+    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&"<>.,:;+-^´]).{8}');
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let passwordSafety
     if (strongPassword.test(e)) {
