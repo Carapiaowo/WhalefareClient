@@ -101,9 +101,7 @@ function Login() {
                                 setPassword(event.target.value);
                             }} />
                             <div id="p1">
-                                {
-                                    //Mensaje de error cuando las credenciales no coinciden
-                                }
+
                             </div>
                         </Form.Group>
                         <div className="d-grid gap-2">
@@ -123,48 +121,6 @@ function Login() {
                 </Col>
             </Container>
         </>
-        /*<div>
-            {
-                <div className="containerr2">
-                    <Alert color="info"
-                        isOpen={modalOpen}
-                    >
-                        <ValidationModal {...modalType} />
-                    </Alert>
-                    <h1>Iniciar sesión</h1>
-                    <div className="container">
-                        <label>Correo electrónico</label>
-                        <div className="input-container">
-                            <input type="email" className="text_area" placeholder="Escribe aquí." name="email"
-                                onChange={(event) => {
-                                    setEmail(event.target.value);
-                                }} />
-                        </div>
-                        <label>Contraseña</label>
-                        <div className="input-container">
-                            <input type="password" id="Password" className="text_area" placeholder="Escribe aquí." name="password"
-                                onChange={(event) => {
-                                    setPassword(event.target.value);
-
-                                }} />
-                            <div id="p1">
-                                {
-                                    //Mensaje de error cuando las credenciales no coinciden
-                                }
-                            </div>
-                        </div>
-                        <div className="btn btn-primary" onClick={logUser}>Iniciar sesión</div>
-
-                        <p>¿No tienes una cuenta?</p>
-                        <p><a className="link" href="/signup">Crea una</a></p>
-                        <div className="container"></div>
-                    </div>
-                </div>
-                
-         
-        </div>
-           }*/
-
     )
 }
 

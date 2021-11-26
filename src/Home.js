@@ -359,7 +359,6 @@ class Home extends Component {
                                                                         <div>
                                                                             <br />
                                                                             <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></button>
-                                                                            {"   "}
                                                                             <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
                                                                         </div>
                                                                     </div>
