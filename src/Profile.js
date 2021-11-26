@@ -17,6 +17,7 @@ function Profile() {
     const [clicked, setClicked] = useState(true);
     const [password, setPassword] = useState("");
     const [modal, setModal] = useState(false);
+    const [modalForm, setModalForm] = useState(false);
     const [modalOpen, setOpen] = useState(false);
     const [modalType, setType] = useState("");
 
@@ -46,6 +47,10 @@ function Profile() {
         setModal(!modal)
     }
 
+    const modalUpdated = () => {
+        setModalForm(!modalForm)
+    }
+
     const onShowAlert = () => {
         setOpen(true)
         const open = () => {
@@ -71,6 +76,7 @@ function Profile() {
                 email,
                 password
             }).then((response) => {
+                console.log(response.data)
                 let type = {
                     modalValType: response.data.message
                 }
@@ -108,6 +114,13 @@ function Profile() {
                     <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + hashString(isLogged.id) + "?d=identicon&s=1024&r=PG"} alt="icon" />
                     <Form>
                         <Form.Group>
+                            <div className='containerr2'>
+                                <Alert color="info"
+                                    isOpen={modalOpen}
+                                >
+                                    <ValidationModal {...modalType} />
+                                </Alert>
+                            </div>
                             <Form.Label>Nombre de usuario</Form.Label>
                             <Form.Control className='campo' type="text" disabled={true} defaultValue={user} id={"user"}
                                 onChange={(event) => {
@@ -145,7 +158,7 @@ function Profile() {
                     </div>
                     <div>
                         <p>Por favor ingresa tu contraseña para confirmar los cambios</p> <br />
-                        <Form.Control className='campo' type="text"
+                        <Form.Control className='campo' type="password"
                             onChange={(event) => {
                                 setPassword(event.target.value);
                             }}

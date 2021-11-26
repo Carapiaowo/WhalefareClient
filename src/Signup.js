@@ -111,7 +111,7 @@ function Signup() {
                         <p>
                             Al hacer clic en <i>Crear cuenta</i>, <br />aceptas nuestras
                             <NavLink to="/terminos" style={{ color: 'blue' }}> condiciones </NavLink>
-                            y la <NavLink to="/politica" style={{ color: 'blue' }}>política de privacidad</NavLink>.
+                            y la <NavLink to="/politicas" style={{ color: 'blue' }}>política de privacidad</NavLink>.
                         </p>
                         <div className="d-grid gap-2">
                             <Button className='btnn' variant="primary" size="lg" onClick={addUser}>
