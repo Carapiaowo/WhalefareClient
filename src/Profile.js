@@ -66,12 +66,13 @@ function Profile() {
         const validation = updateVal(form);
         console.log(validation)
         if (validation === true) {
-            Axios.put("http://localhost:4000/profileedit/" + id, {
+            Axios.put("https://whalefare.herokuapp.com/profileedit/" + id, {
                 user,
                 email,
                 password
             });
             console.log("Cambios al usuario hechos")
+            modalUpdate();
         } else {
             let type = {
                 modalValType: validation
@@ -84,7 +85,7 @@ function Profile() {
     }
 
     useEffect(() => {
-        setId(hashString(isLogged.id));
+        setId(isLogged.id);
         Axios.get("https://whalefare.herokuapp.com/profile/" + isLogged.id).then((response) => {
             setEmail(response.data.user.email)
             setUser(response.data.user.user)
@@ -98,7 +99,7 @@ function Profile() {
 
                     <Card.Header>Tu perfil</Card.Header>
 
-                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + id + "?d=identicon&s=1024&r=PG"} alt="icon" />
+                    <img className="icon-img2" src={"https://www.gravatar.com/avatar/783" + hashString(isLogged.id) + "?d=identicon&s=1024&r=PG"} alt="icon" />
                     <Form>
                         <Form.Group>
                             <Form.Label>Nombre de usuario</Form.Label>
