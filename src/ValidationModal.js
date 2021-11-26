@@ -69,9 +69,11 @@ function ValidationModal(props) {
             </div>
         )
     } else {
-        <div>
-            Revisa que los datos ingresados sean correctos
-        </div>
+        return (
+            <div>
+                Revisa que los datos ingresados sean correctos
+            </div>
+        )
     }
 }
 

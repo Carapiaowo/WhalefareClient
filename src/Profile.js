@@ -17,7 +17,6 @@ function Profile() {
     const [clicked, setClicked] = useState(true);
     const [password, setPassword] = useState("");
     const [modal, setModal] = useState(false);
-    const [modalForm, setModalForm] = useState(false);
     const [modalOpen, setOpen] = useState(false);
     const [modalType, setType] = useState("");
 
@@ -45,10 +44,6 @@ function Profile() {
 
     const modalUpdate = () => {
         setModal(!modal)
-    }
-
-    const modalUpdated = () => {
-        setModalForm(!modalForm)
     }
 
     const onShowAlert = () => {
