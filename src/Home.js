@@ -178,7 +178,6 @@ class Home extends Component {
 
     handleForm = e => {
         e.persist();
-
         if (e.target.name === 'Password') {
             this.setState({
                 form: {
