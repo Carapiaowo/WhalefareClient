@@ -53,21 +53,25 @@ function ValidationModal(props) {
     } else if (type === true) {
         return (
             <div>
-                
+
             </div>
         )
     } else if (type === 'wrong') {
         return (
             <div>
-                Revisa que los datos ingresados sean correctos
+                Revisa que tu cuenta esté verificada
             </div>
         )
-    } else {
+    } else if (type === 'success') {
         return (
             <div>
 
             </div>
         )
+    } else {
+        <div>
+            Revisa que los datos ingresados sean correctos
+        </div>
     }
 }
 

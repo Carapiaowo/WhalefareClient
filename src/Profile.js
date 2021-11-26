@@ -7,7 +7,7 @@ import { updateVal } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext';
 import Axios from 'axios';
- 
+
 function Profile() {
 
     const { isLogged } = useContext(AuthContext);
@@ -70,6 +70,12 @@ function Profile() {
                 user,
                 email,
                 password
+            }).then((response) => {
+                let type = {
+                    modalValType: response.data.message
+                }
+                setType(type)
+                onShowAlert();
             });
             console.log("Cambios al usuario hechos")
             modalUpdate();
