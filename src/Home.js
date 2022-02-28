@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import { useState } from "react";
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -6,6 +7,8 @@ import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popo
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
+import Modal1 from "./components/Modal";
+import Modal2 from "./components/Modal2";
 import Axios from 'axios';
 
 class Home extends Component {
@@ -259,7 +262,7 @@ class Home extends Component {
         return (
             <div className="App">
                 <br /><br /><br />
-                <div className="container p-4">
+                <div className="container p-4">   
                     <div>
                         <div className="container" onMouseEnter={this.safeCounter}>
                             <div className="row justify-content-evenly">
@@ -271,10 +274,6 @@ class Home extends Component {
                                 </div>
                             </div>
 
-                            <Progress multi>
-                                <Progress color="success" bar animated value={this.state.safe}></Progress>
-                                <Progress color="dark" bar animated value={(100 - this.state.safe)}></Progress>
-                            </Progress>
                         </div>
 
 

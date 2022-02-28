@@ -1,16 +1,26 @@
 import React from 'react';
+import {Card } from "react-bootstrap";
+
 
 function FeatureBox(props) {
     return (
-        <div className='a-box'>
-            <div className='a-b-img'>
-                <img src={props.image} alt="Imagen de algo"/>
+
+       <>
+       <Card className='containerazul'>
+           <Card.Body>
+           <div >
+            <div class="row">
+                <div class="col"></div>
+               
+                <div class="w-10"></div>
+    <div class="col"> <h2>{props.title}</h2><p>{props.name}</p></div>
+    <div class="col"> <img className='a-b-img' src={props.image} alt="Imagen de algo" style={{color: 'white'}}/></div>
             </div>
-            <div className='s-b-text'>
-                <h2>{props.title}</h2>
-                <p>{props.name}</p>
             </div>
-        </div>
+           </Card.Body>
+       </Card>
+
+        </>
     )
 }
 

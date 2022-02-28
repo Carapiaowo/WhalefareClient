@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
-import iconLista from '../images/lista.png';
-import iconUsuario from '../images/usuario.png';
-import iconLogout from '../images/logout.png';
+import iconLista from '../images/icono1.svg';
+import iconUsuario from '../images/usuario.svg';
+import iconLogout from '../images/logout.svg';
+import iconNyT from '../images/nyt.png';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
@@ -46,23 +47,28 @@ function Navbarr() {
             <Navbar>
 
                 <Container>
-                    <h1 className='title'> <Navbar.Brand to="/" style={{ textDecoration: 'none', color: '	#4682B4' }}>WHALEFARE</Navbar.Brand></h1>
+                <Navbar.Brand href="/" style={{ textDecoration: 'none', color: '	#4682B4' }}>WHALEFARE</Navbar.Brand>
                     <input type='checkbox' className='menu-btn' id='menu-btn' />
                     <label className='menu-icon' htmlFor='menu-btn'>
                         <span className='nav-icon'></span>
                     </label>
                     {isLogged.isAuth !== true ?
-                        <ul className='menu'>
-                            <li className='active'><NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">Iniciar Sesión</NavLink></li>
-                            <li> <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/signup">Registrar</NavLink></li>
+                         <ul className="menu">
+                        <li><NavLink style={{ textDecoration: 'none', color: 'black' }} to="/login">Iniciar Sesión</NavLink></li>
+                        <li className='active'> <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/signup">Crear cuenta</NavLink></li>
 
-                        </ul>
+                        
+                     </ul>
+                    
                         :
-                        <ul className="menu">
-                            <NavItem><NavLink to="/home"><img className='logoo' alt="Imagen de algo" src={iconLista}></img></NavLink></NavItem>
-                            <NavItem><NavLink to="/profile"><img className='logoo' alt="Otra imagen de algo" src={iconUsuario}></img></NavLink></NavItem>
-                            <NavItem><NavLink to="/home"><img className='logoo' alt="Tercera imagen de algo" src={iconLogout} onClick={() => { setModalLogout() }}></img></NavLink></NavItem>
-                        </ul>
+                        <ul className='menu'>
+                        <NavItem><NavLink to="/home"><img className='logoo' alt="Imagen de algo" src={iconLista}></img></NavLink></NavItem>
+                         <NavItem><NavLink to="/homep"><img className='logoo' alt="imagen de algo" src={iconNyT}></img></NavLink></NavItem>
+                         <NavItem><NavLink to="/profile"><img className='logoo' alt="Otra imagen de algo" src={iconUsuario}></img></NavLink></NavItem>
+                         <NavItem><NavLink to="/home"><img className='logoo' alt="Tercera imagen de algo" src={iconLogout} onClick={() => { setModalLogout() }}></img></NavLink></NavItem>
+
+                    </ul>
+                      
                     }
                 </Container>
 
