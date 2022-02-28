@@ -10,7 +10,7 @@ function App() {
 
     useEffect(() => {
 
-        Axios.get('https://whalefare.herokuapp.com/jwt').then((response) => {
+        Axios.get('https://whalefare1.herokuapp.com/jwt').then((response) => {
             setIsLogged({
                 isAuth: response.data.isAuth,
                 id: response.data.id

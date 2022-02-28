@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import { useState } from "react";
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -6,6 +7,8 @@ import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popo
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
+import Modal1 from "./components/Modal";
+import Modal2 from "./components/Modal2";
 import Axios from 'axios';
 
 class Home extends Component {
@@ -58,7 +61,7 @@ class Home extends Component {
     peticionRead = () => {
         if (this.state.idUser) {
             this.setState({ data: [] })
-            Axios.post("https://whalefare.herokuapp.com/read", { id_u: this.state.idUser }).then(response => {
+            Axios.post("https://whalefare1.herokuapp.com/read", { id_u: this.state.idUser }).then(response => {
                 this.setState({ data: response.data.result, authorized: response.data.authorized[0].authorized_u });
             }).catch(error => {
                 console.log(error.message);
@@ -72,7 +75,7 @@ class Home extends Component {
         if (validation === true) {
             if (this.state.idUser !== null) {
                 delete form.id_c;
-                await Axios.post("https://whalefare.herokuapp.com/add", {
+                await Axios.post("https://whalefare1.herokuapp.com/add", {
                     title_c: form.Title,
                     user_c: form.User,
                     pass_c: form.Password,
@@ -100,7 +103,7 @@ class Home extends Component {
     }
 
     peticionPut = async () => {
-        let url = ("https://whalefare.herokuapp.com/edit/" + this.state.form.id_c)
+        let url = ("https://whalefare1.herokuapp.com/edit/" + this.state.form.id_c)
         const { form } = this.state;
         let validation = formVal(form)
         if (validation === true) {
@@ -129,7 +132,7 @@ class Home extends Component {
     }
 
     peticionDelete = () => {
-        const url = "https://whalefare.herokuapp.com/delete/" + this.state.form.id_c
+        const url = "https://whalefare1.herokuapp.com/delete/" + this.state.form.id_c
         Axios.delete(url).then(response => {
 
         })
@@ -138,7 +141,7 @@ class Home extends Component {
     }
 
     decryptedPassword = (encryption) => {
-        Axios.post('https://whalefare.herokuapp.com/decryptpass',
+        Axios.post('https://whalefare1.herokuapp.com/decryptpass',
             {
                 password: encryption.pass_c,
                 iv: encryption.key_c
@@ -220,7 +223,7 @@ class Home extends Component {
 
     sendMail = () => {
         const id = this.state.idUser
-        const url = ("https://whalefare.herokuapp.com/jwtauth/" + id)
+        const url = ("https://whalefare1.herokuapp.com/jwtauth/" + id)
         Axios.post(url).then((response) => {
             this.setState({ authorized: response.data.authorized })
         })
@@ -238,7 +241,7 @@ class Home extends Component {
     }
 
     showingPassword = (encryption) => {
-        Axios.post('https://whalefare.herokuapp.com/decryptpass',
+        Axios.post('https://whalefare1.herokuapp.com/decryptpass',
             {
                 password: encryption.pass_c,
                 iv: encryption.key_c
@@ -259,7 +262,7 @@ class Home extends Component {
         return (
             <div className="App">
                 <br /><br /><br />
-                <div className="container p-4">
+                <div className="container p-4">   
                     <div>
                         <div className="container" onMouseEnter={this.safeCounter}>
                             <div className="row justify-content-evenly">
@@ -271,10 +274,6 @@ class Home extends Component {
                                 </div>
                             </div>
 
-                            <Progress multi>
-                                <Progress color="success" bar animated value={this.state.safe}></Progress>
-                                <Progress color="dark" bar animated value={(100 - this.state.safe)}></Progress>
-                            </Progress>
                         </div>
 
 

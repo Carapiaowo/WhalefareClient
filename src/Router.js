@@ -9,9 +9,12 @@ import Feature from './components/Feature';
 import Footer from './components/Footer';
 import Politicas from './Politicas';
 import Terminos from './Terminos';
-import Generador from './Generador';
+import Notas from './Notas';
+import Tarjetas from './Tarjetas';
+import Homep from './HomeP';
 import LoggedRoute from './LoggedRoute';
 import NotLoggedRoute from './NotLoggedRoute';
+import { Col, Container, Form, Button, Card } from "react-bootstrap";
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,12 +33,21 @@ function RoutesManagement() {
                     <Route path="/" exact>
                         <div className='main'>
                             <div className='name'>
-                                <h1><span>Almacena</span>, genera y aplica contraseñas</h1>
+                                <h1>Almacena,genera y aplica contraseñas</h1>
                                 <br />
-                                <p className='details'>Whalefare te ofrece un entorno seguro para almacenar, generar y aplicar contraseñas.</p>
-                                <NavLink to="/signup" className='cv-btn'>Comienza ya</NavLink>
+                            
+                                
+                            <div className='btnnn' variant="secondary" size="lg" >
+                            </div>
+                            <Button className='btnnn' variant="secondary" size="lg" >
+                                Comienza ya
+                            </Button>
+                            <Button className='btnnn2p' variant="secondary" size="lg" >
+                                Descubre cómo
+                            </Button>
                             </div>
                         </div>
+                        <Feature></Feature>
                     </Route>
                     <Route path="/login">
                         <div className='main2'>
@@ -59,11 +71,7 @@ function RoutesManagement() {
                             <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
                         </div>
                     </Route>
-                    <Route path="/generar">
-                        <div className='main'>
-                            <Generador />
-                        </div>
-                    </Route>
+        
                     <Route path="/terminos">
                         <div className='main4'>
                             <Terminos />
@@ -74,10 +82,24 @@ function RoutesManagement() {
                             <Politicas />
                         </div>
                     </Route>
+                    <Route path="/notas">
+                        <div className='main5'>
+                            <Notas />
+                        </div>
+                    </Route>
+                    <Route path="/tarjetas">
+                        <div className='main5'>
+                            <Tarjetas />
+                        </div>
+                    </Route>
+                    <Route path="/homep">
+                        <div className='main5'>
+                            <Homep />
+                        </div>
+                    </Route>
                     <Route component={NotFound} />
                 </Switch>
             </div>
-                <Feature></Feature>
                 <Footer></Footer>
             </div>
 

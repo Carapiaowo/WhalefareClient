@@ -65,7 +65,7 @@ function Profile() {
         }
         const validation = updateVal(form);
         if (validation === true) {
-            Axios.put("https://whalefare.herokuapp.com/profileedit/" + id, {
+            Axios.put("https://whalefare1.herokuapp.com/profileedit/" + id, {
                 user,
                 email,
                 password
@@ -89,7 +89,7 @@ function Profile() {
 
     useEffect(() => {
         setId(isLogged.id);
-        Axios.get("https://whalefare.herokuapp.com/profile/" + isLogged.id).then((response) => {
+        Axios.get("https://whalefare1.herokuapp.com/profile/" + isLogged.id).then((response) => {
             setEmail(response.data.user.email)
             setUser(response.data.user.user)
             setPic(hashString(response.data.user.email))
