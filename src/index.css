@@ -79,6 +79,9 @@ input{
     background-size: cover;
     background-color: #f4f6fb;
 }
+.conttt{
+    height: 75vh;
+}
 .extra{
     width: 300px;
     flex: block;

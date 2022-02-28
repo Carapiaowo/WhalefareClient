@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { useState } from "react";
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
@@ -262,9 +262,10 @@ class Home extends Component {
         return (
             <div className="App">
                 <br /><br /><br />
-                <div className="container p-4">   
-                    <div>
-                        <div className="container" onMouseEnter={this.safeCounter}>
+                <div className="container p-4">
+                    {/*
+                     <div>
+                       <div className="container" onMouseEnter={this.safeCounter}>
                             <div className="row justify-content-evenly">
                                 <div className="col-2 text-success">
                                     <strong>Seguras <br />{(this.state.safe)}%</strong>
@@ -272,12 +273,22 @@ class Home extends Component {
                                 <div className="col-2 text-dark">
                                     <strong>Inseguras <br />{100 - (this.state.safe)}%</strong>
                                 </div>
-                            </div>
-
+                            </div>     
                         </div>
+                   </div>
+                   */}
+                    <div className="col">
 
+<button className="btn-dark"disabled><i class="fa fa-plus "/><br/>Crear</button>
+<button className="btn-info" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-credit-card-alt  "/><br/>Agregar contraseña</button>
+</div>   
+                        
+                 <div>
+                     <div className='conttt'>
 
-                    </div>
+                     </div>
+
+                
                     <DragDropContext onDragEnd={this.handleOnDragEnd}>
                         <Droppable droppableId="passwords">
                             {(provided) => (
@@ -375,9 +386,8 @@ class Home extends Component {
                             )}
                         </Droppable>
                     </DragDropContext>
-
+                    </div>                
                 </div>
-                <button className="btn btn-success" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}>Agregar contraseña</button>
 
                 <Modal isOpen={this.state.modalInsertar}>
 
