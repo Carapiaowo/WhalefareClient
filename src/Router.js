@@ -62,7 +62,7 @@ function RoutesManagement() {
                     <Route path="/home">
                         <div className='main4'>
                             <div className="container">
-                                <LoggedRoute isAuth={isLogged.isAuth} Component={Home} />
+                                <Home/>
                             </div>
                         </div>
                     </Route>
@@ -94,7 +94,7 @@ function RoutesManagement() {
                     </Route>
                     <Route path="/homep">
                         <div className='main5'>
-                            <Homep />
+                        <LoggedRoute isAuth={isLogged.isAuth} Component={Homep} />
                         </div>
                     </Route>
                     <Route component={NotFound} />
