@@ -28,7 +28,7 @@ function Login() {
         }
         setType(type)
         if (type.modalValType === true) {
-            Axios.post("https://whalefare.herokuapp.com/login", {
+            Axios.post("https://whalefare1.herokuapp.com/login", {
                 password: Password,
                 email: Email
             }).then((response) => {
