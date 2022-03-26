@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { useState } from "react";
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
+import { Col, Form, Button, Card } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader, CardBody } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
+import { TwitterPicker } from 'react-color'
 import Axios from 'axios';
 
-class Home extends Component {
+class Homen extends Component {
     static contextType = AuthContext;
     state = {
+        selectedColor: '#ABB8C3',
         data: [],
         authorized: false,
         modalInsertar: false,
@@ -37,6 +39,10 @@ class Home extends Component {
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.peticionRead();
     }
+
+    handleChangeComplete = (color) => {
+        this.setState({ selectedColor: color.hex });
+      };
 
     modalVal = () => {
         this.setState({
@@ -251,6 +257,8 @@ class Home extends Component {
             });
     };
 
+
+
     componentDidMount() {
         this.peticionRead();
     }
@@ -260,15 +268,11 @@ class Home extends Component {
         return (
             <div className="App">
                 <br /><br /><br />
-                <div className="container p-4">
-                   <div className="col">
+                <div className="container p-4">  
+                    <div className="col">                         
                     <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-plus  "/><br/></button>
-                    </div>  
-                 <div>
-                     <div className='conttt'>
-
-                     </div>
-
+                    </div>  <div>
+                     <div className='conttt'></div>
                     <DragDropContext onDragEnd={this.handleOnDragEnd}>
                         <Droppable droppableId="passwords">
                             {(provided) => (
@@ -278,57 +282,35 @@ class Home extends Component {
                                             <Draggable key={String(pass.id_c)} draggableId={String(pass.id_c)} index={key}>
                                                 {(provided) => (
                                                     <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                       {/*Cabecera contenedores */}
-                                                        <div className="col">
-                                                            <div className="card">
-                                                                <div className='center-text'>
-                                                                    <h3 className="card-header bg-dark text-white">{pass.title_c}</h3>
-                                                                </div>
+                                                        <Col>
+                                                            <Card>           
+                                                                    <Card.Header style={{ display: 'block', backgroundColor:this.state.selectedColor}} ></Card.Header>
                                                                 {this.state.authorized !== 1 ?
-                                                                /*CONTENEDOR PREVIO A AUTENTICACIÓN */
-                                                                    <div className="card-body">
+                                                                /*PREVIO A AUTENTICACIÓN */
+                                                                    <Card.Body>
                                                                         <div className="mb-3">
                                                                             Da clic en la llave para verificar tu identidad y revisa tu correo.
                                                                         </div>
                                                                         <div>
                                                                             <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
                                                                         </div>
-                                                                    </div>
+                                                                        </Card.Body>
                                                                     :
-
-                                                                    /*CONTENEDOR MAPEO */
-                                                                    <div className="card-body">
-                                                                        <label>Titulo</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Title"
-                                                                                id={"title" + pass.id_c}
-                                                                                className="form-control"
+                                                                 /*MAPEO */
+                                                                    <Card.Body>
+                                                                     <Form.Group className="mb-3">
+                                                                     <Form.Label>Título</Form.Label>
+                                                                     <Form.Control  name="Title"
+                                                                                id={''}
+                                                                                className="campo"
                                                                                 disabled={true}
-                                                                                value={pass.title_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Nombre de usuario</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="User"
-                                                                                id={"user" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.user_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Contraseña</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Password"
-                                                                                type={'password'}
-                                                                                id={"pass" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                defaultValue={pass.pass_c}
-                                                                            />
-                                                                            <span
+                                                                                value={''}/>
+                                                                     </Form.Group>
+                                                                     <Form.Group className="mb-3">
+                                                                     <Form.Label>Contenido</Form.Label>
+                                                                     <Form.Control name="Content" id={''} className='camponota'  disabled={true}
+                                                                                value={''}/>
+                                                                     <span
                                                                                 className="input-group-text"
                                                                             >
                                                                                 <i id={"eye" + pass.id_c}
@@ -338,29 +320,17 @@ class Home extends Component {
                                                                                 >
                                                                                 </i>
                                                                             </span>
-                                                                        </div>
-                                                                        <label>Sitio web</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Website"
-                                                                                id={"web" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.website_c}
-                                                                            />
-
-                                                                        </div>
-                                                                        <div>
+                                                                     </Form.Group>
+                                                                     <div>
                                                                             <br />
                                                                             {/*BOTONES EDITAR Y ELIMINAR */}
                                                                             <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></button>
                                                                             <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
                                                                         </div>
-                                                                    </div>
+                                                                </Card.Body>
                                                                 }
-
-                                                            </div>
-                                                        </div>
+                                                            </Card>
+                                                        </Col>
                                                     </li>
                                                 )}
                                             </Draggable>
@@ -373,13 +343,12 @@ class Home extends Component {
                     </DragDropContext>
                     </div>                
                 </div>
-
-                <Modal isOpen={this.state.modalInsertar}>
-
-                    <ModalHeader style={{ display: 'block' }}>
-                        <span style={{ float: 'right' }} onClick={() => this.modalInsertar()}>x</span>
+              
+                <Modal isOpen={this.state.modalInsertar} >
+                    <ModalHeader style={{ display: 'block', backgroundColor:this.state.selectedColor}}>
+                        <span style={{ float: 'right'}} onClick={() => this.modalInsertar()}>x</span>
                     </ModalHeader>
-                    <ModalBody>
+                    <ModalBody style={{backgroundColor:this.state.selectedColor+'15'}}>
                         <Alert color="info"
                             isOpen={this.state.modalVal.modalValOpen}
                         >
@@ -389,16 +358,28 @@ class Home extends Component {
                            /* this.state.idUser === null ?
                                 <div>Acceso denegado</div>
                                 :*/
-
-                                /*INSERTAR NUEVA CONTRASEÑA */
-                                <div className="form-group">
-                                    <label htmlFor="nombre">Título</label>
-                                    <input className="form-control" type="text" name="Title" id="Title" onChange={this.handleForm} value={form ? form.Title : ''} disabled={false} />
-                                    <br />
-                                    <label htmlFor="nombre">Usuario</label>
-                                    <input className="form-control" type="text" name="User" id="User" onChange={this.handleForm} value={form ? form.User : ''} disabled={false} />
-                                    <br />
-                                    <label htmlFor="nombre">Contraseña</label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
+                                /* CONTENEDOR NUEVA NOTA */
+                                <div className="mb-3">
+                                <Form.Group className="mb-3">
+                                <Form.Label>Título</Form.Label>
+                                <Form.Control className='campo' name="title" type="text" placeholder="Escribe aquí." onChange={this.handleForm} value={form ? form.Title : ''} disabled={false} />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                <Form.Label>Contenido</Form.Label>
+                                <Form.Control className='camponota' id="Content" as="textarea" placeholder="Escribe aquí." onChange={(event) => {
+                                  
+                                }} />
+                                <div id="p1">
+    
+                                </div>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label htmlFor="exampleColorInput">Marcador</Form.Label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
+                                        <TwitterPicker
+                                        triangle='hide'
+                                        color={this.state.selectedColor}
+                                        onChangeComplete={this.handleChangeComplete}
+                                        />
                                     <div>
                                         <Popover
                                             flip
@@ -414,47 +395,32 @@ class Home extends Component {
                                             </PopoverBody>
                                         </Popover>
                                     </div>
-                                    <div className="input-group">
-                                        <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
-                                        <span
-                                            className="input-group-text"
-                                            onClick={() => { this.generatePassword() }}
-                                        >
-                                            <i className="fa fa-dice"
-                                                aria-hidden="true">
-                                            </i>
-                                        </span>
-                                    </div>
-                                    <div id="p1"></div>
-                                    <br />
-                                    <label htmlFor="nombre">Sitio web</label>
-                                    <input data-toggle="tooltip" data-placement="top" title="e.g. www.youtube.com" className="form-control" type="text" name="Website" id="Website" onChange={this.handleForm} value={form ? form.Website : ''} disabled={false} />
+
+                                    </Form.Group>
                                 </div>
                         }
-
-                    </ModalBody>
-
-                    <ModalFooter>
+                        </ModalBody>
+                        <ModalFooter style={{backgroundColor:this.state.selectedColor+'10'}}>
                         {
-                            this.state.idUser === null ?
+                            /*this.state.idUser === null ?
                                 <div></div>
                                 :
+                               */
                                 this.state.tipoModal === 'insertar' ?
-                                    <button className="btn btn-success" onClick={() => this.peticionPost()}>
-                                        Insertar
-                                    </button> :
-                                    <button className="btn btn-primary" onClick={() => this.peticionPut()}>
+                                    <Button className='btnnn' variant="primary" size="lg" onClick={() => this.peticionPost()}>
+                                        Guardar
+                                    </Button> :
+                                   <Button className='btnnn' variant="primary" size="lg" onClick={() => this.peticionPut()}>
                                         Actualizar
-                                    </button>
+                                    </Button>
                         }
-                        <button className="btn btn-danger" onClick={() => this.modalInsertar()}>Salir</button>
-                    </ModalFooter>
-
+                        <Button className="btnnn"  variant="danger" size="lg" onClick={() => this.modalInsertar()}>Salir</Button>
+                        </ModalFooter> 
                 </Modal>
-
+        
                 <Modal isOpen={this.state.modalEliminar}>
                     <ModalBody>
-                        ¿Estás seguro que deseas eliminar la contraseña de {form && form.Title}?
+                        ¿Estás seguro que deseas eliminar la tarjeta de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
@@ -466,4 +432,4 @@ class Home extends Component {
     }
 };
 
-export default withRouter(Home);
+export default withRouter(Homen);

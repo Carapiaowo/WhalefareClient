@@ -24,6 +24,7 @@ function Feature() {
             </div>
         </div>
         <div id='features2'>
+            
             <h2>¿Qué es Whalefare?</h2>
             <p>Lo que hacemos y por qué lo hacemos</p>
             <div className='parrafoini' >
@@ -33,6 +34,7 @@ function Feature() {
                   individualidad, razón por la cual existen las cuentas. Las contraseñas necesitan garantizar la seguridad de sus respectivas cuentas.
 
               </p>
+              
             </div>
         </div>
         <div id='features3'>
