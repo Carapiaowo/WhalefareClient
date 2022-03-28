@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { useState } from "react";
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
+import { Col, Form, Button, Card, FormControl } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
+import 'react-credit-cards/es/styles-compiled.css';
+import Cards from 'react-credit-cards';
+import Switch from '@material/react-switch';
+import "@material/react-switch/dist/switch.css";
 import Axios from 'axios';
 
-class Home extends Component {
+class Homet extends Component {
     static contextType = AuthContext;
     state = {
+        checked: false,
+        cvc: '',
+        expiry: '',
+        focus: '',
+        name: '',
+        number: '',
         data: [],
         authorized: false,
         modalInsertar: false,
@@ -251,9 +261,21 @@ class Home extends Component {
             });
     };
 
+
+
     componentDidMount() {
         this.peticionRead();
     }
+
+    handleInputFocus = (e) => {
+        this.setState({ focus: e.target.name });
+      }
+      
+      handleInputChange = (e) => {
+        const { name, value } = e.target;
+        
+        this.setState({ [name]: value });
+      }
 
     render() {
         const { form } = this.state;
@@ -261,14 +283,17 @@ class Home extends Component {
             <div className="App">
                 <br /><br /><br />
                 <div className="container p-4">
-                   <div className="col">
+                
+                    <div className="col">
                     <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-plus  "/><br/></button>
-                    </div>  
+                    </div>   
+                        
                  <div>
                      <div className='conttt'>
 
                      </div>
 
+                
                     <DragDropContext onDragEnd={this.handleOnDragEnd}>
                         <Droppable droppableId="passwords">
                             {(provided) => (
@@ -278,89 +303,38 @@ class Home extends Component {
                                             <Draggable key={String(pass.id_c)} draggableId={String(pass.id_c)} index={key}>
                                                 {(provided) => (
                                                     <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                       {/*Cabecera contenedores */}
-                                                        <div className="col">
-                                                            <div className="card">
-                                                                <div className='center-text'>
-                                                                    <h3 className="card-header bg-dark text-white">{pass.title_c}</h3>
-                                                                </div>
-                                                                {this.state.authorized !== 1 ?
-                                                                /*CONTENEDOR PREVIO A AUTENTICACIÓN */
-                                                                    <div className="card-body">
+                                                       {/*CABECERA CARDS*/}
+                                                       <Col>      
+                                                           {this.state.authorized !== 1 ?
+                                                                /*PREVIO A AUTENTICACIÓN */
+                                                                <Card>
+                                                                    <Card.Body>
                                                                         <div className="mb-3">
                                                                             Da clic en la llave para verificar tu identidad y revisa tu correo.
                                                                         </div>
                                                                         <div>
                                                                             <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
                                                                         </div>
-                                                                    </div>
+                                                                        </Card.Body>
+                                                                        </Card>
                                                                     :
-
-                                                                    /*CONTENEDOR MAPEO */
-                                                                    <div className="card-body">
-                                                                        <label>Titulo</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Title"
-                                                                                id={"title" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.title_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Nombre de usuario</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="User"
-                                                                                id={"user" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.user_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Contraseña</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Password"
-                                                                                type={'password'}
-                                                                                id={"pass" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                defaultValue={pass.pass_c}
-                                                                            />
-                                                                            <span
-                                                                                className="input-group-text"
-                                                                            >
-                                                                                <i id={"eye" + pass.id_c}
-                                                                                    className="fa fa-eye"
-                                                                                    aria-hidden="true"
-                                                                                    onClick={() => { this.showingPassword(pass); }}
-                                                                                >
-                                                                                </i>
-                                                                            </span>
-                                                                        </div>
-                                                                        <label>Sitio web</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Website"
-                                                                                id={"web" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.website_c}
-                                                                            />
-
-                                                                        </div>
-                                                                        <div>
-                                                                            <br />
-                                                                            {/*BOTONES EDITAR Y ELIMINAR */}
-                                                                            <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></button>
-                                                                            <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
-                                                                        </div>
+                                                                 /*MAPEO */
+                                                                 <div id="PaymentForm">
+                                                                   <Cards
+                                                                    cvc={this.state.cvc}
+                                                                    expiry={this.state.expiry}
+                                                                    focused={this.state.focus}
+                                                                    name={this.state.name}
+                                                                    number={this.state.number}
+                                                                    
+                                                                    />
+                                                                    <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(); this.modalInsertar() }}><i className="fa fa-pen" /></button>
+                                                                    <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>                                        
+                                                                    <br></br>
                                                                     </div>
+                                                                   
                                                                 }
-
-                                                            </div>
-                                                        </div>
+                                                        </Col>
                                                     </li>
                                                 )}
                                             </Draggable>
@@ -373,88 +347,93 @@ class Home extends Component {
                     </DragDropContext>
                     </div>                
                 </div>
-
-                <Modal isOpen={this.state.modalInsertar}>
-
-                    <ModalHeader style={{ display: 'block' }}>
-                        <span style={{ float: 'right' }} onClick={() => this.modalInsertar()}>x</span>
+              
+              {/*NUEVA TARJETA */}
+                <Modal isOpen={this.state.modalInsertar} >
+                    <ModalHeader style={{ display: 'block'}}>
+                        <span style={{ float: 'right'}} onClick={() => this.modalInsertar()}>x</span>
                     </ModalHeader>
                     <ModalBody>
-                        <Alert color="info"
+                    <Alert color="info"
                             isOpen={this.state.modalVal.modalValOpen}
                         >
                             <ValidationModal {...this.state.modalVal} />
                         </Alert>
-                        {
-                           /* this.state.idUser === null ?
+                    {/*
+                       this.state.idUser === null ?
                                 <div>Acceso denegado</div>
                                 :*/
-
-                                /*INSERTAR NUEVA CONTRASEÑA */
-                                <div className="form-group">
-                                    <label htmlFor="nombre">Título</label>
-                                    <input className="form-control" type="text" name="Title" id="Title" onChange={this.handleForm} value={form ? form.Title : ''} disabled={false} />
-                                    <br />
-                                    <label htmlFor="nombre">Usuario</label>
-                                    <input className="form-control" type="text" name="User" id="User" onChange={this.handleForm} value={form ? form.User : ''} disabled={false} />
-                                    <br />
-                                    <label htmlFor="nombre">Contraseña</label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
-                                    <div>
-                                        <Popover
-                                            flip
-                                            isOpen={this.state.popOver}
-                                            target="Popover1"
-                                            toggle={() => { this.setState({ popOver: !this.state.popOver }) }}
-                                        >
-                                            <PopoverHeader>
-                                                Sugerencias
-                                            </PopoverHeader>
-                                            <PopoverBody>
-                                                Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
-                                            </PopoverBody>
-                                        </Popover>
-                                    </div>
-                                    <div className="input-group">
-                                        <input className="form-control" type="text" name="Password" id="Password" onChange={this.handleForm} value={form ? form.Password : ''} disabled={false} />
-                                        <span
-                                            className="input-group-text"
-                                            onClick={() => { this.generatePassword() }}
-                                        >
-                                            <i className="fa fa-dice"
-                                                aria-hidden="true">
-                                            </i>
-                                        </span>
-                                    </div>
-                                    <div id="p1"></div>
-                                    <br />
-                                    <label htmlFor="nombre">Sitio web</label>
-                                    <input data-toggle="tooltip" data-placement="top" title="e.g. www.youtube.com" className="form-control" type="text" name="Website" id="Website" onChange={this.handleForm} value={form ? form.Website : ''} disabled={false} />
+                                <div>
+                                <div id="PaymentForm">
+                                <Cards
+                                cvc={this.state.cvc}
+                                expiry={this.state.expiry}
+                                focused={this.state.focus}
+                                name={this.state.name}
+                                number={this.state.number}
+                                />
+                                
+                                <br></br>
                                 </div>
-                        }
+                                <div>
+                                <Form.Group className="mb-3">
+                                <Form.Label>Número de tarjeta</Form.Label>
+                                <input style={{backgroundColor: '#cdd6e2'}} class="form-control" name="number" type="tel" placeholder="Card Number" onChange={this.handleInputChange}
+                                    onFocus={this.handleInputFocus}/>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                <Form.Label>Nombre del propietario</Form.Label>
+                                <input style={{backgroundColor: '#cdd6e2'}} class="form-control" name="name" type="tel" placeholder="Owner" onChange={this.handleInputChange}
+                                    onFocus={this.handleInputFocus}/>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                <Form.Label>Caducidad</Form.Label>
+                                <input style={{backgroundColor: '#cdd6e2'}} class="form-control" name="expiry" type="tel" placeholder="Card Number" onChange={this.handleInputChange}
+                                    onFocus={this.handleInputFocus}/>
+                                 </Form.Group>
+                                {this.state.checked ?
+                                <p></p>
+                                :
+                                <Form.Group className="mb-3">
+                               <Form.Label>CVC</Form.Label>
+                               <input style={{backgroundColor: '#cdd6e2'}} class="form-control" name="cvc" type="tel" placeholder="CVC" onChange={this.handleInputChange}
+                                   onFocus={this.handleInputFocus}/>
+                               </Form.Group>
+                            } 
+                                <Switch
+                                nativeControlId='my-switch'
+                                checked={this.state.checked}
+                                onChange={(e) => this.setState({checked: e.target.checked})} />
+                               
+                                <label htmlFor='my-switch'>Tarjeta digital</label>
+                              
 
-                    </ModalBody>
-
-                    <ModalFooter>
+                            </div>
+                            </div>
+           }
+                        </ModalBody>
+                        <ModalFooter>
                         {
-                            this.state.idUser === null ?
+                            /*this.state.idUser === null ?
                                 <div></div>
                                 :
+                               */
                                 this.state.tipoModal === 'insertar' ?
-                                    <button className="btn btn-success" onClick={() => this.peticionPost()}>
-                                        Insertar
-                                    </button> :
-                                    <button className="btn btn-primary" onClick={() => this.peticionPut()}>
+                                 
+                                    <Button className='btnnn' variant="primary" size="lg" onClick={() => this.peticionPost()}>
+                                        Guardar
+                                    </Button> :
+                                   <Button className='btnnn' variant="primary" size="lg" onClick={() => this.peticionPut()}>
                                         Actualizar
-                                    </button>
+                                    </Button>
                         }
-                        <button className="btn btn-danger" onClick={() => this.modalInsertar()}>Salir</button>
-                    </ModalFooter>
-
+                        <Button className="btnnn"  variant="danger" size="lg" onClick={() => this.modalInsertar()}>Salir</Button>
+                        </ModalFooter> 
                 </Modal>
-
+        
                 <Modal isOpen={this.state.modalEliminar}>
                     <ModalBody>
-                        ¿Estás seguro que deseas eliminar la contraseña de {form && form.Title}?
+                        ¿Estás seguro que deseas eliminar la tarjeta {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
@@ -466,4 +445,4 @@ class Home extends Component {
     }
 };
 
-export default withRouter(Home);
+export default withRouter(Homet);

@@ -9,9 +9,8 @@ import Feature from './components/Feature';
 import Footer from './components/Footer';
 import Politicas from './Politicas';
 import Terminos from './Terminos';
-import Notas from './Notas';
-import Tarjetas from './Tarjetas';
-import Homep from './HomeP';
+import Homen from './Homen';
+import Homet from './Homet'
 import LoggedRoute from './LoggedRoute';
 import NotLoggedRoute from './NotLoggedRoute';
 import { Col, Container, Form, Button, Card } from "react-bootstrap";
@@ -34,9 +33,7 @@ function RoutesManagement() {
                         <div className='main'>
                             <div className='name'>
                                 <h1>Almacena,genera y aplica contraseñas</h1>
-                                <br />
-                            
-                                
+                                <br />  
                             <div className='btnnn' variant="secondary" size="lg" >
                             </div>
                             <Button className='btnnn' variant="secondary" size="lg" >
@@ -48,16 +45,19 @@ function RoutesManagement() {
                             </div>
                         </div>
                         <Feature></Feature>
+                        <Footer></Footer>
                     </Route>
                     <Route path="/login">
                         <div className='main2'>
                             <NotLoggedRoute isAuth={isLogged.isAuth} Component={Login} />
                         </div>
+                        <Footer></Footer>
                     </Route>
                     <Route path="/signup">
                         <div className='main3'>
                             <NotLoggedRoute isAuth={isLogged.isAuth} Component={Signup} />
                         </div>
+                        <Footer></Footer>
                     </Route>
                     <Route path="/home">
                         <div className='main4'>
@@ -66,41 +66,38 @@ function RoutesManagement() {
                             </div>
                         </div>
                     </Route>
+                    <Route path="/homen">
+                        <div className='main5'>
+                        <Homen/>
+                        </div>                   
+                    </Route>
+                    <Route path="/homet">
+                        <div className='main5'>
+                        <Homet/>
+                        </div>                   
+                    </Route>
                     <Route path="/profile">
                         <div className='main5'>
                             <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
                         </div>
+                        <Footer></Footer>
                     </Route>
-        
                     <Route path="/terminos">
                         <div className='main4'>
                             <Terminos />
+                            <Footer></Footer>
                         </div>
                     </Route>
                     <Route path="/politicas">
                         <div className='main4'>
                             <Politicas />
-                        </div>
-                    </Route>
-                    <Route path="/notas">
-                        <div className='main5'>
-                            <Notas />
-                        </div>
-                    </Route>
-                    <Route path="/tarjetas">
-                        <div className='main5'>
-                            <Tarjetas />
-                        </div>
-                    </Route>
-                    <Route path="/homep">
-                        <div className='main5'>
-                        <LoggedRoute isAuth={isLogged.isAuth} Component={Homep} />
+                            <Footer></Footer>
                         </div>
                     </Route>
                     <Route component={NotFound} />
                 </Switch>
             </div>
-                <Footer></Footer>
+              
             </div>
 
         </Router >
