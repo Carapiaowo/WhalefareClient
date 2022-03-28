@@ -11,7 +11,14 @@ import { Navbar, Container, NavItem } from 'react-bootstrap';
 import {
     NavLink
 } from 'react-router-dom'
-
+//All the svg files
+import logo from '../images/logo.png';
+import Home from "../images/padlock.png";
+import Team from "../images/credit-card.png";
+import Calender from "../images/bloc-de-notas.png";
+import PowerOff from "../images/power-off-solid.svg";
+import Profilee from  "../images/blue-whale.png";
+import styled from "styled-components";
 
 function Navbarr() {
     let history = useHistory();
@@ -61,7 +68,7 @@ function Navbarr() {
                      </ul>
                     
                         :
-                        <ul className='menu'>
+                      <ul className='menu'>
                         <NavItem><NavLink to="/home"><img className='logoo' alt="Imagen de algo" src={iconLista}></img></NavLink></NavItem>
                          <NavItem><NavLink to="/homep"><img className='logoo' alt="imagen de algo" src={iconNyT}></img></NavLink></NavItem>
                          <NavItem><NavLink to="/profile"><img className='logoo' alt="Otra imagen de algo" src={iconUsuario}></img></NavLink></NavItem>
