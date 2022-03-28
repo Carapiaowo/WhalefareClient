@@ -79,9 +79,7 @@ input{
     background-size: cover;
     background-color: #f4f6fb;
 }
-.conttt{
-    height: 75vh;
-}
+
 .extra{
     width: 300px;
     flex: block;
@@ -367,7 +365,6 @@ font-size: 25px;
     
 }
 .row{
-    background-color: #4682B4;
     color: white;
 }
 
@@ -866,9 +863,7 @@ a:link, a:visited{
     margin-left: auto;
     margin-right: auto;
 }
-.campotarjeta{
 
-}
 .modal-body,
 .modal-footer {
   padding-left: 3rem; 
