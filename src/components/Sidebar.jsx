@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from '../Auth/AuthContext';
 
 //All the svg files
-import logo from '../images/logo.png';
+
 import Home from "../images/padlock.png";
 import Team from "../images/credit-card.png";
 import Calender from "../images/bloc-de-notas.png";
@@ -222,9 +222,9 @@ const Sidebar = () => {
               onClick={() => setClick(false)}
               exact
               activeClassName="active"
-              to="/"
+              to="/home"
             >
-             <Link to='/homet'> <img src={Home} alt="Home" /></Link>
+           <img src={Home} alt="Home" />
               <Text clicked={click}>Contraseñas</Text>
             </Item>
             <Item
@@ -266,7 +266,6 @@ const Sidebar = () => {
             </Details>
           </Profile>
         </SidebarContainer>
-    
             </div>
 
             
