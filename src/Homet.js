@@ -37,6 +37,7 @@ class Homet extends Component {
     }
     modalInsertar = () => {
         this.setState({ modalInsertar: !this.state.modalInsertar });
+        this.handleInputFocusCVC();
         this.peticionRead();
     }
 
@@ -253,6 +254,10 @@ class Homet extends Component {
 
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
+    }
+
+    handleInputFocusCVC = (e) => {
+        this.setState({ focus: 'number' });
     }
 
     handleInputChange = (e) => {
