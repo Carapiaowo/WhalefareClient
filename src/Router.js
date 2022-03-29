@@ -33,92 +33,85 @@ function RoutesManagement() {
     const { isLogged } = useContext(AuthContext);
     return (
         <Router>
-          
             <div> <div id="main">
-          <Sidebar/>
-        <AnimatePresence exitBeforeEnter>
-                <Switch location={location} key={location.pathname}>
-                    <Route path="/" exact>
-                         <Navbar />
-                        <div className='main'>
-                            <div className='name'>
-                                <h1>Almacena,genera y aplica contraseñas</h1>
-                                <br />  
-                            <div className='btnnn' variant="secondary" size="lg" >
+                <Sidebar />
+               
+                    <Switch>
+                        <Route path="/" exact>
+                            <Navbar />
+                            <div className='main'>
+                                <div className='name'>
+                                    <h1>Almacena,genera y aplica contraseñas</h1>
+                                    <br />
+                                    <div className='btnnn' variant="secondary" size="lg" >
+                                    </div>
+                                    <Button className='btnnn' variant="secondary" size="lg" >
+                                        Comienza ya
+                                    </Button>
+                                    <Button className='btnnn2p' variant="secondary" size="lg" >
+                                        Descubre cómo
+                                    </Button>
+                                </div>
                             </div>
-                            <Button className='btnnn' variant="secondary" size="lg" >
-                                Comienza ya
-                            </Button>
-                            <Button className='btnnn2p' variant="secondary" size="lg" >
-                                Descubre cómo
-                            </Button>
+                            <Feature></Feature>
+                            <Footer></Footer>
+                        </Route>
+                        <Route path="/login">
+                            <Navbar />
+                            <div className='main2'>
+                                <NotLoggedRoute isAuth={isLogged.isAuth} Component={Login} />
                             </div>
-                        </div>
-                        <Feature></Feature>
-                        <Footer></Footer>
-                    </Route>
-                    <Route path="/login">
-                        <Navbar />
-                        <div className='main2'>
-                            <NotLoggedRoute isAuth={isLogged.isAuth} Component={Login} />
-                        </div>
-                        <Footer></Footer>
-                    </Route>
-                    <Route path="/signup">
-                        <Navbar />
-                        <div className='main3'>
-                            <NotLoggedRoute isAuth={isLogged.isAuth} Component={Signup} />
-                        </div>
-                        <Footer></Footer>
-                    </Route>
-                    <Route path="/home">
-                        <div className='main4'>
+                            <Footer></Footer>
+                        </Route>
+                        <Route path="/signup">
+                            <Navbar />
+                            <div className='main3'>
+                                <NotLoggedRoute isAuth={isLogged.isAuth} Component={Signup} />
+                            </div>
+                            <Footer></Footer>
+                        </Route>
+
+                        <Route path="/home">
+
                             <div className="container">
-                                <Home/>
+
+                                <Home />
                             </div>
-                        </div>
-                    </Route>
-                    <Route path="/homen">
-                        <div className='main5'>
-                        <Homen/>
-                        </div>                   
-                    </Route>
-                    <Route path="/homet">
-                        <div className='main5'>
-                        <Homet/>
-                        </div>                   
-                    </Route>
-                    <Route path="/profile">
-                        <div className='main5'>
-                            <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
-                        </div>
-                        <Footer></Footer>
-                    </Route>
-                    <Route path="/terminos">
-                        <Navbar />
-                        <div className='main4'>
-                            <Terminos />
+                        </Route>
+                        <Route path="/homen" component={Homen}>
+
+                            
+                        </Route>
+                        <Route path="/homet" component={Homet}>
+
+                        </Route>
+
+                        <Route path="/profile">
+                            <div className='main5'>
+                                <Profile />
+                            </div>
                             <Footer></Footer>
-                        </div>
-                    </Route>
-                    <Route path="/politicas">
-                        <Navbar />
-                        <div className='main4'>
-                            <Politicas />
-                            <Footer></Footer>
-                        </div>
-                    </Route>
-                    <Route path="/sidebar">
-                        <div className='main4'>
-                            <Sidebar/>
-                            <Footer></Footer>
-                        </div>
-                    </Route>
-                    <Route component={NotFound} />
-                </Switch>
-             </AnimatePresence>
+                        </Route>
+                        <Route path="/terminos">
+                            <Navbar />
+                            <div className='main4'>
+                                <Terminos />
+                                <Footer></Footer>
+                            </div>
+                        </Route>
+
+                        <Route path="/politicas">
+                            <Navbar />
+                            <div className='main4'>
+                                <Politicas />
+                                <Footer></Footer>
+                            </div>
+                        </Route>
+                        <Route component={NotFound} />
+                    </Switch>
+             
             </div>
-              
+
             </div>
 
         </Router >
