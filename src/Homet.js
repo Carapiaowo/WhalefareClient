@@ -27,6 +27,7 @@ class Homet extends Component {
         authorized: false,
         modalInsertar: false,
         modalEliminar: false,
+        modalAyuda: false,
         popOver: false,
         modalVal: {
             modalValOpen: false,
@@ -39,6 +40,11 @@ class Homet extends Component {
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.handleInputFocusCVC();
         this.peticionRead();
+    }
+
+     //Ventana de ayuda
+     modalAyuda = () => {
+        this.setState({ modalAyuda : !this.state.modalAyuda});
     }
 
     modalVal = () => {
@@ -271,9 +277,9 @@ class Homet extends Component {
             <div className="App">
                 <br /><br /><br />
                 <div className="container p-4">
-
                     <div className="col">
-                        <button className="btn-add" onClick={() => { this.setState({ cvc: '', name: '', number: '', expiry: '', tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
+                    <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
+                    <button className="btn-add" onClick={() => { this.setState({ cvc: '', name: '', number: '', expiry: '', tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
                     </div>
 
                     <div>
@@ -424,6 +430,22 @@ class Homet extends Component {
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
                         <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.state.modalAyuda}>
+                    <ModalHeader>
+                    ¿Necesitas ayuda?
+                    </ModalHeader>
+                    <ModalBody>
+                    <b>1. </b>Agrega una tarjeta presionando "+".
+                    <br></br>
+                    <b>2. </b>Edita tus tarjetas con "<i className="fa fa-pen" />".
+                    <br></br> 
+                    <b>3. </b>Presiona y arrastra para mover tus tarjetas.
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
                     </ModalFooter>
                 </Modal>
             </div>

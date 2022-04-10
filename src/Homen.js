@@ -301,7 +301,14 @@ class Homen extends Component {
                                                         <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                             <Col>
                                                                 <Card>
-                                                                    <Card.Header style={{ display: 'block', backgroundColor: notes.category_n }} ></Card.Header>
+                                                                    <Card.Header style={{ display: 'block', backgroundColor: notes.category_n }} >
+                                                                        {
+                                                                            this.state.authorized === 1?
+                                                                            <p></p>
+                                                                            :
+                                                                            <p>Categoría</p>
+                                                                        }
+                                                                    </Card.Header>
                                                                     {this.state.authorized === 1 ?
                                                                         /*PREVIO A AUTENTICACIÓN 
                                                                         <Card.Body>
@@ -357,6 +364,7 @@ class Homen extends Component {
                 <Modal isOpen={this.state.modalInsertar} >
                     <ModalHeader style={{ display: 'block', backgroundColor: this.state.selectedColor }}>
                         <span style={{ float: 'right' }} onClick={() => this.modalInsertar()}>x</span>
+                        <p><i className="fa fa-bookmark" />  Categoría</p>
                     </ModalHeader>
                     <ModalBody style={{ backgroundColor: this.state.selectedColor + '15' }}>
                         <Alert color="info"
@@ -429,7 +437,7 @@ class Homen extends Component {
 
                 <Modal isOpen={this.state.modalEliminar}>
                     <ModalBody>
-                        ¿Estás seguro que deseas eliminar la tarjeta de {form && form.Title}?
+                        ¿Estás seguro que deseas eliminar la nota de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
@@ -441,12 +449,13 @@ class Homen extends Component {
                     ¿Necesitas ayuda?
                     </ModalHeader>
                     <ModalBody>
-                    1. Agrega una contraseña presionando "+".
+                    <b>1. </b>Agrega una nota presionando "+".
                     <br></br>
-                    2. Edita tus contraseñas con "<i className="fa fa-pen" />".
+                    <b>2. </b>Edita tus notas con "<i className="fa fa-pen" />".
                     <br></br> 
-                    3. Presiona y arrastra para mover una contraseña.
-                    
+                    <b>3. </b>Presiona y arrastra para mover una contraseña.
+                    <br></br> 
+                    <b>4. </b>Organiza tus marcadores con " <i className="fa fa-bookmark" /> ".
                     </ModalBody>
                     <ModalFooter>
                         <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>

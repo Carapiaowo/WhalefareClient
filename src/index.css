@@ -246,14 +246,14 @@ nav .menu-btn,
 }
 
 .btn-cat{
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
     box-shadow: 5px 0px 10px rgba(116, 116, 116, 0.336);
     position: fixed;
     background-color: #062c4b;
@@ -277,7 +277,21 @@ nav .menu-btn,
       background-color: #0000003d;
   }
   
+.download{
+    position: block;
+    margin-top: 10px;
+    height: 20vh;
+    width: 10vw;
+}
+i{
+    font-size: 13px;
+    color:#797979a4;
+}
 
+i:hover{
+    color:#3b3b3ba4;
+    cursor: pointer; cursor:hand;
+}
 
 .f-heading h1{
     color:#FFFFFF;

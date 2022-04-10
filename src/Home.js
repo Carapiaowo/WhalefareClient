@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { useState } from "react";
 import generator from "generate-password";
+import Download from "./images/download-ext.png";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader, Card, CardGroup } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
@@ -16,6 +17,8 @@ class Home extends Component {
         authorized: false,
         modalInsertar: false,
         modalEliminar: false,
+        modalAyuda: false,
+        modalNavegador: false,
         popOver: false,
         modalVal: {
             modalValOpen: false,
@@ -37,6 +40,17 @@ class Home extends Component {
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.peticionRead();
     }
+
+     //Ventana de ayuda
+     modalAyuda = () => {
+        this.setState({ modalAyuda : !this.state.modalAyuda});
+    }
+
+    //Ventana de ayuda extensión
+    modalNavegador = () => {
+        this.setState({ modalNavegador : !this.state.modalNavegador});
+    }
+
 
     modalVal = () => {
         this.setState({
@@ -262,6 +276,8 @@ class Home extends Component {
                 <br /><br /><br />
                 <div className="container p-4">
                    <div className="col">
+                   <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'navegador' }); this.modalNavegador() }}><i class="fa fa-puzzle-piece"/><br/></button>
+                   <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
                     <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-plus  "/><br/></button>
                     </div>  
                  <div>
@@ -459,6 +475,41 @@ class Home extends Component {
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
                         <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.state.modalAyuda}>
+                    <ModalHeader>
+                    ¿Necesitas ayuda?
+                    </ModalHeader>
+                    <ModalBody>
+                    <b>1. </b> Agrega una contraseña presionando "+".
+                    <br></br>
+                    <b>2. </b>Edita tus contraseñas con "<i className="fa fa-pen" />".
+                    <br></br> 
+                    <b>3. </b>Presiona y arrastra para mover una contraseña.
+                    
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
+                    </ModalFooter>
+                </Modal>
+                <Modal size="lg" isOpen={this.state.modalNavegador}>
+                    <ModalHeader>
+                    Utiliza la extensión en tu navegador
+                    </ModalHeader>
+                    <ModalBody>
+                 
+                   {/* 1. Descarga la extensión.
+                    <img className='download' src={Download} alt="Team" />
+                    <br></br>
+                    2. Edita tus tarjetas con "<i className="fa fa-pen" />".
+                    <br></br> 
+                    3. Presiona y arrastra para mover tus tarjetas.
+                    */}
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-secundary" onClick={() => this.setState({ modalNavegador: false })}>Salir</button>
                     </ModalFooter>
                 </Modal>
             </div>
