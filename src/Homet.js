@@ -310,7 +310,7 @@ class Homet extends Component {
                                                                     console.log(':)')
                                                                     :
                                                                     /*MAPEO */
-                                                                    <div id="PaymentForm">
+                                                                    <div id="PaymentForm" className='tarjeta'>
                                                                         <Cards
                                                                             cvc={cards.cvv_t}
                                                                             expiry={cards.cad_t}
