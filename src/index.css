@@ -283,12 +283,12 @@ nav .menu-btn,
     height: 20vh;
     width: 10vw;
 }
-i{
+.recuperacion{
     font-size: 13px;
     color:#797979a4;
 }
 
-i:hover{
+.recuperacion:hover{
     color:#3b3b3ba4;
     cursor: pointer; cursor:hand;
 }
