@@ -361,6 +361,15 @@ class Homet extends Component {
                                     <br></br>
                                 </div>
                                 <div>
+                                {this.state.checked ?
+                                        <p></p>
+                                        :
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>CVC</Form.Label>
+                                            <input style={{ backgroundColor: '#cdd6e2' }} className="form-control" name="cvc" type="number" max="999" placeholder="CVC" onChange={this.handleInputChange}
+                                                onFocus={this.handleInputFocus} value={this.state.cvc ? this.state.cvc : ''} />
+                                        </Form.Group>
+                                    }
                                     <Form.Group className="mb-3">
                                         <Form.Label>Número de tarjeta</Form.Label>
                                         <input style={{ backgroundColor: '#cdd6e2' }} className="form-control" name="number" type="number" min="0" placeholder="Card Number" onChange={this.handleInputChange}
@@ -373,18 +382,10 @@ class Homet extends Component {
                                     </Form.Group>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Caducidad</Form.Label>
-                                        <input style={{ backgroundColor: '#cdd6e2' }} className="form-control" name="expiry" type="number" placeholder="Card Number" onChange={this.handleInputChange}
+                                        <input style={{ backgroundColor: '#cdd6e2' }} className="form-control" name="expiry" type="number" placeholder="Vencimiento" onChange={this.handleInputChange}
                                             onFocus={this.handleInputFocus} value={this.state.expiry ? this.state.expiry : ''} />
                                     </Form.Group>
-                                    {this.state.checked ?
-                                        <p></p>
-                                        :
-                                        <Form.Group className="mb-3">
-                                            <Form.Label>CVC</Form.Label>
-                                            <input style={{ backgroundColor: '#cdd6e2' }} className="form-control" name="cvc" type="number" max="999" placeholder="CVC" onChange={this.handleInputChange}
-                                                onFocus={this.handleInputFocus} value={this.state.cvc ? this.state.cvc : ''} />
-                                        </Form.Group>
-                                    }
+                                    
                                     <Switch
                                         nativeControlId='my-switch'
                                         checked={this.state.checked}

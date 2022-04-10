@@ -18,6 +18,8 @@ class Homen extends Component {
         authorized: false,
         modalInsertar: false,
         modalEliminar: false,
+        modalAyuda: false,
+        modalCategorias: false,
         popOver: false,
         modalVal: {
             modalValOpen: false,
@@ -30,10 +32,23 @@ class Homen extends Component {
         content: '',
         id_n: 0
     }
+
+    //Insertar nueva nota
     modalInsertar = () => {
         this.setState({ modalInsertar: !this.state.modalInsertar });
         this.peticionRead();
     }
+
+    //Ventana de ayuda
+    modalAyuda = () => {
+        this.setState({ modalAyuda : !this.state.modalAyuda});
+    }
+
+    //Gestion de nombre-categoría 
+    modalCategorias = () => {
+        this.setState({ modalCategorias : !this.state.modalCategorias});
+    }
+
 
     handleChangeComplete = (color) => {
         this.setState({ selectedColor: color.hex });
@@ -266,11 +281,13 @@ class Homen extends Component {
     render() {
         const { form } = this.state;
         return (
-            <div className="App">
+        <div className="App">
                 <br /><br /><br />
                 <div className="container p-4">
                     <div className="col">
-                        <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
+                        <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa fa-plus" /><br /></button>
+                        <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
+                        <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'categorias' }); this.modalCategorias() }}><i class="fa fa-bookmark"/><br/></button>
                     </div>  <div>
                         <div className='conttt'></div>
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -367,7 +384,22 @@ class Homen extends Component {
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
-                                    <Form.Label htmlFor="exampleColorInput">Marcador</Form.Label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
+                                    <Form.Label htmlFor="exampleColorInput">Marcador </Form.Label><i className="fa fa-info-circle" type="button" id="Popover1"></i>
+                                    <div>
+                                        <Popover
+                                            flip
+                                            isOpen={this.state.popOver}
+                                            target="Popover1"
+                                            toggle={() => { this.setState({ popOver: !this.state.popOver }) }}
+                                        >
+                                            <PopoverHeader>
+                                                Sugerencias
+                                            </PopoverHeader>
+                                            <PopoverBody>
+                                                Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
+                                            </PopoverBody>
+                                        </Popover>
+                                    </div>
                                     <TwitterPicker
                                         triangle='hide'
                                         color={this.state.selectedColor}
@@ -402,6 +434,49 @@ class Homen extends Component {
                     <ModalFooter>
                         <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
                         <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                    </ModalFooter>
+                </Modal>
+                <Modal isOpen={this.state.modalAyuda}>
+                    <ModalHeader>
+                    ¿Necesitas ayuda?
+                    </ModalHeader>
+                    <ModalBody>
+                    1. Agrega una contraseña presionando "+".
+                    <br></br>
+                    2. Edita tus contraseñas con "<i className="fa fa-pen" />".
+                    <br></br> 
+                    3. Presiona y arrastra para mover una contraseña.
+                    
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
+                    </ModalFooter>
+                </Modal>
+                <Modal isOpen={this.state.modalCategorias}>
+                    <ModalHeader>
+                    Mis marcadores
+                    <i class="fa fa-bookmark" style={{ color: this.state.selectedColor, marginLeft: 10, fontSize:20}}/>
+                    </ModalHeader>
+                    <ModalBody>
+                    <p style={{fontSize:15}}>Utiliza marcadores para categorizar tus notas.</p>
+                    <br></br>
+                    <Form.Group className="mb-3">
+                        <Form.Label><b>1.</b> Selecciona el color para el marcador.</Form.Label>
+                        <TwitterPicker
+                                        triangle='hide'
+                                        color={this.state.selectedColor}
+                                        onChangeComplete={this.handleChangeComplete}
+                                    />
+                                </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>2. Asigna un nombre de categoría al marcador.</Form.Label>
+                                    <Form.Control className='campo' maxLength={30} name="titleeee" type="text" placeholder="*nombre de la categoria*" onChange={this.handleInputChange}
+                                        value=" " />
+                                </Form.Group>
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="btn btn-secundary" >Guardar</button>
+                        <button className="btn btn-secundary" onClick={() => this.setState({modalCategorias: false })}>Salir</button>
                     </ModalFooter>
                 </Modal>
             </div>

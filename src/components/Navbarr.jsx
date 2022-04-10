@@ -11,14 +11,7 @@ import { Navbar, Container, NavItem } from 'react-bootstrap';
 import {
     NavLink
 } from 'react-router-dom'
-//All the svg files
-import logo from '../images/logo.png';
-import Home from "../images/padlock.png";
-import Team from "../images/credit-card.png";
-import Calender from "../images/bloc-de-notas.png";
-import PowerOff from "../images/power-off-solid.svg";
-import Profilee from  "../images/blue-whale.png";
-import styled from "styled-components";
+
 
 function Navbarr() {
     let history = useHistory();

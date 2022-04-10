@@ -29,7 +29,7 @@ import { AuthContext } from './Auth/AuthContext';
 
 
 function RoutesManagement() {
-    const location = useLocation();
+   
     const { isLogged } = useContext(AuthContext);
     return (
         <Router>

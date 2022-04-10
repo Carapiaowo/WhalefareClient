@@ -216,9 +216,9 @@ nav .menu-btn,
     box-shadow: 5px 0px 10px rgba(116, 116, 116, 0.336);
     position: fixed;
     background-color: #4682b4;
-   
+   z-index: 10000;
     border-radius: 50%;
-    right: 10vw;
+    right: 5vw;
     bottom: 10vh;
 }
 
@@ -227,6 +227,58 @@ nav .menu-btn,
     transition: all ease 0.5s;
     color: #ffffff;
 }
+
+.btn-help{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    box-shadow: 5px 0px 10px rgba(116, 116, 116, 0.336);
+    position: fixed;
+    background-color: #7472728f;
+    border-radius: 50%;
+    left: 2vw;
+    bottom: 3vh;
+}
+
+.btn-cat{
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 30px;
+    box-shadow: 5px 0px 10px rgba(116, 116, 116, 0.336);
+    position: fixed;
+    background-color: #062c4b;
+   
+    border-radius: 50%;
+    right: 5vw;
+    bottom: 90vh;
+    
+}
+
+.oculta {
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+
+    display: none;
+  }
+
+  .btn-cat:hover .oculta{
+      display: block;
+      background-color: #0000003d;
+  }
+  
+
+
 .f-heading h1{
     color:#FFFFFF;
     font-size: 3rem;
