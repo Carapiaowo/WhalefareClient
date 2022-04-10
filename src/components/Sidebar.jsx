@@ -18,6 +18,7 @@ const Container = styled.div`
   position: fixed;
   .active {
     border-right: 4px solid var(--white);
+    z-index:10000;
     img {
       filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
         brightness(103%) contrast(103%);
@@ -68,6 +69,7 @@ const SidebarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index:10000;
 `;
 
 const Logo = styled.div`
@@ -92,6 +94,7 @@ const SlickBar = styled.ul`
   width: ${(props) => (props.clicked ? "12rem" : "3.5rem")};
   transition: all 0.5s ease;
   border-radius: 0 30px 30px 0;
+  z-index: 1000;
 `;
 
 const Item = styled(NavLink)`
