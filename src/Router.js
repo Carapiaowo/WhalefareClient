@@ -72,25 +72,15 @@ function RoutesManagement() {
                         </Route>
 
                         <Route path="/home">
-
                             <div className="container">
-
                                 <Home />
                             </div>
                         </Route>
-                        <Route path="/homen" component={Homen}>
-
-                            
+                        <Route path="/homen" component={Homen}>       
                         </Route>
                         <Route path="/homet" component={Homet}>
-
                         </Route>
-
-                        <Route path="/profile">
-                            <div className='main5'>
-                                <Profile />
-                            </div>
-                            <Footer></Footer>
+                        <Route path="/profile" component={Profile}>
                         </Route>
                         <Route path="/terminos">
                             <Navbar />
