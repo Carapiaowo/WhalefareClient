@@ -293,6 +293,9 @@ nav .menu-btn,
     cursor: pointer; cursor:hand;
 }
 
+.tarjeta{
+    z-index: -1;
+}
 .f-heading h1{
     color:#FFFFFF;
     font-size: 3rem;
