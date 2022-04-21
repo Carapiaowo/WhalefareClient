@@ -295,6 +295,7 @@ nav .menu-btn,
 
 .tarjeta{
     z-index: -1;
+    position: relative;
 }
 .f-heading h1{
     color:#FFFFFF;
@@ -989,6 +990,10 @@ a:link, a:visited{
     margin-left: auto;
   margin-right:auto;
   
+}
+.nota{
+    z-index: -1;
+    position: relative;
 }
 .camponota{
     background-color: rgb(205, 214, 226);
