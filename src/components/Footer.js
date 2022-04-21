@@ -16,7 +16,8 @@ function Footer() {
                                 <p>Términos y condiciones</p>
                             </NavLink>
                         </div>
-
+                        <h1 class="h1footer">Deberías notificar</h1>
+                     <div ><a class="rownot" aria-label="Deberías notificar quejas y sugerencias." href="https://forms.gle/EVkKuce3fE9NEhYh8"><p>Quejas y sugerencias</p></a></div>
                     </div>
 
                     <div className="colum2">
@@ -24,7 +25,7 @@ function Footer() {
                         <div className="row2_ft">
                             <a href={"https://github.com/Marmolejo1489/Whalefare_"} target="_blank" rel="noreferrer"
                                 aria-label="Deberías ver el repositorio para entender el proyecto.">
-                                <img src="assets/img/GitHub-Mark-Light-120px-plus.png" alt="Logo de GitHub." />
+                                <img className='github' src="assets/img/GitHub-Mark-Light-120px-plus.png" alt="Logo de GitHub." />
                             </a>
 
                         </div>
@@ -39,9 +40,7 @@ function Footer() {
                 </div>
             </div>
 
-            <div className="copyright">
-                © 2021, Tecnología Krishna, S. A. de C. V. Todos los derechos reservados.
-            </div>
+            <div class="copyright"> © Tecnología Krishna, 2022.</div>
 
         </footer>
 
