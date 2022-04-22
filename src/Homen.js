@@ -3,7 +3,7 @@ import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
 import { Col, Form, Button, Card } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader, CardBody } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Popover, PopoverBody, PopoverHeader, ListGroup } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
@@ -20,6 +20,9 @@ class Homen extends Component {
         modalEliminar: false,
         modalAyuda: false,
         modalCategorias: false,
+        nuevaCategoria:false,
+        editarCategorias:false,
+        eyehide:false,
         popOver: false,
         modalVal: {
             modalValOpen: false,
@@ -44,11 +47,10 @@ class Homen extends Component {
         this.setState({ modalAyuda : !this.state.modalAyuda});
     }
 
-    //Gestion de nombre-categoría 
+    //Ventana categorías
     modalCategorias = () => {
         this.setState({ modalCategorias : !this.state.modalCategorias});
     }
-
 
     handleChangeComplete = (color) => {
         this.setState({ selectedColor: color.hex });
@@ -285,10 +287,17 @@ class Homen extends Component {
                 <br /><br /><br />
                 <div className="container p-4">
                     <div className="col">
+                        <button className='btn-eye' onClick={() => {this.setState({eyehide: !this.state.eyehide})}}>
+                        {this.state.eyehide ?
+                            <i className='fa fa-eye'></i>
+                            :
+                            <i className='fa fa-eye-slash'></i>
+                        }</button>
                         <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa fa-plus" /><br /></button>
                         <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
                         <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'categorias' }); this.modalCategorias() }}><i class="fa fa-bookmark"/><br/></button>
-                    </div>  <div>
+                    </div> 
+                     <div>
                         <div className='conttt'></div>
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
                             <Droppable droppableId="passwords">
@@ -300,14 +309,8 @@ class Homen extends Component {
                                                     {(provided) => (
                                                         <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                             <Col>
-                                                                <Card>
+                                                                <Card className='nota'>
                                                                     <Card.Header style={{ display: 'block', backgroundColor: notes.category_n }} >
-                                                                        {
-                                                                            this.state.authorized === 1?
-                                                                            <p></p>
-                                                                            :
-                                                                            <p>Categoría</p>
-                                                                        }
                                                                     </Card.Header>
                                                                     {this.state.authorized === 1 ?
                                                                         /*PREVIO A AUTENTICACIÓN 
@@ -341,8 +344,10 @@ class Homen extends Component {
                                                                             <div>
                                                                                 <br />
                                                                                 {/*BOTONES EDITAR Y ELIMINAR */}
-                                                                                <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(notes); this.modalInsertar() }}><i className="fa fa-pen" /></button>
-                                                                                <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(notes); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
+                                                                                <div className='contBtnN'>
+                                                                                <Button className='btnN' variant='light' onClick={() => { this.seleccionarEmpresa(notes); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                                <Button  className='btnN' variant='light'  onClick={() => { this.seleccionarEmpresa(notes); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
+                                                                                </div>
                                                                             </div>
                                                                         </Card.Body>
                                                                     }
@@ -364,7 +369,7 @@ class Homen extends Component {
                 <Modal isOpen={this.state.modalInsertar} >
                     <ModalHeader style={{ display: 'block', backgroundColor: this.state.selectedColor }}>
                         <span style={{ float: 'right' }} onClick={() => this.modalInsertar()}>x</span>
-                        <p><i className="fa fa-bookmark" />  Categoría</p>
+                      
                     </ModalHeader>
                     <ModalBody style={{ backgroundColor: this.state.selectedColor + '15' }}>
                         <Alert color="info"
@@ -404,15 +409,18 @@ class Homen extends Component {
                                                 Sugerencias
                                             </PopoverHeader>
                                             <PopoverBody>
-                                                Te recomendamos usar contraseñas que contengan mayúsculas y minúsculas, signos de puntuación (<i>@</i>, <i>$</i>, <i>!</i>, <i>%</i>, <i>*</i>, <i>#</i>, <i>?</i>, <i>.</i>, <i>:</i>, <i>;</i>) y números.
+                                             Utiliza marcadores para organizar tus notas.
                                             </PopoverBody>
                                         </Popover>
                                     </div>
-                                    <TwitterPicker
-                                        triangle='hide'
-                                        color={this.state.selectedColor}
-                                        onChangeComplete={this.handleChangeComplete}
-                                    />
+                                    <div class="btn-group dropright">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i className="fa fa-bookmark"  style={{ color: "#7BDCB5", marginLeft: 10, fontSize:20}}/> Escuela
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        
+                                    </div>
+                                    </div>
                                 </Form.Group>
                             </div>
                         }
@@ -440,8 +448,8 @@ class Homen extends Component {
                         ¿Estás seguro que deseas eliminar la nota de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                        <Button className="btn" variant="light" onClick={() => this.peticionDelete()}>Sí</Button>
+                        <Button className="btn" variant='secondary' onClick={() => this.setState({ modalEliminar: false })}>No</Button>
                     </ModalFooter>
                 </Modal>
                 <Modal isOpen={this.state.modalAyuda}>
@@ -458,16 +466,81 @@ class Homen extends Component {
                     <b>4. </b>Organiza tus marcadores con " <i className="fa fa-bookmark" /> ".
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
+                        <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
+
+                
                 <Modal isOpen={this.state.modalCategorias}>
-                    <ModalHeader>
+                    <ModalHeader >
                     Mis marcadores
                     <i class="fa fa-bookmark" style={{ color: this.state.selectedColor, marginLeft: 10, fontSize:20}}/>
                     </ModalHeader>
                     <ModalBody>
                     <p style={{fontSize:15}}>Utiliza marcadores para categorizar tus notas.</p>
+                    <table class="table table-sm">
+                    <thead>
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row"><i className="fa fa-bookmark"  style={{ color: "#FF6900", marginLeft: 10, fontSize:20}}/></th>
+                        <td>Escuela</td>
+                        <td><Button className='botonesC' variant='light'  onClick={() => this.setState({editarCategorias: !this.state.editarCategorias })}>{this.state.editarCategorias ?
+                                        <>
+                                        Guardar
+                                        </>
+                                        :
+                                        <>
+                                        Editar
+                                        </>
+                                        }</Button></td>
+                        <td><Button className='botonesN' variant='light' onClick={() => {this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button></td>
+                        </tr>
+                        <tr>
+                        <th scope="row"><i className="fa fa-bookmark"  style={{ color: "#FCB900", marginLeft: 10, fontSize:20}} /></th>
+                        <td>Trabajo</td>
+                        <td><Button className='botonesC' variant='light'  onClick={() => this.setState({editarCategorias: !this.state.editarCategorias })}>{this.state.editarCategorias ?
+                                        <>
+                                        Guardar
+                                        </>
+                                        :
+                                        <>
+                                        Editar
+                                        </>
+                                        }</Button></td>
+                        <td><Button className='botonesN' variant='light' onClick={() => {this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button></td>
+                        </tr>
+                        <tr>
+                        <th scope="row"><i className="fa fa-bookmark"  style={{ color: "#7BDCB5", marginLeft: 10, fontSize:20}} /></th>
+                        <td>Pendientes</td>
+                        <td><Button className='botonesC' variant='light'  onClick={() => this.setState({editarCategorias: !this.state.editarCategorias })}>{this.state.editarCategorias ?
+                                        <>
+                                        Guardar
+                                        </>
+                                        :
+                                        <>
+                                        Editar
+                                        </>
+                                        }</Button></td>
+                        <td><Button className='botonesN' variant='light' onClick={() => {this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button></td>
+                        </tr>
+                    </tbody>
+                    
+                    </table>
+                    {this.state.editarCategorias ? 
+                    <></>
+                    :
+                    <><Button className='botonesN' variant='light' onClick={() => {this.setState({ nuevaCategoria: true }) }}><i className="fa fa-plus" />
+                    </Button><br></br></>}
+                    
+                    {this.state.editarCategorias  || this.state.nuevaCategoria ?
+                    <>
                     <br></br>
                     <Form.Group className="mb-3">
                         <Form.Label><b>1.</b> Selecciona el color para el marcador.</Form.Label>
@@ -479,13 +552,22 @@ class Homen extends Component {
                                 </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>2. Asigna un nombre de categoría al marcador.</Form.Label>
-                                    <Form.Control className='campo' maxLength={30} name="titleeee" type="text" placeholder="*nombre de la categoria*" onChange={this.handleInputChange}
-                                        value=" " />
+                                    <Form.Control className='campo' name="titlecat" type="text" placeholder="Escribe aquí." maxLength={30} />
                                 </Form.Group>
+                    {this.state.nuevaCategoria ?
+                    <><Button className='btn' variant='secondary'>Añadir</Button></>
+                    :
+                    <></>
+                    }
+                   
+                    </>
+                    :
+                    <>
+                    
+                    </>}
                     </ModalBody>
-                    <ModalFooter>
-                        <button className="btn btn-secundary" >Guardar</button>
-                        <button className="btn btn-secundary" onClick={() => this.setState({modalCategorias: false })}>Salir</button>
+                    <ModalFooter style={{backgroundColor: '#f3fafe'}}>
+                        <Button className='btnnn' variant="danger" onClick={() => this.setState({modalCategorias: false, editarCategorias:false, nuevaCategoria:false})}>Salir</Button>
                     </ModalFooter>
                 </Modal>
             </div>
