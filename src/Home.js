@@ -4,7 +4,7 @@ import generator from "generate-password";
 import Download from "./images/download-ext.png";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Progress, Popover, PopoverBody, PopoverHeader, Card, CardGroup } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Button, Popover, PopoverBody, PopoverHeader, Card, CardGroup } from 'reactstrap';
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
@@ -369,8 +369,8 @@ class Home extends Component {
                                                                         <div>
                                                                             <br />
                                                                             {/*BOTONES EDITAR Y ELIMINAR */}
-                                                                            <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></button>
-                                                                            <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
+                                                                            <Button  className='botonesN' variant='light'  onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                            <Button className='botonesN' variant='light'  onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
                                                                         </div>
                                                                     </div>
                                                                 }
@@ -456,14 +456,14 @@ class Home extends Component {
                                 <div></div>
                                 :
                                 this.state.tipoModal === 'insertar' ?
-                                    <button className="btn btn-success" onClick={() => this.peticionPost()}>
-                                        Insertar
-                                    </button> :
-                                    <button className="btn btn-primary" onClick={() => this.peticionPut()}>
+                                    <Button className='btnnn' variant="primary" onClick={() => this.peticionPost()}>
+                                        Guardar
+                                    </Button> :
+                                    <Button className='btnnn' variant="primary" onClick={() => this.peticionPut()}>
                                         Actualizar
-                                    </button>
+                                    </Button>
                         }
-                        <button className="btn btn-danger" onClick={() => this.modalInsertar()}>Salir</button>
+                        <Button className="btnnn" variant="danger" size="lg"  onClick={() => this.modalInsertar()}>Salir</Button>
                     </ModalFooter>
 
                 </Modal>
@@ -473,8 +473,8 @@ class Home extends Component {
                         ¿Estás seguro que deseas eliminar la contraseña de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                    <Button className="btn" variant="light" onClick={() => this.peticionDelete()}>Sí</Button>
+                    <Button className="btn" variant='secondary' onClick={() => this.setState({ modalEliminar: false })}>No</Button>
                     </ModalFooter>
                 </Modal>
 
@@ -491,7 +491,7 @@ class Home extends Component {
                     
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
+                    <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
                 <Modal size="lg" isOpen={this.state.modalNavegador}>
@@ -509,7 +509,7 @@ class Home extends Component {
                     */}
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalNavegador: false })}>Salir</button>
+                    <Button className='btn' variant='secondary' onClick={() => this.setState({ modalNavegador: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
             </div>

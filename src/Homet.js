@@ -24,6 +24,7 @@ class Homet extends Component {
         name: '',
         number: '',
         data: [],
+        eyehide:false,
         authorized: false,
         modalInsertar: false,
         modalEliminar: false,
@@ -278,10 +279,15 @@ class Homet extends Component {
                 <br /><br /><br />
                 <div className="container p-4">
                     <div className="col">
+                   <button className='btn-eye' onClick={() => {this.setState({eyehide: !this.state.eyehide})}}>
+                   {this.state.eyehide ?
+                    <i className='fa fa-eye'></i>
+                    :
+                    <i className='fa fa-eye-slash'></i>
+                }</button>
                     <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
                     <button className="btn-add" onClick={() => { this.setState({ cvc: '', name: '', number: '', expiry: '', tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
-                    </div>
-
+                    </div> 
                     <div>
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
                             <Droppable droppableId="passwords">
@@ -295,6 +301,8 @@ class Homet extends Component {
                                                             {/*CABECERA CARDS*/}
                                                             <Col>
                                                                 {this.state.authorized === 1 ?
+                                                                    
+                                                                    
                                                                     /*PREVIO A AUTENTICACIÓN
                                                                     <Card>
                                                                         <Card.Body>
@@ -310,7 +318,7 @@ class Homet extends Component {
                                                                     console.log(':)')
                                                                     :
                                                                     /*MAPEO */
-                                                                    <div id="PaymentForm">
+                                                                    <div id="PaymentForm" className='tarjeta'>
                                                                         <Cards
                                                                             cvc={cards.cvv_t}
                                                                             expiry={cards.cad_t}
@@ -319,8 +327,10 @@ class Homet extends Component {
                                                                             number={cards.number_t}
 
                                                                         />
-                                                                        <button className="btn btn-primary" onClick={() => { this.seleccionarEmpresa(cards); this.modalInsertar() }}><i className="fa fa-pen" /></button>
-                                                                        <button className="btn btn-danger" onClick={() => { this.seleccionarEmpresa(cards); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></button>
+                                                                        <div className='contBtn'>
+                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
+                                                                        </div>
                                                                         <br></br>
                                                                     </div>
 
@@ -428,8 +438,8 @@ class Homet extends Component {
                         ¿Estás seguro que deseas eliminar la tarjeta?
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-danger" onClick={() => this.peticionDelete()}>Sí</button>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalEliminar: false })}>No</button>
+                    <Button className="btn" variant="light" onClick={() => this.peticionDelete()}>Sí</Button>
+                    <Button className="btn" variant='secondary' onClick={() => this.setState({ modalEliminar: false })}>No</Button>
                     </ModalFooter>
                 </Modal>
 
@@ -445,7 +455,7 @@ class Homet extends Component {
                     <b>3. </b>Presiona y arrastra para mover tus tarjetas.
                     </ModalBody>
                     <ModalFooter>
-                        <button className="btn btn-secundary" onClick={() => this.setState({ modalAyuda: false })}>Salir</button>
+                    <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
             </div>

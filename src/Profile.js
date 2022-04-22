@@ -120,7 +120,7 @@ function Profile() {
                                 }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Correo Electrónico</Form.Label>
+                            <Form.Label>Correo electrónico</Form.Label>
                             <Form.Control className='campo' type="email" disabled={true} defaultValue={email} id={"email"}
                                 onChange={(event) => {
                                     setEmail(event.target.value);
