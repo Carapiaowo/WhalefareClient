@@ -64,7 +64,7 @@ function Signup() {
                         >
                             {
                                 modalType.modalValType === true ?
-                                    <div>Inicia sesión para verificar tu cuenta</div> :
+                                    <div>Inicia sesión para verificar tu cuenta.</div> :
                                     <br />
                             }
                             <ValidationModal {...modalType} />

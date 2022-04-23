@@ -12,6 +12,7 @@ import Politicas from './Politicas';
 import Terminos from './Terminos';
 import Homen from './Homen';
 import Homet from './Homet';
+import { animateScroll as scroll } from "react-scroll";
 import LoggedRoute from './LoggedRoute';
 import NotLoggedRoute from './NotLoggedRoute';
 import styled from "styled-components";
@@ -29,7 +30,9 @@ import { AuthContext } from './Auth/AuthContext';
 
 
 function RoutesManagement() {
-   
+    const scrollToBottom = () => {
+        scroll.scrollTo(800)
+    }
     const { isLogged } = useContext(AuthContext);
     return (
         <Router>
@@ -40,17 +43,19 @@ function RoutesManagement() {
                         <Route path="/" exact>
                             <Navbar />
                             <div className='main'>
-                                <div className='name'>
-                                    <h1>Almacena,genera y aplica contraseñas</h1>
+                            <div className='name'>
+                                    <h1>Gestiona,</h1>
+                                    <h1><span>sincroniza</span></h1>
+                                    <h1>y protege</h1>
+                                    <h1>tus datos</h1>
                                     <br />
-                                    <div className='btnnn' variant="secondary" size="lg" >
+                                   <div className='btnini'> 
+                                    <NavLink style={{ textDecoration: 'none', color:'white'}} to="/signup"> 
+                                    <Button className='btnnini' variant="secondary" size="lg" >Comienza ya</Button></NavLink>                    
+                                    <Button className='btnnn2' variant="light" size="lg" onClick={scrollToBottom} >
+                                    Descubre
+                                    </Button>
                                     </div>
-                                    <Button className='btnnn' variant="secondary" size="lg" >
-                                        Comienza ya
-                                    </Button>
-                                    <Button className='btnnn2p' variant="secondary" size="lg" >
-                                        Descubre cómo
-                                    </Button>
                                 </div>
                             </div>
                             <Feature></Feature>

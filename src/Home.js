@@ -276,6 +276,12 @@ class Home extends Component {
                 <br /><br /><br />
                 <div className="container p-4">
                    <div className="col">
+                   <button className='btn-eye' onClick={() => {this.setState({eyehide: !this.state.eyehide})}}>
+                   {this.state.eyehide ?
+                    <i className='fa fa-eye'></i>
+                    :
+                    <i className='fa fa-eye-slash'></i>
+                    }</button>
                    <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'navegador' }); this.modalNavegador() }}><i class="fa fa-puzzle-piece"/><br/></button>
                    <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
                     <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-plus  "/><br/></button>
@@ -482,13 +488,10 @@ class Home extends Component {
                     <ModalHeader>
                     ¿Necesitas ayuda?
                     </ModalHeader>
-                    <ModalBody>
-                    <b>1. </b> Agrega una contraseña presionando "+".
-                    <br></br>
-                    <b>2. </b>Edita tus contraseñas con "<i className="fa fa-pen" />".
-                    <br></br> 
-                    <b>3. </b>Presiona y arrastra para mover una contraseña.
-                    
+                    <ModalBody>                    
+                    <li type='disc'>Agrega una contraseña presionando <i className="fa fa-plus" />.</li>
+                    <li type='disc'>Edita una contraseña presionando <i className="fa fa-pen" />.</li> 
+                    <li type='disc'>Presiona y arrastra un contenedor para moverlo.</li>            
                     </ModalBody>
                     <ModalFooter>
                     <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>

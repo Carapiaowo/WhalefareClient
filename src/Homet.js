@@ -447,12 +447,10 @@ class Homet extends Component {
                     <ModalHeader>
                     ¿Necesitas ayuda?
                     </ModalHeader>
-                    <ModalBody>
-                    <b>1. </b>Agrega una tarjeta presionando "+".
-                    <br></br>
-                    <b>2. </b>Edita tus tarjetas con "<i className="fa fa-pen" />".
-                    <br></br> 
-                    <b>3. </b>Presiona y arrastra para mover tus tarjetas.
+                    <ModalBody>                    
+                    <li type='disc'>Agrega una tarjeta presionando <i className="fa fa-plus" />.</li>
+                    <li type='disc'>Edita una tarjeta presionando <i className="fa fa-pen" />.</li> 
+                    <li type='disc'>Presiona y arrastra una tarjeta para moverla.</li>               
                     </ModalBody>
                     <ModalFooter>
                     <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>

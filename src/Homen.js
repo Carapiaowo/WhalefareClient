@@ -456,14 +456,11 @@ class Homen extends Component {
                     <ModalHeader>
                     ¿Necesitas ayuda?
                     </ModalHeader>
-                    <ModalBody>
-                    <b>1. </b>Agrega una nota presionando "+".
-                    <br></br>
-                    <b>2. </b>Edita tus notas con "<i className="fa fa-pen" />".
-                    <br></br> 
-                    <b>3. </b>Presiona y arrastra para mover una contraseña.
-                    <br></br> 
-                    <b>4. </b>Organiza tus marcadores con " <i className="fa fa-bookmark" /> ".
+                    <ModalBody>                    
+                    <li type='disc'>Agrega una nota presionando <i className="fa fa-plus" />.</li>
+                    <li type='disc'>Edita una nota presionando <i className="fa fa-pen" />.</li> 
+                    <li type='disc'>Presiona y arrastra un contenedor para moverlo.</li>     
+                    <li type='disc'>Organiza tus marcadores con <i className="fa fa-bookmark" />.</li>          
                     </ModalBody>
                     <ModalFooter>
                         <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
