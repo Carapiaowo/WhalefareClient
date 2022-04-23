@@ -107,6 +107,7 @@ const Item = styled(NavLink)`
   padding-left: 1rem;
   &:hover {
     border-right: 4px solid var(--white);
+    color: #ffffff;
     img {
       filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
         brightness(103%) contrast(103%);
@@ -125,6 +126,10 @@ const Text = styled.span`
   overflow: hidden;
   margin-left: ${(props) => (props.clicked ? "1.5rem" : "0")};
   transition: all 0.3s ease;
+  color: #e5e5e5;
+  &:hover{
+    color: #ffffff;
+  }
 `;
 
 const Profile = styled.div`

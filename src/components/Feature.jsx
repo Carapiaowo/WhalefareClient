@@ -23,13 +23,14 @@ function Feature() {
         <div id='features'>
             <h2>Extensión en tu navegador favorito</h2>
             <div className='a-container'>
-            <Image className='navegadores' src={edge} style={{width: 250, height: 250}} alt='...' />
-            <Image className='navegadores' src={opera} style={{width: 250, height: 250}} alt='...' />
-            <Image className='navegadores' src={chromium} style={{width: 250, height: 250}} alt='...' />
-            <Image className='navegadores' src={brave} style={{width: 250, height: 250}} alt='...' />
+            <Image className='navegadores' src={chromium}  alt='...' />
+            <Image className='navegadores' src={opera}  alt='...' />
+            <Image className='navegadores' src={edge}  alt='...' />
+            <Image className='navegadores' src={brave}  alt='...' />
             </div>
         </div>
-        <div id="features2"><h2>Qué es Whalefare</h2><p>Lo que hacemos y por qué lo hacemos</p><div class="parrafoini"><p>En la actualidad, la vida de la población converge con los servicios digitales existentes en un amplio número de rubros: desde la escritura de un dato hasta la realización de operaciones financieras. Sin embargo, conforme estos elementos aumentan, el cuidado y la atención prestados disminuyen.</p><p>Whalefare es un gestor de datos que permite guardar y administrar notas, tarjetas de crédito y contraseñas, así como generar estas últimas, con la finalidad de proveer un ambiente amigable, con facilidad de uso y rutas cifradas.</p></div></div>
+        <div id="features2"><h2>Qué es Whalefare</h2><p>Lo que hacemos y por qué lo hacemos</p><div class="parrafoini"><p>En la actualidad, la vida de la población converge con los servicios digitales existentes en un amplio número de rubros: desde la escritura de un dato hasta la realización de operaciones financieras. Sin embargo, conforme estos elementos aumentan, el cuidado y la atención prestados disminuyen.</p>
+        <p>Whalefare es un gestor de datos que permite guardar y administrar notas, tarjetas de crédito y contraseñas, así como generar estas últimas, utilizando protocolos de seguridad para encriptar la información en una base de datos.</p></div></div>
         <div id='features3'>
             
             <h2>Whalefare prioriza tu seguridad</h2>
