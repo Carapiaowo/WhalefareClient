@@ -5,49 +5,49 @@ function ValidationModal(props) {
     if (type === 'emptyform') {
         return (
             <div>
-                Llena todos los campos
+                Llena todos los campos.
             </div>
         )
     } else if (type === 'title') {
         return (
             <div>
-                Ingresa un título válido
+                Ingresa un título válido.
             </div>
         )
     } else if (type === 'safepassword') {
         return (
             <div>
-                Ingresa una contraseña más segura
+                Ingresa una contraseña más segura.
             </div>
         )
     } else if (type === 'password') {
         return (
             <div>
-                Ingresa una contraseña válida
+                Ingresa una contraseña válida.
             </div>
         )
     } else if (type === 'website') {
         return (
             <div>
-                Ingresa un sitio web válido
+                Ingresa un sitio web válido.
             </div>
         )
     } else if (type === 'user') {
         return (
             <div>
-                Ingresa un usuario válido
+                Ingresa un usuario válido.
             </div>
         )
     } else if (type === 'email') {
         return (
             <div>
-                Ingresa un correo válido
+                Ingresa un correo válido.
             </div>
         )
     } else if (type === 'unverified') {
         return (
             <div>
-                Por favor verifica tu cuenta
+                Por favor, verifica tu cuenta.
             </div>
         )
     } else if (type === true) {
@@ -59,7 +59,7 @@ function ValidationModal(props) {
     } else if (type === 'wrong') {
         return (
             <div>
-                Revisa que tu cuenta esté verificada
+                Revisa que tu cuenta esté verificada.
             </div>
         )
     } else if (type === 'success') {
@@ -71,7 +71,7 @@ function ValidationModal(props) {
     } else {
         return (
             <div>
-                Revisa que los datos ingresados sean correctos
+                Revisa que los datos ingresados sean correctos.
             </div>
         )
     }
