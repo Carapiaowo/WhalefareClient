@@ -48,7 +48,8 @@ function Feature() {
         <div id='features4'>
         <h2>Descargas</h2>
 
-            <CardGroup className='descargas'>
+            
+        <CardGroup className='descargas'>
             <Card style={{backgroundColor:'transparent', borderColor:'transparent', boxShadow:'none'}}>
                 
                 <Card.Body>
