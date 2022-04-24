@@ -68,6 +68,12 @@ function ValidationModal(props) {
 
             </div>
         )
+    } else if (type === 'weakpass') {
+        return (
+            <div>
+                Tu contraseña es demasiado débil.
+            </div>
+        )
     } else {
         return (
             <div>

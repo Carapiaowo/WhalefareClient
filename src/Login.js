@@ -15,6 +15,7 @@ function Login() {
     const [modalType, setType] = useState("");
     const [modalOpen, setOpen] = useState(false);
     const [recoverOpen, setRecover] = useState(false);
+    const [mailSent, setMail] = useState("");
 
     let history = useHistory();
 
@@ -65,7 +66,7 @@ function Login() {
 
     }
 
-    function recover(){
+    function recover() {
         setRecover(!recoverOpen)
     }
 
@@ -82,6 +83,16 @@ function Login() {
         };
         open();
     }
+
+    const passwordRecover = () => {
+        console.log(Email)
+        Axios.post("https://whalefare1.herokuapp.com/passwordemail", { email: Email }).then(response => {
+            console.log(response.data)
+            setMail(response.data.message);
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
     return (
         <>
             <Container>
@@ -94,65 +105,78 @@ function Login() {
                         </Alert>
                     </div>
                     <img className="icon-img" src={loginIcon} alt="icon" />
-                    <Form>
-                    {recoverOpen?
-                            //formulario de recuperación
-                            <>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Correo electrónico</Form.Label>
-                            <Form.Control className='campo' name="email" type="email" placeholder="Escribe aquí." onChange={(event) => {
-                                setEmail(event.target.value);
-                            }} />
-                            </Form.Group>
-
-                            <div className="d-grid gap-2">
-                            <Button className='btnn' variant="primary" size="lg" onClick={logUser}>
-                                Recuperar cuenta
-                            </Button>
-                            <i className='recuperacion' onClick={recover}>Volver</i>
-                           </div>
-                            </>
-                
-                            :
-                            //formulario de inicio 
-                            <>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Correo electrónico</Form.Label>
-                            <Form.Control className='campo' name="email" type="email" placeholder="Escribe aquí." onChange={(event) => {
-                                setEmail(event.target.value);
-                            }} />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Contraseña</Form.Label>
-                                <Form.Control className='campo' id="Password" type="password" placeholder="Escribe aquí." onChange={(event) => {
-                                    setPassword(event.target.value);
-                                }} />
-                                <div id="p1">
-
-                                </div>
-                            </Form.Group>
-                            <div className="d-grid gap-2">
-                            <Button className='btnn' variant="primary" size="lg" onClick={logUser}>
-                                Iniciar sesión
-                            </Button>
-                            <div>
-                                <br></br>
-                                ¿No tienes una cuenta?
-                                <br></br>
-                                <NavLink to="/signup">
-                                    Crea una
-                                </NavLink>
-                                <br></br>
-                                <br></br>
-                            </div>
-                            <i className='recuperacion' onClick={recover}>¿Olvidaste tu contraseña?</i>
-                            
-                        </div>
-                        </>
+                    {mailSent !== "" ?
+                        <div>
+                            {
+                                mailSent ?
+                                    <div>El correo se envió con éxito</div>
+                                    :
+                                    <div>El correo no se envió con éxito</div>
                             }
-                        
-                    </Form>
+                        </div>
+                        :
+                        <div>
+                            <Form>
+                                {recoverOpen ?
+                                    //formulario de recuperación
+                                    <>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Correo electrónico</Form.Label>
+                                            <Form.Control className='campo' name="email" type="email" placeholder="Escribe aquí." onChange={(event) => {
+                                                setEmail(event.target.value);
+                                            }} />
+                                        </Form.Group>
 
+                                        <div className="d-grid gap-2">
+                                            <Button className='btnn' variant="primary" size="lg" onClick={passwordRecover}>
+                                                Recuperar cuenta
+                                            </Button>
+                                            <i className='recuperacion' onClick={recover}>Volver</i>
+                                        </div>
+                                    </>
+
+                                    :
+                                    //formulario de inicio 
+                                    <>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Correo electrónico</Form.Label>
+                                            <Form.Control className='campo' name="email" type="email" placeholder="Escribe aquí." onChange={(event) => {
+                                                setEmail(event.target.value);
+                                            }} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Contraseña</Form.Label>
+                                            <Form.Control className='campo' id="Password" type="password" placeholder="Escribe aquí." onChange={(event) => {
+                                                setPassword(event.target.value);
+                                            }} />
+                                            <div id="p1">
+
+                                            </div>
+                                        </Form.Group>
+                                        <div className="d-grid gap-2">
+                                            <Button className='btnn' variant="primary" size="lg" onClick={logUser}>
+                                                Iniciar sesión
+                                            </Button>
+                                            <div>
+                                                <br></br>
+                                                ¿No tienes una cuenta?
+                                                <br></br>
+                                                <NavLink to="/signup">
+                                                    Crea una
+                                                </NavLink>
+                                                <br></br>
+                                                <br></br>
+                                            </div>
+                                            <i className='recuperacion' onClick={recover}>¿Olvidaste tu contraseña?</i>
+
+                                        </div>
+                                    </>
+                                }
+
+                            </Form>
+                        </div>
+
+                    }
                 </Col>
             </Container>
         </>

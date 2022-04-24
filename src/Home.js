@@ -247,7 +247,8 @@ class Home extends Component {
             lowercase: true,
             uppercase: true,
             numbers: true,
-            symbols: true
+            symbols: true,
+            strict: true
         });
         document.getElementById("Password").value = pwd;
     }
