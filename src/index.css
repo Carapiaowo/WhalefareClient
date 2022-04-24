@@ -488,21 +488,36 @@ nav .menu-btn,
     width: 600px;
 }
 
-#features {
+
+#features{
     font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: max-content;
+    width:100%;
+    height:max-content;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 10%;
+    padding-top: 10% ;
     padding-bottom: 10%;
-    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #ffffff 70%, #c4d6e48d   100%);
 }
 
+#features1{
+    font-family: 'Roboto', sans-serif;
+    width:100%;
+    height:max-content;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10% ;
+    padding-bottom: 10%;
+    background-image: linear-gradient(to top, #ffffff 70%, #bed1df9f  100%);
+}
 #features2 {
     width: 100%;
     height: max-content;
@@ -531,18 +546,51 @@ nav .menu-btn,
     color: white;
 
 }
-
+#features4{
+    width:100%;
+    height:auto;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10% ;
+    padding-bottom: 10%;
+    background-color:#f4f6fb;
+}
+.descargas{
+    width: 40vw;
+    margin-top: 5vh;
+}
+.downicons{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    -webkit-transition:all .5s ease; /* Safari y Chrome */
+    -moz-transition:all .5s ease; /* Firefox */
+    -o-transition:all .5s ease; /* IE 9 */
+    -ms-transition:all .5s ease; /* Opera */
+}
+.downicons:hover{
+    -webkit-transform:scale(1.05);
+    -moz-transform:scale(1.05);
+    -ms-transform:scale(1.05);
+    -o-transform:scale(1.05);
+    transform:scale(1.05);
+    cursor: pointer;
+}
 .title {
 
     margin-top: 10px;
     font-size: 25px;
 }
 
-.a-container {
+.a-container{
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #ffffff;
+    background-color:transparent;
     height: auto;
     width: auto;
 }
