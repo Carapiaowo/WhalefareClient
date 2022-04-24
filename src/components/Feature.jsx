@@ -9,7 +9,10 @@ import edge from '../images/edge_logo.png';
 import opera from '../images/opera_logo.png';
 import chromium from '../images/chromium_logo.png';
 import brave from '../images/brave_logo.png';
-import { Col, Container, Form, Button, Card } from "react-bootstrap";
+import chromebag from '../images/chrome_bag.PNG';
+import android from '../images/android_bug.png';
+
+import { Col, Container, Form, Button, Card, CardGroup } from "react-bootstrap";
 
 function Feature() {
     return (
@@ -20,7 +23,7 @@ function Feature() {
             <Image src={duo} className='imgini' alt='...' />
             </div>
         </div>
-        <div id='features'>
+        <div id='features1'>
             <h2>Extensión en tu navegador favorito</h2>
             <div className='a-container'>
             <Image className='navegadores' src={chromium}  alt='...' />
@@ -41,6 +44,26 @@ function Feature() {
                 <FeatureBox image={featureimage1} title='Cifrado' name='Gracias al uso de cifrado, tus datos se encuentran seguros en la aplicación.' />
                 <FeatureBox image={featureimage2} title='Facilidad' name='Con una interfaz fácil de usar, podrás gestionar tus datos sensibles.' />
             </div>
+        </div>
+        <div id='features4'>
+        <h2>Descargas</h2>
+
+            <CardGroup className='descargas'>
+            <Card style={{backgroundColor:'transparent', borderColor:'transparent', boxShadow:'none'}}>
+                
+                <Card.Body>
+                <Card.Title style={{textAlign:'center', color:'#404040'}} >Aplicación para dispositivos Android</Card.Title>
+                </Card.Body>
+            <Card.Img variant="bottom" className='downicons' src={android} />
+            </Card>
+            <Card style={{backgroundColor:'transparent', borderColor:'transparent', boxShadow:'none'}}>
+                <Card.Body >
+                <Card.Title style={{textAlign:'center', color:'#404040'}}>Extensión para navegadores Chromium</Card.Title>
+                </Card.Body>
+                <Card.Img variant="bottom" className='downicons' src={chromebag} />
+            </Card>
+            
+            </CardGroup>
         </div>
         </div>
 
