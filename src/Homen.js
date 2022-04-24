@@ -604,11 +604,9 @@ class Homen extends Component {
                             :
                             <>
                                 {
-                                    this.state.authorized ?
-                                        <><Button className='botonesN' variant='light' onClick={() => { this.setState({ nuevaCategoria: true }) }}><i className="fa fa-plus" />
-                                        </Button><br></br></>
-                                        :
-                                        <></>
+                                    <><Button className='botonesN' variant='light' onClick={() => { this.setState({ nuevaCategoria: true }) }}><i className="fa fa-plus" />
+                                    </Button><br></br></>
+
                                 }
                             </>
                         }
