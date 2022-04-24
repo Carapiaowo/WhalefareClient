@@ -306,7 +306,7 @@ class Home extends Component {
                                                                     <div className="col">
                                                                         <div className="card">
                                                                             <div className='center-text'>
-                                                                                <h3 className="card-header bg-dark text-white">{pass.title_c}</h3>
+                                                                                <h4 className="card-header">{pass.title_c}</h4>
                                                                             </div>
                                                                             {this.state.authorized !== 1 ?
                                                                                 /*CONTENEDOR PREVIO A AUTENTICACIÓN */
@@ -374,11 +374,10 @@ class Home extends Component {
                                                                                         />
 
                                                                                     </div>
-                                                                                    <div>
+                                                                                    <div className='contBtnN'>
                                                                                         <br />
-                                                                                        {/*BOTONES EDITAR Y ELIMINAR */}
-                                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
-                                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
+                                                                                        <Button className='btnNC' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                                        <Button className='btnNC' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
                                                                                     </div>
                                                                                 </div>
                                                                             }
