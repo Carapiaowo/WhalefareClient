@@ -41,14 +41,14 @@ class Home extends Component {
         this.peticionRead();
     }
 
-     //Ventana de ayuda
-     modalAyuda = () => {
-        this.setState({ modalAyuda : !this.state.modalAyuda});
+    //Ventana de ayuda
+    modalAyuda = () => {
+        this.setState({ modalAyuda: !this.state.modalAyuda });
     }
 
     //Ventana de ayuda extensión
     modalNavegador = () => {
-        this.setState({ modalNavegador : !this.state.modalNavegador});
+        this.setState({ modalNavegador: !this.state.modalNavegador });
     }
 
 
@@ -276,125 +276,141 @@ class Home extends Component {
             <div className="App">
                 <br /><br /><br />
                 <div className="container p-4">
-                   <div className="col">
-                   <button className='btn-eye' onClick={() => {this.setState({eyehide: !this.state.eyehide})}}>
-                   {this.state.eyehide ?
-                    <i className='fa fa-eye'></i>
-                    :
-                    <i className='fa fa-eye-slash'></i>
-                    }</button>
-                   <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'navegador' }); this.modalNavegador() }}><i class="fa fa-puzzle-piece"/><br/></button>
-                   <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i class="fa fa-question  "/><br/></button>
-                    <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i class="fa  fa-plus  "/><br/></button>
-                    </div>  
-                 <div>
-                     <div className='conttt'>
+                    <div className="col">
+                        <button className='btn-eye' onClick={() => { this.setState({ eyehide: !this.state.eyehide }) }}>
+                            {this.state.eyehide ?
+                                <i className='fa fa-eye'></i>
+                                :
+                                <i className='fa fa-eye-slash'></i>
+                            }</button>
+                        <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'navegador' }); this.modalNavegador() }}><i className="fa fa-puzzle-piece" /><br /></button>
+                        <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i className="fa fa-question  " /><br /></button>
+                        <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
+                    </div>
+                    <div>
+                        <div className='conttt'>
 
-                     </div>
+                        </div>
+                        {
+                            this.state.authorized ?
+                                <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                                    <Droppable droppableId="passwords">
+                                        {(provided) => (
+                                            <List type="unstyled" className="row row-cols-3" {...provided.droppableProps} ref={provided.innerRef}>
+                                                {this.state.data.map((pass, key) => {
+                                                    return (
+                                                        <Draggable key={String(pass.id_c)} draggableId={String(pass.id_c)} index={key}>
+                                                            {(provided) => (
+                                                                <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                    {/*Cabecera contenedores */}
+                                                                    <div className="col">
+                                                                        <div className="card">
+                                                                            <div className='center-text'>
+                                                                                <h3 className="card-header bg-dark text-white">{pass.title_c}</h3>
+                                                                            </div>
+                                                                            {this.state.authorized !== 1 ?
+                                                                                /*CONTENEDOR PREVIO A AUTENTICACIÓN */
+                                                                                <div className="card-body">
+                                                                                    <div className="mb-3">
+                                                                                        Da clic en la llave para verificar tu identidad y revisa tu correo.
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                :
 
-                    <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                        <Droppable droppableId="passwords">
-                            {(provided) => (
-                                <List type="unstyled" className="row row-cols-3" {...provided.droppableProps} ref={provided.innerRef}>
-                                    {this.state.data.map((pass, key) => {
-                                        return (
-                                            <Draggable key={String(pass.id_c)} draggableId={String(pass.id_c)} index={key}>
-                                                {(provided) => (
-                                                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                       {/*Cabecera contenedores */}
-                                                        <div className="col">
-                                                            <div className="card">
-                                                                <div className='center-text'>
-                                                                    <h3 className="card-header bg-dark text-white">{pass.title_c}</h3>
-                                                                </div>
-                                                                {this.state.authorized !== 1 ?
-                                                                /*CONTENEDOR PREVIO A AUTENTICACIÓN */
-                                                                    <div className="card-body">
-                                                                        <div className="mb-3">
-                                                                            Da clic en la llave para verificar tu identidad y revisa tu correo.
-                                                                        </div>
-                                                                        <div>
-                                                                            <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
+                                                                                /*CONTENEDOR MAPEO */
+                                                                                <div className="card-body">
+                                                                                    <label>Titulo</label>
+                                                                                    <div className="mb-3 input-group">
+                                                                                        <input
+                                                                                            name="Title"
+                                                                                            id={"title" + pass.id_c}
+                                                                                            className="form-control"
+                                                                                            disabled={true}
+                                                                                            value={pass.title_c}
+                                                                                        />
+                                                                                    </div>
+                                                                                    <label>Nombre de usuario</label>
+                                                                                    <div className="mb-3 input-group">
+                                                                                        <input
+                                                                                            name="User"
+                                                                                            id={"user" + pass.id_c}
+                                                                                            className="form-control"
+                                                                                            disabled={true}
+                                                                                            value={pass.user_c}
+                                                                                        />
+                                                                                    </div>
+                                                                                    <label>Contraseña</label>
+                                                                                    <div className="mb-3 input-group">
+                                                                                        <input
+                                                                                            name="Password"
+                                                                                            type={'password'}
+                                                                                            id={"pass" + pass.id_c}
+                                                                                            className="form-control"
+                                                                                            disabled={true}
+                                                                                            defaultValue={pass.pass_c}
+                                                                                        />
+                                                                                        <span
+                                                                                            className="input-group-text"
+                                                                                        >
+                                                                                            <i id={"eye" + pass.id_c}
+                                                                                                className="fa fa-eye"
+                                                                                                aria-hidden="true"
+                                                                                                onClick={() => { this.showingPassword(pass); }}
+                                                                                            >
+                                                                                            </i>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <label>Sitio web</label>
+                                                                                    <div className="mb-3 input-group">
+                                                                                        <input
+                                                                                            name="Website"
+                                                                                            id={"web" + pass.id_c}
+                                                                                            className="form-control"
+                                                                                            disabled={true}
+                                                                                            value={pass.website_c}
+                                                                                        />
+
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <br />
+                                                                                        {/*BOTONES EDITAR Y ELIMINAR */}
+                                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                                        <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+
                                                                         </div>
                                                                     </div>
-                                                                    :
+                                                                </li>
+                                                            )}
+                                                        </Draggable>
+                                                    )
+                                                })}
+                                                {provided.placeholder}
+                                            </List>
+                                        )}
+                                    </Droppable>
+                                </DragDropContext>
+                                :
+                                <>
+                                    Dando clic en el ojo debajo a la derecha te enviaremos un correo para que puedas acceder a tu contenido almacenado.
+                                    <div className="mb-3">
+                                        {this.state.authorized ?
+                                            <div />
+                                            :
+                                            <button className='btn-eye' onClick={() => { this.setState({ eyehide: !this.state.eyehide }); this.sendMail(); this.peticionRead(); }}>
+                                                <i className='fa fa-eye'></i>
+                                            </button>
+                                        }
+                                    </div>
 
-                                                                    /*CONTENEDOR MAPEO */
-                                                                    <div className="card-body">
-                                                                        <label>Titulo</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Title"
-                                                                                id={"title" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.title_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Nombre de usuario</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="User"
-                                                                                id={"user" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.user_c}
-                                                                            />
-                                                                        </div>
-                                                                        <label>Contraseña</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Password"
-                                                                                type={'password'}
-                                                                                id={"pass" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                defaultValue={pass.pass_c}
-                                                                            />
-                                                                            <span
-                                                                                className="input-group-text"
-                                                                            >
-                                                                                <i id={"eye" + pass.id_c}
-                                                                                    className="fa fa-eye"
-                                                                                    aria-hidden="true"
-                                                                                    onClick={() => { this.showingPassword(pass); }}
-                                                                                >
-                                                                                </i>
-                                                                            </span>
-                                                                        </div>
-                                                                        <label>Sitio web</label>
-                                                                        <div className="mb-3 input-group">
-                                                                            <input
-                                                                                name="Website"
-                                                                                id={"web" + pass.id_c}
-                                                                                className="form-control"
-                                                                                disabled={true}
-                                                                                value={pass.website_c}
-                                                                            />
-
-                                                                        </div>
-                                                                        <div>
-                                                                            <br />
-                                                                            {/*BOTONES EDITAR Y ELIMINAR */}
-                                                                            <Button  className='botonesN' variant='light'  onClick={() => { this.seleccionarEmpresa(pass); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
-                                                                            <Button className='botonesN' variant='light'  onClick={() => { this.seleccionarEmpresa(pass); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
-                                                                        </div>
-                                                                    </div>
-                                                                }
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                )}
-                                            </Draggable>
-                                        )
-                                    })}
-                                    {provided.placeholder}
-                                </List>
-                            )}
-                        </Droppable>
-                    </DragDropContext>
-                    </div>                
+                                </>
+                        }
+                    </div>
                 </div>
 
                 <Modal isOpen={this.state.modalInsertar}>
@@ -409,9 +425,9 @@ class Home extends Component {
                             <ValidationModal {...this.state.modalVal} />
                         </Alert>
                         {
-                           /* this.state.idUser === null ?
+                            this.state.idUser === null ?
                                 <div>Acceso denegado</div>
-                                :*/
+                                :
 
                                 /*INSERTAR NUEVA CONTRASEÑA */
                                 <div className="form-group">
@@ -470,7 +486,7 @@ class Home extends Component {
                                         Actualizar
                                     </Button>
                         }
-                        <Button className="btnnn" variant="danger" size="lg"  onClick={() => this.modalInsertar()}>Salir</Button>
+                        <Button className="btnnn" variant="danger" size="lg" onClick={() => this.modalInsertar()}>Salir</Button>
                     </ModalFooter>
 
                 </Modal>
@@ -480,31 +496,31 @@ class Home extends Component {
                         ¿Estás seguro que deseas eliminar la contraseña de {form && form.Title}?
                     </ModalBody>
                     <ModalFooter>
-                    <Button className="btn" variant="light" onClick={() => this.peticionDelete()}>Sí</Button>
-                    <Button className="btn" variant='secondary' onClick={() => this.setState({ modalEliminar: false })}>No</Button>
+                        <Button className="btn" variant="light" onClick={() => this.peticionDelete()}>Sí</Button>
+                        <Button className="btn" variant='secondary' onClick={() => this.setState({ modalEliminar: false })}>No</Button>
                     </ModalFooter>
                 </Modal>
 
                 <Modal isOpen={this.state.modalAyuda}>
                     <ModalHeader>
-                    ¿Necesitas ayuda?
+                        ¿Necesitas ayuda?
                     </ModalHeader>
-                    <ModalBody>                    
-                    <li type='disc'>Agrega una contraseña presionando <i className="fa fa-plus" />.</li>
-                    <li type='disc'>Edita una contraseña presionando <i className="fa fa-pen" />.</li> 
-                    <li type='disc'>Presiona y arrastra un contenedor para moverlo.</li>            
+                    <ModalBody>
+                        <li type='disc'>Agrega una contraseña presionando <i className="fa fa-plus" />.</li>
+                        <li type='disc'>Edita una contraseña presionando <i className="fa fa-pen" />.</li>
+                        <li type='disc'>Presiona y arrastra un contenedor para moverlo.</li>
                     </ModalBody>
                     <ModalFooter>
-                    <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
+                        <Button className='btn' variant='secondary' onClick={() => this.setState({ modalAyuda: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
                 <Modal size="lg" isOpen={this.state.modalNavegador}>
                     <ModalHeader>
-                    Utiliza la extensión en tu navegador
+                        Utiliza la extensión en tu navegador
                     </ModalHeader>
                     <ModalBody>
-                 
-                   {/* 1. Descarga la extensión.
+
+                        {/* 1. Descarga la extensión.
                     <img className='download' src={Download} alt="Team" />
                     <br></br>
                     2. Edita tus tarjetas con "<i className="fa fa-pen" />".
@@ -513,7 +529,7 @@ class Home extends Component {
                     */}
                     </ModalBody>
                     <ModalFooter>
-                    <Button className='btn' variant='secondary' onClick={() => this.setState({ modalNavegador: false })}>Salir</Button>
+                        <Button className='btn' variant='secondary' onClick={() => this.setState({ modalNavegador: false })}>Salir</Button>
                     </ModalFooter>
                 </Modal>
             </div>

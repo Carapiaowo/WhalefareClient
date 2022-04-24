@@ -26,7 +26,7 @@ function PasswordRecovery() {
         const validation = recoverVal(password);
         console.log(password)
         if (validation === true) {
-            Axios.put("http://localhost:4000/changepassword/" + user, { password: password }).then(response => {
+            Axios.put("https://whalefare1.herokuapp.com/changepassword/" + user, { password: password }).then(response => {
                 console.log(response.data)
                 console.log(response.data.message)
                 setMail(response.data.message);

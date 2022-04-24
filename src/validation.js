@@ -194,4 +194,38 @@ const recoverVal = (e) => {
 
 }
 
-module.exports = { formVal, loginVal, signupVal, validar_datosr, validar_datosr2, updateVal, safetyPass, recoverVal }
+const notes = (e) => {
+    const { content, name, color } = e
+    console.log(content, name, color)
+    if (!content || !name || !color) {
+        return ('emptyform')
+    } else if (!content) {
+        return ('content')
+    } else if (!color || color === 0) {
+        return ('color')
+    } else if (!name) {
+        return ('title')
+    } else {
+        return (true)
+    }
+
+}
+
+const ccards = (e) => {
+    let { number, name, cad } = e
+    console.log(cad)
+
+    if (!number || !name || !cad) {
+        return ('emptyform')
+    } else if (!number) {
+        return ('number')
+    } else if (!cad) {
+        return ('cad')
+    } else if (!name) {
+        return ('title')
+    } else {
+        return (true)
+    }
+}
+
+module.exports = { formVal, loginVal, signupVal, validar_datosr, validar_datosr2, updateVal, safetyPass, recoverVal, notes, ccards }

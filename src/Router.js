@@ -38,7 +38,12 @@ function RoutesManagement() {
     return (
         <Router>
             <div> <div id="main">
-                <Sidebar />
+                {
+                    !isLogged.isAuth ?
+                        <></>
+                        :
+                        <Sidebar />
+                }
 
                 <Switch>
                     <Route path="/" exact>
@@ -78,15 +83,16 @@ function RoutesManagement() {
                     </Route>
 
                     <Route path="/home">
-                        <div className="container">
-                            <Home />
-                        </div>
+                        <LoggedRoute isAuth={isLogged.isAuth} Component={Home} />
                     </Route>
-                    <Route path="/homen" component={Homen}>
+                    <Route path="/homen">
+                        <LoggedRoute isAuth={isLogged.isAuth} Component={Homen} />
                     </Route>
-                    <Route path="/homet" component={Homet}>
+                    <Route path="/homet">
+                        <LoggedRoute isAuth={isLogged.isAuth} Component={Homet} />
                     </Route>
-                    <Route path="/profile" component={Profile}>
+                    <Route path="/profile">
+                        <LoggedRoute isAuth={isLogged.isAuth} Component={Profile} />
                     </Route>
                     <Route path="/password/:string" component={PasswordRecovery}>
                     </Route>

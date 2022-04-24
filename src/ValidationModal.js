@@ -74,10 +74,28 @@ function ValidationModal(props) {
                 Tu contraseña es demasiado débil.
             </div>
         )
+    } else if (type === 'content') {
+        return (
+            <div>
+                No puedes añadir una nota vacía.
+            </div>
+        )
+    } else if (type === 'color') {
+        return (
+            <div>
+                Recuerda colocar una categoría para tu nota.
+            </div>
+        )
+    } else if (type === 'number') {
+        return (
+            <div>
+                Recuerda colocar una la fecha de expiración de tu tarjeta.
+            </div>
+        )
     } else {
         return (
             <div>
-                Revisa que los datos ingresados sean correctos.
+
             </div>
         )
     }
