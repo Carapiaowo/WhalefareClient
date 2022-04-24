@@ -83,7 +83,7 @@ function RoutesManagement() {
                     </Route>
 
                     <Route path="/home">
-                        <LoggedRoute isAuth={isLogged.isAuth} Component={Home} />
+                        <LoggedRoute isAuth={!isLogged.isAuth} Component={Home} />
                     </Route>
                     <Route path="/homen">
                         <LoggedRoute isAuth={isLogged.isAuth} Component={Homen} />
