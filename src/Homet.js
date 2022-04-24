@@ -63,16 +63,17 @@ class Homet extends Component {
 
     peticionRead = () => {
 
-        if (this.state.idUser) {
+        //   if (this.state.idUser) {
 
-            this.setState({ data: [] })
-            Axios.post("https://whalefare1.herokuapp.com/readcard", { id_u: this.state.idUser }).then(response => {
-                this.setState({ data: response.data.result, authorized: response.data.authorized[0].authorized_u });
-                console.log(this.state.data)
-            }).catch(error => {
-                console.log(error);
-            })
-        }
+        this.setState({ data: [] })
+        Axios.post("http://localhost:4000/readcard", { id_u: 345 }).then(response => {
+            this.setState({ data: response.data.result, authorized: response.data.authorized[0].authorized_u });
+            console.log(this.state.data)
+        }).catch(error => {
+            console.log(error);
+        })
+
+        //}
 
     }
 
@@ -235,21 +236,6 @@ class Homet extends Component {
         document.getElementById("Password").value = pwd;
     }
 
-    showingPassword = (encryption) => {
-        Axios.post('https://whalefare1.herokuapp.com/decryptpass',
-            {
-                password: encryption.pass_c,
-                iv: encryption.key_c
-            })
-            .then((response) => {
-                document.getElementById("pass" + encryption.id_c).value = response.data;
-                document.getElementById("pass" + encryption.id_c).type = "text";
-                document.getElementById("pass" + encryption.id_c).class = "fa fa-eye-slash";
-            });
-    };
-
-
-
     componentDidMount() {
         this.peticionRead();
     }
@@ -292,7 +278,6 @@ class Homet extends Component {
                     </div>
                     <div>
                         {
-
                             this.state.authorized ?
                                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
                                     <Droppable droppableId="passwords">
@@ -305,41 +290,23 @@ class Homet extends Component {
                                                                 <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                                     {/*CABECERA CARDS*/}
                                                                     <Col>
-                                                                        {this.state.authorized === 1 ?
+                                                                        <div id="PaymentForm" className='tarjeta'>
+                                                                            <Cards
+                                                                                cvc={cards.cvv_t}
+                                                                                expiry={cards.cad_t}
+                                                                                focused={this.state.focus}
+                                                                                name={cards.owner_t}
+                                                                                number={cards.number_t}
 
-
-                                                                            /*PREVIO A AUTENTICACIÓN
-                                                                            <Card>
-                                                                                <Card.Body>
-                                                                                    <div className="mb-3">
-                                                                                        Da clic en la llave para verificar tu identidad y revisa tu correo.
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <button className="btn btn-success" onClick={() => { this.sendMail(); this.peticionRead(); }}><i className="fa fa-key" /></button>
-                                                                                    </div>
-                                                                                </Card.Body>
-                                                                            </Card>
-                                                                             */
-                                                                            console.log(':)')
-                                                                            :
-                                                                            /*MAPEO */
-                                                                            <div id="PaymentForm" className='tarjeta'>
-                                                                                <Cards
-                                                                                    cvc={cards.cvv_t}
-                                                                                    expiry={cards.cad_t}
-                                                                                    focused={this.state.focus}
-                                                                                    name={cards.owner_t}
-                                                                                    number={cards.number_t}
-
-                                                                                />
-                                                                                <div className='contBtn'>
-                                                                                    <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
-                                                                                    <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
-                                                                                </div>
-                                                                                <br></br>
+                                                                            />
+                                                                            <div className='contBtn'>
+                                                                                <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.modalInsertar() }}><i className="fa fa-pen" /></Button>
+                                                                                <Button className='botonesN' variant='light' onClick={() => { this.seleccionarEmpresa(cards); this.setState({ modalEliminar: true }) }}><i className="fa fa-trash" /></Button>
                                                                             </div>
+                                                                            <br></br>
+                                                                        </div>
 
-                                                                        }
+
                                                                     </Col>
                                                                 </li>
                                                             )}
@@ -381,7 +348,7 @@ class Homet extends Component {
                             <ValidationModal {...this.state.modalVal} />
                         </Alert>
                         {
-                            this.state.idUser === null ?
+                            !this.state.idUser ?
                                 <div>Acceso denegado</div>
                                 :
                                 <div>
