@@ -341,7 +341,7 @@ margin-right: 3px;
 }
 
 .tarjeta{
-    z-index: -1;
+    z-index: 0;
     position: relative;
    
 }
@@ -1070,7 +1070,7 @@ a:link, a:visited{
     background-color: #cfd7dc;
 }
 .nota{
-    z-index: -1;
+    z-index: 0;
     position: relative;
 }
 .camponota{

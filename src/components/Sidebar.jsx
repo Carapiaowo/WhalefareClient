@@ -15,7 +15,7 @@ import { NavLink, Link } from "react-router-dom";
 
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   .active {
     border-right: 4px solid var(--white);
     z-index:10000;

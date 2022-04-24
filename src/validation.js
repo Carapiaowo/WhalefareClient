@@ -159,25 +159,73 @@ const signupVal = (e) => {
 }
 
 const safetyPass = (e) => {
-    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[@$!%*#?&"<>.,:;+-^´]).{8}');
+    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}');
     let mediumPassword = new RegExp('(?=.*[A-Z])(?=.*[0-9]).{6}');
     let passwordSafety
     if (strongPassword.test(e)) {
         document.getElementById("Password").className = "form-control is-valid";
-        document.getElementById("p1").innerHTML = "Tu contraseña es fuerte";
+        document.getElementById("p1").innerHTML = "Tu contraseña es fuerte.";
         passwordSafety = true
         return passwordSafety;
     } else if (mediumPassword.test(e)) {
         document.getElementById("Password").className = "form-control is-valid";
-        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar";
+        document.getElementById("p1").innerHTML = "Tu contraseña puede mejorar.";
         passwordSafety = false
         return passwordSafety;
     } else {
         document.getElementById("Password").className = "form-control is-invalid";
-        document.getElementById("p1").innerHTML = "Tu contraseña es débil";
+        document.getElementById("p1").innerHTML = "Tu contraseña es débil.";
         passwordSafety = false
         return passwordSafety;
     }
 }
 
-module.exports = { formVal, loginVal, signupVal, validar_datosr, validar_datosr2, updateVal, safetyPass }
+const recoverVal = (e) => {
+    const password = e
+    let strongPassword = new RegExp('(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}');
+
+    if (!password) {
+        return ('emptyform')
+    } else if (!strongPassword.test(password)) {
+        return ('weakpass')
+    } else {
+        return (true)
+    }
+
+}
+
+const notes = (e) => {
+    const { content, name, color } = e
+    console.log(content, name, color)
+    if (!content || !name || !color) {
+        return ('emptyform')
+    } else if (!content) {
+        return ('content')
+    } else if (!color || color === 0) {
+        return ('color')
+    } else if (!name) {
+        return ('title')
+    } else {
+        return (true)
+    }
+
+}
+
+const ccards = (e) => {
+    let { number, name, cad } = e
+    console.log(cad)
+
+    if (!number || !name || !cad) {
+        return ('emptyform')
+    } else if (!number) {
+        return ('number')
+    } else if (!cad) {
+        return ('cad')
+    } else if (!name) {
+        return ('title')
+    } else {
+        return (true)
+    }
+}
+
+module.exports = { formVal, loginVal, signupVal, validar_datosr, validar_datosr2, updateVal, safetyPass, recoverVal, notes, ccards }
