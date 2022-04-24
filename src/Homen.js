@@ -369,15 +369,12 @@ class Homen extends Component {
                             !this.state.authorized ?
                                 /*PREVIO A AUTENTICACIÓN (corregido 1.0 c:)*/
                                 <div>
-                                    Dando clic en el ojo debajo a la derecha te enviaremos un correo para que puedas acceder a tu contenido almacenado.
+                                    Visualiza los elementos almacenados con
                                     <div className="mb-3">
-                                        {this.state.authorized ?
-                                            <div />
-                                            :
-                                            <button className='btn-eye' onClick={() => { this.setState({ eyehide: !this.state.eyehide }); this.sendMail(); this.peticionRead(); }}>
-                                                <i className='fa fa-eye'></i>
-                                            </button>
-                                        }
+                                        <button className='btn' onClick={() => { this.setState({ eyehide: !this.state.eyehide }); this.sendMail(); this.peticionRead(); }}>
+                                            <i className='fa fa-eye'></i>
+                                        </button>
+
                                     </div>
                                 </div>
                                 :
@@ -604,11 +601,9 @@ class Homen extends Component {
                             :
                             <>
                                 {
-                                    this.state.authorized ?
-                                        <><Button className='botonesN' variant='light' onClick={() => { this.setState({ nuevaCategoria: true }) }}><i className="fa fa-plus" />
-                                        </Button><br></br></>
-                                        :
-                                        <></>
+                                    <><Button className='botonesN' variant='light' onClick={() => { this.setState({ nuevaCategoria: true }) }}><i className="fa fa-plus" />
+                                    </Button><br></br></>
+
                                 }
                             </>
                         }
