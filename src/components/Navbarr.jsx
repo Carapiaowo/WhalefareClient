@@ -51,20 +51,11 @@ function Navbarr() {
                     <label className='menu-icon' htmlFor='menu-btn'>
                         <span className='nav-icon'></span>
                     </label>
-                    {isLogged.isAuth !== true ?
-                         <ul className="menu">
+                    <ul className="menu">
                         <li className='iniini'><NavLink style={{ textDecoration: 'none', color: 'black' }} to="/login">Iniciar Sesión</NavLink></li>
                         <li className='active iniini'> <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/signup">Crear cuenta</NavLink></li>
-                     </ul>
-                        :
-                      <ul className='menu'>
-                        <NavItem><NavLink to="/home"><img className='logoo' alt="Imagen de algo" src={iconLista}></img></NavLink></NavItem>
-                         <NavItem><NavLink to="/homep"><img className='logoo' alt="imagen de algo" src={iconNyT}></img></NavLink></NavItem>
-                         <NavItem><NavLink to="/profile"><img className='logoo' alt="Otra imagen de algo" src={iconUsuario}></img></NavLink></NavItem>
-                         <NavItem><NavLink to="/home"><img className='logoo' alt="Tercera imagen de algo" src={iconLogout} onClick={() => { setModalLogout() }}></img></NavLink></NavItem>
-                    </ul>  
-                    }
-                    </div>
+                    </ul>
+                </div>
             </Navbar>
             <Modal isOpen={modalLogout}>
                 <ModalBody>
@@ -76,8 +67,6 @@ function Navbarr() {
                 </ModalFooter>
             </Modal>
         </nav >
-
-
     )
 }
 
