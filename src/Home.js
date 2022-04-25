@@ -321,9 +321,10 @@ class Home extends Component {
                                                                                         <input
                                                                                             name="Title"
                                                                                             id={"title" + pass.id_c}
-                                                                                            className="form-control"
+                                                                                            className="form-control bg-primary"
                                                                                             disabled={true}
                                                                                             value={pass.title_c}
+                                                                                            
                                                                                         />
                                                                                     </div>
                                                                                     <label>Nombre de usuario</label>
