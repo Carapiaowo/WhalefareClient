@@ -7,11 +7,11 @@ import Home from "../images/padlock.png";
 import Team from "../images/credit-card.png";
 import Calender from "../images/bloc-de-notas.png";
 import PowerOff from "../images/power-off-solid.svg";
-import Profilee from  "../images/blue-whale.png";
+import Profilee from "../images/blue-whale.png";
 import styled from "styled-components";
-
+import Axios from 'axios';
 import { NavLink, Link } from "react-router-dom";
-
+import { useHistory } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -207,135 +207,145 @@ const Sidebar = () => {
   const [modalLogout, setLogout] = useState(false)
   const setModalLogout = () => {
     setLogout(!modalLogout)
-}
-
+  }
+  let history = useHistory();
   const [profileClick, setprofileClick] = useState(false);
   const handleProfileClick = () => setprofileClick(!profileClick);
   const { setIsLogged, isLogged } = useContext(AuthContext);
+
+  const logOut = () => {
+    const url = "https://whalefare.herokuapp.com/logout/" + isLogged.id
+    Axios.post(url);
+    setIsLogged({
+      isAuth: false,
+      id: null
+    });
+    history.push('/')
+  }
   return (
-    
+
     <Container>
       {
-         isLogged.isAuth !== true ?
-         <div>
-         <Button clicked={click} onClick={() => handleClick()}>
-        
-        </Button>
-        <SidebarContainer>
-          <Logo>
-       
-          </Logo>
-          <SlickBar clicked={click}>
-            <Item
-              onClick={() => setClick(false)}
-              exact
-              activeClassName="active"
-              to="/home"
-            >
-           <img src={Home} alt="Home" />
-              <Text clicked={click}>Contraseñas</Text>
-            </Item>
-            <Item
-              onClick={() => setClick(false)}
-              activeClassName="active"
-              to="/homet"
-            >
-              <img src={Team} alt="Team" />
-              <Text clicked={click}>Tarjetas</Text>
-            </Item>
-            <Item
-              onClick={() => setClick(false)}
-              activeClassName="active"
-              to="/homen"
-            >
-              <img src={Calender} alt="Calender" />
-              <Text clicked={click}>Notas</Text>
-            </Item>
-            
-          </SlickBar>
-  
-          <Profile clicked={profileClick}>
-            <img
-              onClick={() => handleProfileClick()}
-              src={Profilee}
-              alt="Profile"
-            />
-            <Details clicked={profileClick}>
-              <Name>
-                <h4>Usuario&nbsp;</h4>
-                <a href="/profile">Ver&nbsp;perfil</a>
-              </Name>
-  
-              <Logout >
-                <button  onClick={() => { setModalLogout() }}>
-                <img src={PowerOff} alt="logout" />
-                </button>
-              </Logout>
-            </Details>
-          </Profile>
-        </SidebarContainer>
-            </div>
+        isLogged.isAuth !== true ?
+          <div>
+            <Button clicked={click} onClick={() => handleClick()}>
 
-            
-         :
-         <div>
-         <Button clicked={click} onClick={() => handleClick()}>
-        
-        </Button>
-        <SidebarContainer>
-          <Logo>
-       
-          </Logo>
-          <SlickBar clicked={click}>
-            <Item
-              onClick={() => setClick(false)}
-              exact
-              activeClassName="active"
-              to="/"
-            >
-             <Link to='/homet'> <img src={Home} alt="Home" /></Link>
-              <Text clicked={click}>Contraseñas</Text>
-            </Item>
-            <Item
-              onClick={() => setClick(false)}
-              activeClassName="active"
-              to="/homet"
-            >
-              <img src={Team} alt="Team" />
-              <Text clicked={click}>Tarjetas</Text>
-            </Item>
-            <Item
-              onClick={() => setClick(false)}
-              activeClassName="active"
-              to="/homen"
-            >
-              <img src={Calender} alt="Calender" />
-              <Text clicked={click}>Notas</Text>
-            </Item>
-            
-          </SlickBar>
-  
-          <Profile clicked={profileClick}>
-            <img
-              onClick={() => handleProfileClick()}
-              src={Profilee}
-              alt="Profile"
-            />
-            <Details clicked={profileClick}>
-              <Name>
-                <h4>Usuario&nbsp;</h4>
-                <a href="/profile">Ver&nbsp;perfil</a>
-              </Name>
-  
-              <Logout >
-                <img src={PowerOff} alt="logout" />
-              </Logout>
-            </Details>
-          </Profile>
-        </SidebarContainer>
-            </div>
+            </Button>
+            <SidebarContainer>
+              <Logo>
+
+              </Logo>
+              <SlickBar clicked={click}>
+                <Item
+                  onClick={() => setClick(false)}
+                  exact
+                  activeClassName="active"
+                  to="/home"
+                >
+                  <img src={Home} alt="Home" />
+                  <Text clicked={click}>Contraseñas</Text>
+                </Item>
+                <Item
+                  onClick={() => setClick(false)}
+                  activeClassName="active"
+                  to="/homet"
+                >
+                  <img src={Team} alt="Team" />
+                  <Text clicked={click}>Tarjetas</Text>
+                </Item>
+                <Item
+                  onClick={() => setClick(false)}
+                  activeClassName="active"
+                  to="/homen"
+                >
+                  <img src={Calender} alt="Calender" />
+                  <Text clicked={click}>Notas</Text>
+                </Item>
+
+              </SlickBar>
+
+              <Profile clicked={profileClick}>
+                <img
+                  onClick={() => handleProfileClick()}
+                  src={Profilee}
+                  alt="Profile"
+                />
+                <Details clicked={profileClick}>
+                  <Name>
+                    <h4>Usuario&nbsp;</h4>
+                    <a href="/profile">Ver&nbsp;perfil</a>
+                  </Name>
+
+                  <Logout >
+                    <button onClick={() => { logOut() }}>
+                      <img src={PowerOff} alt="logout" />
+                    </button>
+                  </Logout>
+                </Details>
+              </Profile>
+            </SidebarContainer>
+          </div>
+
+
+          :
+          <div>
+            <Button clicked={click} onClick={() => handleClick()}>
+
+            </Button>
+            <SidebarContainer>
+              <Logo>
+
+              </Logo>
+              <SlickBar clicked={click}>
+                <Item
+                  onClick={() => setClick(false)}
+                  exact
+                  activeClassName="active"
+                  to="/"
+                >
+                  <Link to='/homet'> <img src={Home} alt="Home" /></Link>
+                  <Text clicked={click}>Contraseñas</Text>
+                </Item>
+                <Item
+                  onClick={() => setClick(false)}
+                  activeClassName="active"
+                  to="/homet"
+                >
+                  <img src={Team} alt="Team" />
+                  <Text clicked={click}>Tarjetas</Text>
+                </Item>
+                <Item
+                  onClick={() => setClick(false)}
+                  activeClassName="active"
+                  to="/homen"
+                >
+                  <img src={Calender} alt="Calender" />
+                  <Text clicked={click}>Notas</Text>
+                </Item>
+
+              </SlickBar>
+
+              <Profile clicked={profileClick}>
+                <img
+                  onClick={() => handleProfileClick()}
+                  src={Profilee}
+                  alt="Profile"
+                />
+                <Details clicked={profileClick}>
+                  <Name>
+                    <h4>Usuario&nbsp;</h4>
+                    <a href="/profile">Ver&nbsp;perfil</a>
+                  </Name>
+
+                  <Logout >
+                    <img src={PowerOff} alt="logout" />
+                  </Logout>
+                </Details>
+              </Profile>
+            </SidebarContainer>
+          </div>
       }
-      
+
     </Container>
   );
 };

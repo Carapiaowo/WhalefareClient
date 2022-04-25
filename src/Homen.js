@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import generator from "generate-password";
 import { withRouter } from 'react-router-dom';
-import { Col, Form, Button, Card, Dropdown } from "react-bootstrap";
+import { Col, Form, Button, Card, Dropdown, Container } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Popover, PopoverBody, PopoverHeader, ListGroup } from 'reactstrap';
 import { notes } from './validation';
@@ -368,15 +368,24 @@ class Homen extends Component {
                             //If para evitar el repetición de autenticación de llaves
                             !this.state.authorized ?
                                 /*PREVIO A AUTENTICACIÓN (corregido 1.0 c:)*/
-                                <div>
-                                    Visualiza los elementos almacenados con
-                                    <div className="mb-3">
-                                        <button className='btn' onClick={() => { this.setState({ eyehide: !this.state.eyehide }); this.sendMail(); this.peticionRead(); }}>
-                                            <i className='fa fa-eye'></i>
-                                        </button>
-
-                                    </div>
-                                </div>
+                                <>
+                                    <Container>
+                                        <Card lg={4} md={6} sm={12} className="right">
+                                            <Card.Title> Verifica tu identidad
+                                            </Card.Title>
+                                            <Card.Body>Presiona la <b>llave </b>y revisa tu correo
+                                                <br></br>para acceder a tu contenido.
+                                            </Card.Body>
+                                            <Form>
+                                                {this.state.authorized ?
+                                                    <div />
+                                                    :
+                                                    <button className="btn btn-link" style={{ color: 'black', fontSize: '30px' }} onClick={() => { this.sendMail(); this.peticionRead(); this.setState({ sent: true }) }}><i className="fa fa-key" /></button>
+                                                }
+                                            </Form>
+                                        </Card>
+                                    </Container>
+                                </>
                                 :
                                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
                                     <Droppable droppableId="passwords">
