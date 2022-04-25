@@ -70,7 +70,12 @@ function PasswordRecovery() {
                         <div>
                             {
                                 mailSent ?
-                                    <div>La contraseña se cambió correctamente, puedes volver a iniciar sesión con tu nueva contraseña.</div>
+                                    <>
+                                        <div>La contraseña se cambió correctamente, puedes volver a iniciar sesión con tu nueva contraseña.</div>
+                                        <NavLink to="/login">
+                                            Inicia sesión  
+                                        </NavLink>
+                                    </>
                                     :
                                     <div>Revisa que el enlace al que entraste sea correcto.</div>
                             }
