@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { useState } from "react";
 import generator from "generate-password";
-import Download from "./images/download-ext.png";
 import { withRouter } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Button, Popover, PopoverBody, PopoverHeader, Card, CardGroup } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Alert, List, Button, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import { Container, Card, Form } from "react-bootstrap";
 import { formVal, safetyPass } from './validation';
 import ValidationModal from './ValidationModal';
 import { AuthContext } from './Auth/AuthContext'
@@ -267,6 +266,7 @@ class Home extends Component {
     };
 
     componentDidMount() {
+        console.log(this.state.idUser)
         this.peticionRead();
     }
 
@@ -277,12 +277,6 @@ class Home extends Component {
                 <br /><br /><br />
                 <div className="container p-4">
                     <div className="col">
-                        <button className='btn-eye' onClick={() => { this.setState({ eyehide: !this.state.eyehide }) }}>
-                            {this.state.eyehide ?
-                                <i className='fa fa-eye'></i>
-                                :
-                                <i className='fa fa-eye-slash'></i>
-                            }</button>
                         <button id="cat" className="btn-cat" onClick={() => { this.setState({ form: null, tipoModal: 'navegador' }); this.modalNavegador() }}><i className="fa fa-puzzle-piece" /><br /></button>
                         <button className="btn-help" onClick={() => { this.setState({ form: null, tipoModal: 'ayuda' }); this.modalAyuda() }}><i className="fa fa-question  " /><br /></button>
                         <button className="btn-add" onClick={() => { this.setState({ form: null, tipoModal: 'insertar' }); this.modalInsertar() }}><i className="fa  fa-plus  " /><br /></button>
@@ -396,17 +390,22 @@ class Home extends Component {
                                 </DragDropContext>
                                 :
                                 <>
-                                    Dando clic en el ojo debajo a la derecha te enviaremos un correo para que puedas acceder a tu contenido almacenado.
-                                    <div className="mb-3">
-                                        {this.state.authorized ?
-                                            <div />
-                                            :
-                                            <button className='btn-eye' onClick={() => { this.setState({ eyehide: !this.state.eyehide }); this.sendMail(); this.peticionRead(); }}>
-                                                <i className='fa fa-eye'></i>
-                                            </button>
-                                        }
-                                    </div>
-
+                                    <Container>
+                                        <Card lg={4} md={6} sm={12} className="right">
+                                            <Card.Title> Verifica tu identidad
+                                            </Card.Title>
+                                            <Card.Body>Presiona la <b>llave </b>y revisa tu correo
+                                                <br></br>para acceder a tu contenido.
+                                            </Card.Body>
+                                            <Form>
+                                                {this.state.authorized ?
+                                                    <div />
+                                                    :
+                                                    <button className="btn btn-link" style={{ color: 'black', fontSize: '30px' }} onClick={() => { this.sendMail(); this.peticionRead(); this.setState({ sent: true }) }}><i className="fa fa-key" /></button>
+                                                }
+                                            </Form>
+                                        </Card>
+                                    </Container>
                                 </>
                         }
                     </div>
