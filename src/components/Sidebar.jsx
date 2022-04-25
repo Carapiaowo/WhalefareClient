@@ -12,7 +12,7 @@ import styled from "styled-components";
 import Axios from 'axios';
 import { NavLink, Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-
+import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 
 const Container = styled.div`
   position: absolute;
@@ -222,9 +222,19 @@ const Sidebar = () => {
     });
     history.push('/')
   }
+
   return (
 
     <Container>
+      <Modal isOpen={modalLogout}>
+        <ModalBody>
+          ¿Seguro que quieres cerrar tu sesión?
+        </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-danger" onClick={() => { logOut(); setModalLogout() }}>Sí</button>
+          <button className="btn btn-secundary" onClick={() => { setModalLogout() }}>No</button>
+        </ModalFooter>
+      </Modal>
       {
         isLogged.isAuth !== true ?
           <div>
@@ -275,9 +285,8 @@ const Sidebar = () => {
                     <h4>Usuario&nbsp;</h4>
                     <a href="/profile">Ver&nbsp;perfil</a>
                   </Name>
-
                   <Logout >
-                    <button onClick={() => { logOut() }}>
+                    <button onClick={() => { setModalLogout() }}>
                       <img src={PowerOff} alt="logout" />
                     </button>
                   </Logout>
