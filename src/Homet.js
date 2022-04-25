@@ -66,7 +66,7 @@ class Homet extends Component {
         //   if (this.state.idUser) {
 
         this.setState({ data: [] })
-        Axios.post("http://localhost:4000/readcard", { id_u: 345 }).then(response => {
+        Axios.post("https://whalefare1.herokuapp.com/readcard", { id_u: this.state.idUser }).then(response => {
             this.setState({ data: response.data.result, authorized: response.data.authorized[0].authorized_u });
             console.log(this.state.data)
         }).catch(error => {
