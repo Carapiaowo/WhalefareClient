@@ -18,12 +18,11 @@ function Footer() {
                         </div>
                     
                     </div>
-                    <div className="colum1">
-                        <h1>Deberías notificar</h1>
-                        <div class="row2"><a aria-label="Deberías notificar quejas y sugerencias." href="https://forms.gle/EVkKuce3fE9NEhYh8"><p>Quejas y sugerencias</p></a></div>
-                    
-                    </div>
                     <div className="colum2">
+                        <h1>Deberías notificar</h1>
+                        <div className="row2"><a aria-label="Deberías notificar quejas y sugerencias." href="https://forms.gle/EVkKuce3fE9NEhYh8"><p>Quejas y sugerencias</p></a></div>
+                    </div>
+                    <div className="colum3">
                         <h1>Deberías ver</h1>
                         <div className="row2_ft">
                             <a href={"https://github.com/Marmolejo1489/Whalefare_"} target="_blank" rel="noreferrer"
