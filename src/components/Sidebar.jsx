@@ -282,12 +282,12 @@ const Sidebar = () => {
                 />
                 <Details clicked={profileClick}>
                   <Name>
-                    <h4>Usuario&nbsp;</h4>
-                    <a href="/profile">Ver&nbsp;perfil</a>
+                   <h4></h4>
+                   <a href="/profile"><h5>Ver&nbsp;perfil</h5></a>
                   </Name>
-                  <Logout >
+                   <Logout>
                     <button onClick={() => { setModalLogout() }}>
-                      <img src={PowerOff} alt="logout" />
+                      <img className="poweroff" src={PowerOff} alt="logout" />
                     </button>
                   </Logout>
                 </Details>
