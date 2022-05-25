@@ -141,7 +141,8 @@ li.active:hover {
 .card {
     border-color: #ffffff00;
     position: relative;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
 }
 
 .parrafoini {
@@ -935,6 +936,15 @@ a:link {
 
 .colum2 h1 {
     font-size: 22px;
+}
+
+.colum2 a{
+   margin: auto;
+
+}
+.poweroff{
+-webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
 }
 
 .row2 {
