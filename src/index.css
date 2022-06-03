@@ -142,8 +142,15 @@ li.active:hover {
     border-color: #ffffff00;
     position: relative;
      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+     margin-top: 15px;
+}
+
+.downa{
+   
+    text-align: center;
     
 }
+
 
 .parrafoini {
     font-family: 'Roboto', sans-serif;
