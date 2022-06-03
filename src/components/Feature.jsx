@@ -55,13 +55,15 @@ function Feature() {
                 <Card.Body>
                 <Card.Title style={{textAlign:'center', color:'#404040'}} >Aplicación para dispositivos Android</Card.Title>
                 </Card.Body>
-            <Card.Img variant="bottom" className='downicons' src={android} />
+             <a className='downa' href='https://drive.google.com/uc?export=download&id=1Y0KVI3eyLDeWwxmH7jARI8sVrza41Dl4'>
+         <Card.Img variant="bottom" className='downicons' src={android} /></a>
             </Card>
             <Card style={{backgroundColor:'transparent', borderColor:'transparent', boxShadow:'none'}}>
                 <Card.Body >
                 <Card.Title style={{textAlign:'center', color:'#404040'}}>Extensión para navegadores Chromium</Card.Title>
                 </Card.Body>
-                <Card.Img variant="bottom" className='downicons' src={chromebag} />
+                 <a className='downa' href='https://drive.google.com/uc?export=download&id=1d4l4BLE3IoCfLPArFgCAStKXpe7pQj2T'>
+        <Card.Img variant="bottom" className='downicons' src={chromebag} /></a>
             </Card>
             
             </CardGroup>
