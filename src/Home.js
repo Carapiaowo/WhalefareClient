@@ -300,7 +300,7 @@ class Home extends Component {
                                                                     <div className="col">
                                                                         <div className="card">
                                                                             <div className='center-text'>
-                                                                                <h4 className="card-header  bg-primary">{pass.title_c}</h4>
+                                                                                <h4 className="card-header">{pass.title_c}</h4>
                                                                             </div>
                                                                             {this.state.authorized !== 1 ?
                                                                                 /*CONTENEDOR PREVIO A AUTENTICACIÓN */
